@@ -212,7 +212,7 @@ public class Example {
 
 <a id="listTemplates"></a>
 # **listTemplates**
-> ListTemplates200Response listTemplates()
+> ListTemplates200Response listTemplates(sort, order)
 
 List templates
 
@@ -236,8 +236,10 @@ public class Example {
     bearerAuth.setBearerToken("BEARER TOKEN");
 
     TemplatesApi apiInstance = new TemplatesApi(defaultClient);
+    String sort = "name"; // String | Field to order by. This list holds tens of rows per account, so every column is offered and none needs an index.
+    String order = "asc"; // String | Defaults to asc for the default field and asc for any other. Always tie-broken on id, so the order is total.
     try {
-      ListTemplates200Response result = apiInstance.listTemplates();
+      ListTemplates200Response result = apiInstance.listTemplates(sort, order);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling TemplatesApi#listTemplates");
@@ -251,7 +253,11 @@ public class Example {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **sort** | **String**| Field to order by. This list holds tens of rows per account, so every column is offered and none needs an index. | [optional] [default to name] [enum: name, created_at, updated_at] |
+| **order** | **String**| Defaults to asc for the default field and asc for any other. Always tie-broken on id, so the order is total. | [optional] [enum: asc, desc] |
 
 ### Return type
 

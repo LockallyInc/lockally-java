@@ -78,7 +78,9 @@ public class TemplatesApiTest {
      */
     @Test
     public void listTemplatesTest() throws ApiException {
-        ListTemplates200Response response = api.listTemplates();
+        String sort = null;
+        String order = null;
+        ListTemplates200Response response = api.listTemplates(sort, order);
         // TODO: test validations
     }
 

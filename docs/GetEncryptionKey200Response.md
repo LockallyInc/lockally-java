@@ -13,6 +13,11 @@
 |**encryptedPrivateKey** | **String** |  |  [optional] |
 |**kdfParams** | **Object** |  |  [optional] |
 |**version** | **Integer** |  |  [optional] |
+|**createdAt** | **OffsetDateTime** |  |  [optional] |
+|**rotatedAt** | **OffsetDateTime** |  |  [optional] |
+|**hasRecovery** | **Boolean** |  |  [optional] |
+|**recoverySetAt** | **OffsetDateTime** |  |  [optional] |
+|**recoveryBlob** | **String** |  |  [optional] |
 
 
 

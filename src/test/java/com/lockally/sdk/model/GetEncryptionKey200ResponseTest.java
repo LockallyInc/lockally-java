@@ -19,6 +19,7 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+import java.time.OffsetDateTime;
 import java.util.Arrays;
 import java.util.UUID;
 import org.junit.jupiter.api.Disabled;
@@ -84,6 +85,46 @@ public class GetEncryptionKey200ResponseTest {
     @Test
     public void versionTest() {
         // TODO: test version
+    }
+
+    /**
+     * Test the property 'createdAt'
+     */
+    @Test
+    public void createdAtTest() {
+        // TODO: test createdAt
+    }
+
+    /**
+     * Test the property 'rotatedAt'
+     */
+    @Test
+    public void rotatedAtTest() {
+        // TODO: test rotatedAt
+    }
+
+    /**
+     * Test the property 'hasRecovery'
+     */
+    @Test
+    public void hasRecoveryTest() {
+        // TODO: test hasRecovery
+    }
+
+    /**
+     * Test the property 'recoverySetAt'
+     */
+    @Test
+    public void recoverySetAtTest() {
+        // TODO: test recoverySetAt
+    }
+
+    /**
+     * Test the property 'recoveryBlob'
+     */
+    @Test
+    public void recoveryBlobTest() {
+        // TODO: test recoveryBlob
     }
 
 }

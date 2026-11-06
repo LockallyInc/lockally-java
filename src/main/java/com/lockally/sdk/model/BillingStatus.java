@@ -53,7 +53,7 @@ import com.lockally.sdk.JSON;
 /**
  * BillingStatus
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-16T20:39:47.874933+01:00[Africa/Lagos]", comments = "Generator version: 7.23.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-06T02:15:10.968235+01:00[Africa/Lagos]", comments = "Generator version: 7.23.0")
 public class BillingStatus {
   public static final String SERIALIZED_NAME_PLAN = "plan";
   @SerializedName(SERIALIZED_NAME_PLAN)

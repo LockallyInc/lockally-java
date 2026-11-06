@@ -126,7 +126,9 @@ public class DomainsApiTest {
      */
     @Test
     public void listDomainsTest() throws ApiException {
-        ListDomains200Response response = api.listDomains();
+        String sort = null;
+        String order = null;
+        ListDomains200Response response = api.listDomains(sort, order);
         // TODO: test validations
     }
 

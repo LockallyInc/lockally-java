@@ -24,6 +24,7 @@ import com.lockally.sdk.model.ListMigrations200Response;
 import com.lockally.sdk.model.MapMigrationRequest;
 import com.lockally.sdk.model.Migration;
 import com.lockally.sdk.model.MigrationCredential;
+import com.lockally.sdk.model.MigrationDNSCheck;
 import com.lockally.sdk.model.MigrationProgress;
 import com.lockally.sdk.model.Problem;
 import com.lockally.sdk.model.StartMigration202Response;
@@ -66,7 +67,7 @@ public class MigrationsApiTest {
     @Test
     public void checkMigrationDNSTest() throws ApiException {
         UUID id = null;
-        Object response = api.checkMigrationDNS(id);
+        MigrationDNSCheck response = api.checkMigrationDNS(id);
         // TODO: test validations
     }
 

@@ -19,6 +19,7 @@ import com.lockally.sdk.model.CreateEncryptionKey201Response;
 import com.lockally.sdk.model.CreateEncryptionKeyRequest;
 import com.lockally.sdk.model.CreateEncryptionRecoveryRequest;
 import com.lockally.sdk.model.GetEncryptionKey200Response;
+import com.lockally.sdk.model.GetEncryptionStatus200Response;
 import com.lockally.sdk.model.Problem;
 import com.lockally.sdk.model.RotateEncryptionKeyRequest;
 import org.junit.jupiter.api.Disabled;
@@ -52,6 +53,8 @@ public class EncryptionApiTest {
     /**
      * Upload an encryption key pair
      *
+     * Only the mailbox&#39;s own webmail session may call this; an API key is refused with 403. The private key is sealed under that mailbox&#39;s password, which an administrator never has. &#x60;mailbox_email&#x60;, if sent, must be the caller&#39;s own mailbox. A mailbox that already has a key is starting over: the old key is kept inactive, not destroyed, and the new one starts without a recovery code.
+     *
      * @throws ApiException if the Api call fails
      */
     @Test
@@ -63,6 +66,8 @@ public class EncryptionApiTest {
 
     /**
      * Store an encryption recovery blob
+     *
+     * Only the mailbox&#39;s own webmail session may call this; an API key is refused with 403. The private key is sealed under that mailbox&#39;s password, which an administrator never has. &#x60;mailbox_email&#x60;, if sent, must be the caller&#39;s own mailbox. The blob is the private key sealed under a recovery code the browser generated; the code itself is never sent. Replaces any earlier one.
      *
      * @throws ApiException if the Api call fails
      */
@@ -76,6 +81,8 @@ public class EncryptionApiTest {
     /**
      * Get encryption key for a mailbox
      *
+     * Anyone in the workspace gets the public key. The mailbox&#39;s own webmail session also gets its sealed private key, its sealed recovery copy and the recovery state.
+     *
      * @throws ApiException if the Api call fails
      */
     @Test
@@ -86,7 +93,22 @@ public class EncryptionApiTest {
     }
 
     /**
-     * Rotate an encryption key
+     * End-to-end encryption status for the workspace
+     *
+     * For administrators: whether the add-on is on, and for each mailbox whether it has a key and a recovery code. Carries no key material.
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void getEncryptionStatusTest() throws ApiException {
+        GetEncryptionStatus200Response response = api.getEncryptionStatus();
+        // TODO: test validations
+    }
+
+    /**
+     * Re-seal an encryption key under a new password
+     *
+     * Only the mailbox&#39;s own webmail session may call this; an API key is refused with 403. The private key is sealed under that mailbox&#39;s password, which an administrator never has. &#x60;mailbox_email&#x60;, if sent, must be the caller&#39;s own mailbox. The key pair does not change, so every message stays readable.
      *
      * @throws ApiException if the Api call fails
      */

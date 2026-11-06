@@ -27,8 +27,11 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
+import com.lockally.sdk.model.BulkUpsertExternalContacts200Response;
+import com.lockally.sdk.model.BulkUpsertExternalContactsRequest;
 import com.lockally.sdk.model.Contact;
 import com.lockally.sdk.model.CreateContactRequest;
+import com.lockally.sdk.model.ExternalContactInput;
 import com.lockally.sdk.model.GetContactLists200Response;
 import com.lockally.sdk.model.ListContacts200Response;
 import com.lockally.sdk.model.Problem;
@@ -78,6 +81,156 @@ public class ContactsApi {
         this.localCustomBaseUrl = customBaseUrl;
     }
 
+    /**
+     * Build call for bulkUpsertExternalContacts
+     * @param system  (required)
+     * @param bulkUpsertExternalContactsRequest  (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Per-row results </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Malformed request. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Missing, malformed, or invalid API key. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> API key lacks the required scope. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call bulkUpsertExternalContactsCall(@jakarta.annotation.Nonnull String system, @jakarta.annotation.Nonnull BulkUpsertExternalContactsRequest bulkUpsertExternalContactsRequest, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = bulkUpsertExternalContactsRequest;
+
+        // create path and map variables
+        String localVarPath = "/v1/contacts/external/{system}"
+            .replace("{" + "system" + "}", localVarApiClient.escapeString(system.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json",
+            "application/problem+json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call bulkUpsertExternalContactsValidateBeforeCall(@jakarta.annotation.Nonnull String system, @jakarta.annotation.Nonnull BulkUpsertExternalContactsRequest bulkUpsertExternalContactsRequest, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'system' is set
+        if (system == null) {
+            throw new ApiException("Missing the required parameter 'system' when calling bulkUpsertExternalContacts(Async)");
+        }
+
+        // verify the required parameter 'bulkUpsertExternalContactsRequest' is set
+        if (bulkUpsertExternalContactsRequest == null) {
+            throw new ApiException("Missing the required parameter 'bulkUpsertExternalContactsRequest' when calling bulkUpsertExternalContacts(Async)");
+        }
+
+        return bulkUpsertExternalContactsCall(system, bulkUpsertExternalContactsRequest, _callback);
+
+    }
+
+    /**
+     * Create or update up to 500 contacts by their ids in another system
+     * For a sync. Each row stands alone: a bad row is reported in &#x60;results&#x60; with its index and the rest are stored, so the response is 200 whenever the request itself is well formed. Read &#x60;failed&#x60; and &#x60;results&#x60;. Two rows with the same &#x60;external_id&#x60; in one request are refused (the later one), because which is current cannot be known. Rerunning the same payload updates rather than duplicates.
+     * @param system  (required)
+     * @param bulkUpsertExternalContactsRequest  (required)
+     * @return BulkUpsertExternalContacts200Response
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Per-row results </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Malformed request. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Missing, malformed, or invalid API key. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> API key lacks the required scope. </td><td>  -  </td></tr>
+     </table>
+     */
+    public BulkUpsertExternalContacts200Response bulkUpsertExternalContacts(@jakarta.annotation.Nonnull String system, @jakarta.annotation.Nonnull BulkUpsertExternalContactsRequest bulkUpsertExternalContactsRequest) throws ApiException {
+        ApiResponse<BulkUpsertExternalContacts200Response> localVarResp = bulkUpsertExternalContactsWithHttpInfo(system, bulkUpsertExternalContactsRequest);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Create or update up to 500 contacts by their ids in another system
+     * For a sync. Each row stands alone: a bad row is reported in &#x60;results&#x60; with its index and the rest are stored, so the response is 200 whenever the request itself is well formed. Read &#x60;failed&#x60; and &#x60;results&#x60;. Two rows with the same &#x60;external_id&#x60; in one request are refused (the later one), because which is current cannot be known. Rerunning the same payload updates rather than duplicates.
+     * @param system  (required)
+     * @param bulkUpsertExternalContactsRequest  (required)
+     * @return ApiResponse&lt;BulkUpsertExternalContacts200Response&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Per-row results </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Malformed request. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Missing, malformed, or invalid API key. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> API key lacks the required scope. </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<BulkUpsertExternalContacts200Response> bulkUpsertExternalContactsWithHttpInfo(@jakarta.annotation.Nonnull String system, @jakarta.annotation.Nonnull BulkUpsertExternalContactsRequest bulkUpsertExternalContactsRequest) throws ApiException {
+        okhttp3.Call localVarCall = bulkUpsertExternalContactsValidateBeforeCall(system, bulkUpsertExternalContactsRequest, null);
+        Type localVarReturnType = new TypeToken<BulkUpsertExternalContacts200Response>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Create or update up to 500 contacts by their ids in another system (asynchronously)
+     * For a sync. Each row stands alone: a bad row is reported in &#x60;results&#x60; with its index and the rest are stored, so the response is 200 whenever the request itself is well formed. Read &#x60;failed&#x60; and &#x60;results&#x60;. Two rows with the same &#x60;external_id&#x60; in one request are refused (the later one), because which is current cannot be known. Rerunning the same payload updates rather than duplicates.
+     * @param system  (required)
+     * @param bulkUpsertExternalContactsRequest  (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Per-row results </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Malformed request. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Missing, malformed, or invalid API key. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> API key lacks the required scope. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call bulkUpsertExternalContactsAsync(@jakarta.annotation.Nonnull String system, @jakarta.annotation.Nonnull BulkUpsertExternalContactsRequest bulkUpsertExternalContactsRequest, final ApiCallback<BulkUpsertExternalContacts200Response> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = bulkUpsertExternalContactsValidateBeforeCall(system, bulkUpsertExternalContactsRequest, _callback);
+        Type localVarReturnType = new TypeToken<BulkUpsertExternalContacts200Response>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
     /**
      * Build call for createContact
      * @param createContactRequest  (required)
@@ -350,6 +503,151 @@ public class ContactsApi {
     public okhttp3.Call deleteContactAsync(@jakarta.annotation.Nonnull UUID id, final ApiCallback<Void> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = deleteContactValidateBeforeCall(id, _callback);
+        localVarApiClient.executeAsync(localVarCall, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for deleteExternalContact
+     * @param system Your label for the system the record comes from, for example &#x60;salesforce&#x60;, &#x60;hubspot&#x60; or &#x60;odoo&#x60;. 1 to 64 characters: lowercase letters, digits, dot, underscore or hyphen (upper case is folded). (required)
+     * @param externalId The record&#39;s id in that system, kept exactly as given (case matters). 1 to 255 characters, no spaces. URL-encode it. (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> Contact deleted </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Missing, malformed, or invalid API key. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> API key lacks the required scope. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Resource not found under the calling tenant. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call deleteExternalContactCall(@jakarta.annotation.Nonnull String system, @jakarta.annotation.Nonnull String externalId, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/v1/contacts/external/{system}/{external_id}"
+            .replace("{" + "system" + "}", localVarApiClient.escapeString(system.toString()))
+            .replace("{" + "external_id" + "}", localVarApiClient.escapeString(externalId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/problem+json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call deleteExternalContactValidateBeforeCall(@jakarta.annotation.Nonnull String system, @jakarta.annotation.Nonnull String externalId, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'system' is set
+        if (system == null) {
+            throw new ApiException("Missing the required parameter 'system' when calling deleteExternalContact(Async)");
+        }
+
+        // verify the required parameter 'externalId' is set
+        if (externalId == null) {
+            throw new ApiException("Missing the required parameter 'externalId' when calling deleteExternalContact(Async)");
+        }
+
+        return deleteExternalContactCall(system, externalId, _callback);
+
+    }
+
+    /**
+     * Delete a contact by its id in another system
+     * 
+     * @param system Your label for the system the record comes from, for example &#x60;salesforce&#x60;, &#x60;hubspot&#x60; or &#x60;odoo&#x60;. 1 to 64 characters: lowercase letters, digits, dot, underscore or hyphen (upper case is folded). (required)
+     * @param externalId The record&#39;s id in that system, kept exactly as given (case matters). 1 to 255 characters, no spaces. URL-encode it. (required)
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> Contact deleted </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Missing, malformed, or invalid API key. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> API key lacks the required scope. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Resource not found under the calling tenant. </td><td>  -  </td></tr>
+     </table>
+     */
+    public void deleteExternalContact(@jakarta.annotation.Nonnull String system, @jakarta.annotation.Nonnull String externalId) throws ApiException {
+        deleteExternalContactWithHttpInfo(system, externalId);
+    }
+
+    /**
+     * Delete a contact by its id in another system
+     * 
+     * @param system Your label for the system the record comes from, for example &#x60;salesforce&#x60;, &#x60;hubspot&#x60; or &#x60;odoo&#x60;. 1 to 64 characters: lowercase letters, digits, dot, underscore or hyphen (upper case is folded). (required)
+     * @param externalId The record&#39;s id in that system, kept exactly as given (case matters). 1 to 255 characters, no spaces. URL-encode it. (required)
+     * @return ApiResponse&lt;Void&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> Contact deleted </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Missing, malformed, or invalid API key. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> API key lacks the required scope. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Resource not found under the calling tenant. </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<Void> deleteExternalContactWithHttpInfo(@jakarta.annotation.Nonnull String system, @jakarta.annotation.Nonnull String externalId) throws ApiException {
+        okhttp3.Call localVarCall = deleteExternalContactValidateBeforeCall(system, externalId, null);
+        return localVarApiClient.execute(localVarCall);
+    }
+
+    /**
+     * Delete a contact by its id in another system (asynchronously)
+     * 
+     * @param system Your label for the system the record comes from, for example &#x60;salesforce&#x60;, &#x60;hubspot&#x60; or &#x60;odoo&#x60;. 1 to 64 characters: lowercase letters, digits, dot, underscore or hyphen (upper case is folded). (required)
+     * @param externalId The record&#39;s id in that system, kept exactly as given (case matters). 1 to 255 characters, no spaces. URL-encode it. (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> Contact deleted </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Missing, malformed, or invalid API key. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> API key lacks the required scope. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Resource not found under the calling tenant. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call deleteExternalContactAsync(@jakarta.annotation.Nonnull String system, @jakarta.annotation.Nonnull String externalId, final ApiCallback<Void> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = deleteExternalContactValidateBeforeCall(system, externalId, _callback);
         localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }
@@ -630,6 +928,156 @@ public class ContactsApi {
 
         okhttp3.Call localVarCall = getContactListsValidateBeforeCall(id, _callback);
         Type localVarReturnType = new TypeToken<GetContactLists200Response>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for getExternalContact
+     * @param system Your label for the system the record comes from, for example &#x60;salesforce&#x60;, &#x60;hubspot&#x60; or &#x60;odoo&#x60;. 1 to 64 characters: lowercase letters, digits, dot, underscore or hyphen (upper case is folded). (required)
+     * @param externalId The record&#39;s id in that system, kept exactly as given (case matters). 1 to 255 characters, no spaces. URL-encode it. (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Contact details </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Missing, malformed, or invalid API key. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> API key lacks the required scope. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Resource not found under the calling tenant. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call getExternalContactCall(@jakarta.annotation.Nonnull String system, @jakarta.annotation.Nonnull String externalId, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/v1/contacts/external/{system}/{external_id}"
+            .replace("{" + "system" + "}", localVarApiClient.escapeString(system.toString()))
+            .replace("{" + "external_id" + "}", localVarApiClient.escapeString(externalId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json",
+            "application/problem+json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call getExternalContactValidateBeforeCall(@jakarta.annotation.Nonnull String system, @jakarta.annotation.Nonnull String externalId, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'system' is set
+        if (system == null) {
+            throw new ApiException("Missing the required parameter 'system' when calling getExternalContact(Async)");
+        }
+
+        // verify the required parameter 'externalId' is set
+        if (externalId == null) {
+            throw new ApiException("Missing the required parameter 'externalId' when calling getExternalContact(Async)");
+        }
+
+        return getExternalContactCall(system, externalId, _callback);
+
+    }
+
+    /**
+     * Get a contact by its id in another system
+     * 
+     * @param system Your label for the system the record comes from, for example &#x60;salesforce&#x60;, &#x60;hubspot&#x60; or &#x60;odoo&#x60;. 1 to 64 characters: lowercase letters, digits, dot, underscore or hyphen (upper case is folded). (required)
+     * @param externalId The record&#39;s id in that system, kept exactly as given (case matters). 1 to 255 characters, no spaces. URL-encode it. (required)
+     * @return Contact
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Contact details </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Missing, malformed, or invalid API key. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> API key lacks the required scope. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Resource not found under the calling tenant. </td><td>  -  </td></tr>
+     </table>
+     */
+    public Contact getExternalContact(@jakarta.annotation.Nonnull String system, @jakarta.annotation.Nonnull String externalId) throws ApiException {
+        ApiResponse<Contact> localVarResp = getExternalContactWithHttpInfo(system, externalId);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Get a contact by its id in another system
+     * 
+     * @param system Your label for the system the record comes from, for example &#x60;salesforce&#x60;, &#x60;hubspot&#x60; or &#x60;odoo&#x60;. 1 to 64 characters: lowercase letters, digits, dot, underscore or hyphen (upper case is folded). (required)
+     * @param externalId The record&#39;s id in that system, kept exactly as given (case matters). 1 to 255 characters, no spaces. URL-encode it. (required)
+     * @return ApiResponse&lt;Contact&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Contact details </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Missing, malformed, or invalid API key. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> API key lacks the required scope. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Resource not found under the calling tenant. </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<Contact> getExternalContactWithHttpInfo(@jakarta.annotation.Nonnull String system, @jakarta.annotation.Nonnull String externalId) throws ApiException {
+        okhttp3.Call localVarCall = getExternalContactValidateBeforeCall(system, externalId, null);
+        Type localVarReturnType = new TypeToken<Contact>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Get a contact by its id in another system (asynchronously)
+     * 
+     * @param system Your label for the system the record comes from, for example &#x60;salesforce&#x60;, &#x60;hubspot&#x60; or &#x60;odoo&#x60;. 1 to 64 characters: lowercase letters, digits, dot, underscore or hyphen (upper case is folded). (required)
+     * @param externalId The record&#39;s id in that system, kept exactly as given (case matters). 1 to 255 characters, no spaces. URL-encode it. (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Contact details </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Missing, malformed, or invalid API key. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> API key lacks the required scope. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Resource not found under the calling tenant. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call getExternalContactAsync(@jakarta.annotation.Nonnull String system, @jakarta.annotation.Nonnull String externalId, final ApiCallback<Contact> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = getExternalContactValidateBeforeCall(system, externalId, _callback);
+        Type localVarReturnType = new TypeToken<Contact>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
@@ -949,6 +1397,170 @@ public class ContactsApi {
     public okhttp3.Call updateContactAsync(@jakarta.annotation.Nonnull UUID id, @jakarta.annotation.Nonnull UpdateContactRequest updateContactRequest, final ApiCallback<Contact> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = updateContactValidateBeforeCall(id, updateContactRequest, _callback);
+        Type localVarReturnType = new TypeToken<Contact>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for upsertExternalContact
+     * @param system Your label for the system the record comes from, for example &#x60;salesforce&#x60;, &#x60;hubspot&#x60; or &#x60;odoo&#x60;. 1 to 64 characters: lowercase letters, digits, dot, underscore or hyphen (upper case is folded). (required)
+     * @param externalId The record&#39;s id in that system, kept exactly as given (case matters). 1 to 255 characters, no spaces. URL-encode it. (required)
+     * @param externalContactInput  (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> The contact already existed and was updated </td><td>  -  </td></tr>
+        <tr><td> 201 </td><td> The contact was created </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Malformed request. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Missing, malformed, or invalid API key. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> API key lacks the required scope. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call upsertExternalContactCall(@jakarta.annotation.Nonnull String system, @jakarta.annotation.Nonnull String externalId, @jakarta.annotation.Nonnull ExternalContactInput externalContactInput, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = externalContactInput;
+
+        // create path and map variables
+        String localVarPath = "/v1/contacts/external/{system}/{external_id}"
+            .replace("{" + "system" + "}", localVarApiClient.escapeString(system.toString()))
+            .replace("{" + "external_id" + "}", localVarApiClient.escapeString(externalId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json",
+            "application/problem+json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call upsertExternalContactValidateBeforeCall(@jakarta.annotation.Nonnull String system, @jakarta.annotation.Nonnull String externalId, @jakarta.annotation.Nonnull ExternalContactInput externalContactInput, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'system' is set
+        if (system == null) {
+            throw new ApiException("Missing the required parameter 'system' when calling upsertExternalContact(Async)");
+        }
+
+        // verify the required parameter 'externalId' is set
+        if (externalId == null) {
+            throw new ApiException("Missing the required parameter 'externalId' when calling upsertExternalContact(Async)");
+        }
+
+        // verify the required parameter 'externalContactInput' is set
+        if (externalContactInput == null) {
+            throw new ApiException("Missing the required parameter 'externalContactInput' when calling upsertExternalContact(Async)");
+        }
+
+        return upsertExternalContactCall(system, externalId, externalContactInput, _callback);
+
+    }
+
+    /**
+     * Create or update a contact by its id in another system
+     * Idempotent: the path is the identity, so sending the same request twice cannot create a second contact, and you never need to store our id. Returns 201 when the contact was created and 200 when it already existed. The body is the full representation: a field you leave out is cleared. Email is an ordinary attribute, not a key, so changing it updates the same contact. &#x60;mailboxes:write&#x60; is also accepted.
+     * @param system Your label for the system the record comes from, for example &#x60;salesforce&#x60;, &#x60;hubspot&#x60; or &#x60;odoo&#x60;. 1 to 64 characters: lowercase letters, digits, dot, underscore or hyphen (upper case is folded). (required)
+     * @param externalId The record&#39;s id in that system, kept exactly as given (case matters). 1 to 255 characters, no spaces. URL-encode it. (required)
+     * @param externalContactInput  (required)
+     * @return Contact
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> The contact already existed and was updated </td><td>  -  </td></tr>
+        <tr><td> 201 </td><td> The contact was created </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Malformed request. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Missing, malformed, or invalid API key. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> API key lacks the required scope. </td><td>  -  </td></tr>
+     </table>
+     */
+    public Contact upsertExternalContact(@jakarta.annotation.Nonnull String system, @jakarta.annotation.Nonnull String externalId, @jakarta.annotation.Nonnull ExternalContactInput externalContactInput) throws ApiException {
+        ApiResponse<Contact> localVarResp = upsertExternalContactWithHttpInfo(system, externalId, externalContactInput);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Create or update a contact by its id in another system
+     * Idempotent: the path is the identity, so sending the same request twice cannot create a second contact, and you never need to store our id. Returns 201 when the contact was created and 200 when it already existed. The body is the full representation: a field you leave out is cleared. Email is an ordinary attribute, not a key, so changing it updates the same contact. &#x60;mailboxes:write&#x60; is also accepted.
+     * @param system Your label for the system the record comes from, for example &#x60;salesforce&#x60;, &#x60;hubspot&#x60; or &#x60;odoo&#x60;. 1 to 64 characters: lowercase letters, digits, dot, underscore or hyphen (upper case is folded). (required)
+     * @param externalId The record&#39;s id in that system, kept exactly as given (case matters). 1 to 255 characters, no spaces. URL-encode it. (required)
+     * @param externalContactInput  (required)
+     * @return ApiResponse&lt;Contact&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> The contact already existed and was updated </td><td>  -  </td></tr>
+        <tr><td> 201 </td><td> The contact was created </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Malformed request. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Missing, malformed, or invalid API key. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> API key lacks the required scope. </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<Contact> upsertExternalContactWithHttpInfo(@jakarta.annotation.Nonnull String system, @jakarta.annotation.Nonnull String externalId, @jakarta.annotation.Nonnull ExternalContactInput externalContactInput) throws ApiException {
+        okhttp3.Call localVarCall = upsertExternalContactValidateBeforeCall(system, externalId, externalContactInput, null);
+        Type localVarReturnType = new TypeToken<Contact>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Create or update a contact by its id in another system (asynchronously)
+     * Idempotent: the path is the identity, so sending the same request twice cannot create a second contact, and you never need to store our id. Returns 201 when the contact was created and 200 when it already existed. The body is the full representation: a field you leave out is cleared. Email is an ordinary attribute, not a key, so changing it updates the same contact. &#x60;mailboxes:write&#x60; is also accepted.
+     * @param system Your label for the system the record comes from, for example &#x60;salesforce&#x60;, &#x60;hubspot&#x60; or &#x60;odoo&#x60;. 1 to 64 characters: lowercase letters, digits, dot, underscore or hyphen (upper case is folded). (required)
+     * @param externalId The record&#39;s id in that system, kept exactly as given (case matters). 1 to 255 characters, no spaces. URL-encode it. (required)
+     * @param externalContactInput  (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> The contact already existed and was updated </td><td>  -  </td></tr>
+        <tr><td> 201 </td><td> The contact was created </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Malformed request. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Missing, malformed, or invalid API key. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> API key lacks the required scope. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call upsertExternalContactAsync(@jakarta.annotation.Nonnull String system, @jakarta.annotation.Nonnull String externalId, @jakarta.annotation.Nonnull ExternalContactInput externalContactInput, final ApiCallback<Contact> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = upsertExternalContactValidateBeforeCall(system, externalId, externalContactInput, _callback);
         Type localVarReturnType = new TypeToken<Contact>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

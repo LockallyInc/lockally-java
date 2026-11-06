@@ -18,6 +18,8 @@
 |**updatedAt** | **OffsetDateTime** |  |  |
 |**bounceReason** | **String** |  |  [optional] |
 |**sizeBytes** | **Integer** |  |  [optional] |
+|**metadata** | **Map&lt;String, String&gt;** | The sender&#39;s own key/value from the send request. Always present; &#x60;{}&#x60; when none was set. |  [optional] |
+|**tags** | **List&lt;String&gt;** | Grouping labels, lowercased and deduplicated. Always present; &#x60;[]&#x60; when none were set. |  [optional] |
 
 
 

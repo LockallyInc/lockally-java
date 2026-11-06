@@ -117,6 +117,10 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new com.lockally.sdk.model.BatchLookupPublicKeys200ResponseDataInner.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.lockally.sdk.model.BatchResult.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.lockally.sdk.model.BillingStatus.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.lockally.sdk.model.BulkUpsertExternalContacts200Response.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.lockally.sdk.model.BulkUpsertExternalContacts200ResponseResultsInner.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.lockally.sdk.model.BulkUpsertExternalContactsRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.lockally.sdk.model.BulkUpsertExternalContactsRequestContactsInner.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.lockally.sdk.model.Calendar.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.lockally.sdk.model.CalendarEvent.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.lockally.sdk.model.CalendarIntegration.CustomTypeAdapterFactory());
@@ -166,6 +170,7 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new com.lockally.sdk.model.DraftList.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.lockally.sdk.model.DraftResult.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.lockally.sdk.model.ExportMailbox201Response.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.lockally.sdk.model.ExternalContactInput.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.lockally.sdk.model.GALSettings.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.lockally.sdk.model.GetAddOnStatus200Response.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.lockally.sdk.model.GetAuditSummary200Response.CustomTypeAdapterFactory());
@@ -188,6 +193,8 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new com.lockally.sdk.model.GetDomainsStatus200ResponseDomainsInner.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.lockally.sdk.model.GetDomainsStatus200ResponseDomainsInnerChecksInner.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.lockally.sdk.model.GetEncryptionKey200Response.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.lockally.sdk.model.GetEncryptionStatus200Response.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.lockally.sdk.model.GetEncryptionStatus200ResponseMailboxesInner.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.lockally.sdk.model.GetIPAssignment200Response.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.lockally.sdk.model.GetIntegrationsSummary200Response.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.lockally.sdk.model.GetIntegrationsSummary200ResponseApiKeysInner.CustomTypeAdapterFactory());
@@ -245,6 +252,8 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new com.lockally.sdk.model.MessageStatsWindow.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.lockally.sdk.model.Migration.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.lockally.sdk.model.MigrationCredential.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.lockally.sdk.model.MigrationDNSCheck.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.lockally.sdk.model.MigrationDomainDNS.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.lockally.sdk.model.MigrationEvent.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.lockally.sdk.model.MigrationMailbox.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.lockally.sdk.model.MigrationProgress.CustomTypeAdapterFactory());
@@ -258,6 +267,7 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new com.lockally.sdk.model.Resource.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.lockally.sdk.model.ReturnPath.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.lockally.sdk.model.ReturnPathCheck.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.lockally.sdk.model.RotateApiKeyRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.lockally.sdk.model.RotateEncryptionKeyRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.lockally.sdk.model.SendEmail200Response.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.lockally.sdk.model.SendEmail202Response.CustomTypeAdapterFactory());
@@ -276,6 +286,8 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new com.lockally.sdk.model.Template.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.lockally.sdk.model.TemplateInput.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.lockally.sdk.model.Tenant.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.lockally.sdk.model.TenantHealthCheck.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.lockally.sdk.model.TenantHealthReport.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.lockally.sdk.model.Thread.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.lockally.sdk.model.ThreadClassification.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.lockally.sdk.model.ThreadList.CustomTypeAdapterFactory());
@@ -283,8 +295,10 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new com.lockally.sdk.model.ThreadMessageBody.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.lockally.sdk.model.ThreadMessageBodyBody.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.lockally.sdk.model.ThreadSummary.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.lockally.sdk.model.TrackingPolicy.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.lockally.sdk.model.UnitBundle.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.lockally.sdk.model.UpdateAdminRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.lockally.sdk.model.UpdateApiKeyRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.lockally.sdk.model.UpdateCalendarEventRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.lockally.sdk.model.UpdateCalendarIntegrationRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.lockally.sdk.model.UpdateCalendarMemberRequest.CustomTypeAdapterFactory());
@@ -298,6 +312,7 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new com.lockally.sdk.model.UpdateMigrationMailboxRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.lockally.sdk.model.UpdateMigrationRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.lockally.sdk.model.UpdateResourceRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.lockally.sdk.model.UpdateTrackingPolicyRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.lockally.sdk.model.UpdateUserRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.lockally.sdk.model.UpdateWebhookRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.lockally.sdk.model.User.CustomTypeAdapterFactory());

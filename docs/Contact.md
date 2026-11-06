@@ -21,6 +21,8 @@
 |**status** | **String** |  |  |
 |**createdAt** | **OffsetDateTime** |  |  |
 |**updatedAt** | **OffsetDateTime** |  |  |
+|**externalSystem** | **String** | The system that owns this contact&#39;s external id. Absent on contacts made by hand. |  [optional] |
+|**externalId** | **String** | The contact&#39;s id in &#x60;external_system&#x60;. Absent on contacts made by hand. |  [optional] |
 
 
 

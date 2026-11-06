@@ -37,6 +37,7 @@ import com.lockally.sdk.model.ListMigrations200Response;
 import com.lockally.sdk.model.MapMigrationRequest;
 import com.lockally.sdk.model.Migration;
 import com.lockally.sdk.model.MigrationCredential;
+import com.lockally.sdk.model.MigrationDNSCheck;
 import com.lockally.sdk.model.MigrationProgress;
 import com.lockally.sdk.model.Problem;
 import com.lockally.sdk.model.StartMigration202Response;
@@ -246,6 +247,7 @@ public class MigrationsApi {
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> DNS readiness check results </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> The id is not a UUID, or the migration has no mapped destination mailboxes to check. </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Missing, malformed, or invalid API key. </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> API key lacks the required scope. </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Resource not found under the calling tenant. </td><td>  -  </td></tr>
@@ -313,21 +315,22 @@ public class MigrationsApi {
      * Check DNS readiness for cutover
      * 
      * @param id  (required)
-     * @return Object
+     * @return MigrationDNSCheck
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> DNS readiness check results </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> The id is not a UUID, or the migration has no mapped destination mailboxes to check. </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Missing, malformed, or invalid API key. </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> API key lacks the required scope. </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Resource not found under the calling tenant. </td><td>  -  </td></tr>
         <tr><td> 503 </td><td> Service is temporarily unable to handle the request (e.g. database unreachable). </td><td>  -  </td></tr>
      </table>
      */
-    public Object checkMigrationDNS(@jakarta.annotation.Nonnull UUID id) throws ApiException {
-        ApiResponse<Object> localVarResp = checkMigrationDNSWithHttpInfo(id);
+    public MigrationDNSCheck checkMigrationDNS(@jakarta.annotation.Nonnull UUID id) throws ApiException {
+        ApiResponse<MigrationDNSCheck> localVarResp = checkMigrationDNSWithHttpInfo(id);
         return localVarResp.getData();
     }
 
@@ -335,22 +338,23 @@ public class MigrationsApi {
      * Check DNS readiness for cutover
      * 
      * @param id  (required)
-     * @return ApiResponse&lt;Object&gt;
+     * @return ApiResponse&lt;MigrationDNSCheck&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> DNS readiness check results </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> The id is not a UUID, or the migration has no mapped destination mailboxes to check. </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Missing, malformed, or invalid API key. </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> API key lacks the required scope. </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Resource not found under the calling tenant. </td><td>  -  </td></tr>
         <tr><td> 503 </td><td> Service is temporarily unable to handle the request (e.g. database unreachable). </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Object> checkMigrationDNSWithHttpInfo(@jakarta.annotation.Nonnull UUID id) throws ApiException {
+    public ApiResponse<MigrationDNSCheck> checkMigrationDNSWithHttpInfo(@jakarta.annotation.Nonnull UUID id) throws ApiException {
         okhttp3.Call localVarCall = checkMigrationDNSValidateBeforeCall(id, null);
-        Type localVarReturnType = new TypeToken<Object>(){}.getType();
+        Type localVarReturnType = new TypeToken<MigrationDNSCheck>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
@@ -366,16 +370,17 @@ public class MigrationsApi {
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> DNS readiness check results </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> The id is not a UUID, or the migration has no mapped destination mailboxes to check. </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Missing, malformed, or invalid API key. </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> API key lacks the required scope. </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Resource not found under the calling tenant. </td><td>  -  </td></tr>
         <tr><td> 503 </td><td> Service is temporarily unable to handle the request (e.g. database unreachable). </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call checkMigrationDNSAsync(@jakarta.annotation.Nonnull UUID id, final ApiCallback<Object> _callback) throws ApiException {
+    public okhttp3.Call checkMigrationDNSAsync(@jakarta.annotation.Nonnull UUID id, final ApiCallback<MigrationDNSCheck> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = checkMigrationDNSValidateBeforeCall(id, _callback);
-        Type localVarReturnType = new TypeToken<Object>(){}.getType();
+        Type localVarReturnType = new TypeToken<MigrationDNSCheck>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }

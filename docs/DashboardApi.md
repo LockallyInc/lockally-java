@@ -330,7 +330,7 @@ This endpoint does not need any parameter.
 
 <a id="getTenantHealth"></a>
 # **getTenantHealth**
-> Object getTenantHealth()
+> TenantHealthReport getTenantHealth()
 
 Full tenant health report
 
@@ -355,7 +355,7 @@ public class Example {
 
     DashboardApi apiInstance = new DashboardApi(defaultClient);
     try {
-      Object result = apiInstance.getTenantHealth();
+      TenantHealthReport result = apiInstance.getTenantHealth();
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DashboardApi#getTenantHealth");
@@ -373,7 +373,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-**Object**
+[**TenantHealthReport**](TenantHealthReport.md)
 
 ### Authorization
 

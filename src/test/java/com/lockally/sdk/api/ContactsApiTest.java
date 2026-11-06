@@ -14,8 +14,11 @@
 package com.lockally.sdk.api;
 
 import com.lockally.sdk.ApiException;
+import com.lockally.sdk.model.BulkUpsertExternalContacts200Response;
+import com.lockally.sdk.model.BulkUpsertExternalContactsRequest;
 import com.lockally.sdk.model.Contact;
 import com.lockally.sdk.model.CreateContactRequest;
+import com.lockally.sdk.model.ExternalContactInput;
 import com.lockally.sdk.model.GetContactLists200Response;
 import com.lockally.sdk.model.ListContacts200Response;
 import com.lockally.sdk.model.Problem;
@@ -36,6 +39,21 @@ import java.util.Map;
 public class ContactsApiTest {
 
     private final ContactsApi api = new ContactsApi();
+
+    /**
+     * Create or update up to 500 contacts by their ids in another system
+     *
+     * For a sync. Each row stands alone: a bad row is reported in &#x60;results&#x60; with its index and the rest are stored, so the response is 200 whenever the request itself is well formed. Read &#x60;failed&#x60; and &#x60;results&#x60;. Two rows with the same &#x60;external_id&#x60; in one request are refused (the later one), because which is current cannot be known. Rerunning the same payload updates rather than duplicates.
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void bulkUpsertExternalContactsTest() throws ApiException {
+        String system = null;
+        BulkUpsertExternalContactsRequest bulkUpsertExternalContactsRequest = null;
+        BulkUpsertExternalContacts200Response response = api.bulkUpsertExternalContacts(system, bulkUpsertExternalContactsRequest);
+        // TODO: test validations
+    }
 
     /**
      * Create a contact
@@ -62,6 +80,19 @@ public class ContactsApiTest {
     }
 
     /**
+     * Delete a contact by its id in another system
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void deleteExternalContactTest() throws ApiException {
+        String system = null;
+        String externalId = null;
+        api.deleteExternalContact(system, externalId);
+        // TODO: test validations
+    }
+
+    /**
      * Get a contact
      *
      * @throws ApiException if the Api call fails
@@ -82,6 +113,19 @@ public class ContactsApiTest {
     public void getContactListsTest() throws ApiException {
         UUID id = null;
         GetContactLists200Response response = api.getContactLists(id);
+        // TODO: test validations
+    }
+
+    /**
+     * Get a contact by its id in another system
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void getExternalContactTest() throws ApiException {
+        String system = null;
+        String externalId = null;
+        Contact response = api.getExternalContact(system, externalId);
         // TODO: test validations
     }
 
@@ -111,6 +155,22 @@ public class ContactsApiTest {
         UUID id = null;
         UpdateContactRequest updateContactRequest = null;
         Contact response = api.updateContact(id, updateContactRequest);
+        // TODO: test validations
+    }
+
+    /**
+     * Create or update a contact by its id in another system
+     *
+     * Idempotent: the path is the identity, so sending the same request twice cannot create a second contact, and you never need to store our id. Returns 201 when the contact was created and 200 when it already existed. The body is the full representation: a field you leave out is cleared. Email is an ordinary attribute, not a key, so changing it updates the same contact. &#x60;mailboxes:write&#x60; is also accepted.
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void upsertExternalContactTest() throws ApiException {
+        String system = null;
+        String externalId = null;
+        ExternalContactInput externalContactInput = null;
+        Contact response = api.upsertExternalContact(system, externalId, externalContactInput);
         // TODO: test validations
     }
 

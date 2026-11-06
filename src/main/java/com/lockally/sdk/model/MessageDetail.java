@@ -54,7 +54,7 @@ import com.lockally.sdk.JSON;
 /**
  * A single message with the content captured at send time. Returned only by GET /v1/messages/{id} (the list stays summary-only). Attachments are not returned. 
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-16T20:39:47.874933+01:00[Africa/Lagos]", comments = "Generator version: 7.23.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-06T02:15:10.968235+01:00[Africa/Lagos]", comments = "Generator version: 7.23.0")
 public class MessageDetail {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -170,6 +170,16 @@ public class MessageDetail {
   @SerializedName(SERIALIZED_NAME_SIZE_BYTES)
   @jakarta.annotation.Nullable
   private Integer sizeBytes;
+
+  public static final String SERIALIZED_NAME_METADATA = "metadata";
+  @SerializedName(SERIALIZED_NAME_METADATA)
+  @jakarta.annotation.Nullable
+  private Map<String, String> metadata = new HashMap<>();
+
+  public static final String SERIALIZED_NAME_TAGS = "tags";
+  @SerializedName(SERIALIZED_NAME_TAGS)
+  @jakarta.annotation.Nullable
+  private List<String> tags = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_FROM = "from";
   @SerializedName(SERIALIZED_NAME_FROM)
@@ -426,6 +436,60 @@ public class MessageDetail {
   }
 
 
+  public MessageDetail metadata(@jakarta.annotation.Nullable Map<String, String> metadata) {
+    this.metadata = metadata;
+    return this;
+  }
+
+  public MessageDetail putMetadataItem(String key, String metadataItem) {
+    if (this.metadata == null) {
+      this.metadata = new HashMap<>();
+    }
+    this.metadata.put(key, metadataItem);
+    return this;
+  }
+
+  /**
+   * The sender&#39;s own key/value from the send request. Always present; &#x60;{}&#x60; when none was set.
+   * @return metadata
+   */
+  @jakarta.annotation.Nullable
+  public Map<String, String> getMetadata() {
+    return metadata;
+  }
+
+  public void setMetadata(@jakarta.annotation.Nullable Map<String, String> metadata) {
+    this.metadata = metadata;
+  }
+
+
+  public MessageDetail tags(@jakarta.annotation.Nullable List<String> tags) {
+    this.tags = tags;
+    return this;
+  }
+
+  public MessageDetail addTagsItem(String tagsItem) {
+    if (this.tags == null) {
+      this.tags = new ArrayList<>();
+    }
+    this.tags.add(tagsItem);
+    return this;
+  }
+
+  /**
+   * Grouping labels, lowercased and deduplicated. Always present; &#x60;[]&#x60; when none were set.
+   * @return tags
+   */
+  @jakarta.annotation.Nullable
+  public List<String> getTags() {
+    return tags;
+  }
+
+  public void setTags(@jakarta.annotation.Nullable List<String> tags) {
+    this.tags = tags;
+  }
+
+
   public MessageDetail from(@jakarta.annotation.Nullable String from) {
     this.from = from;
     return this;
@@ -612,6 +676,8 @@ public class MessageDetail {
         Objects.equals(this.updatedAt, messageDetail.updatedAt) &&
         Objects.equals(this.bounceReason, messageDetail.bounceReason) &&
         Objects.equals(this.sizeBytes, messageDetail.sizeBytes) &&
+        Objects.equals(this.metadata, messageDetail.metadata) &&
+        Objects.equals(this.tags, messageDetail.tags) &&
         Objects.equals(this.from, messageDetail.from) &&
         Objects.equals(this.to, messageDetail.to) &&
         Objects.equals(this.cc, messageDetail.cc) &&
@@ -623,7 +689,7 @@ public class MessageDetail {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, tenantId, messageId, sender, recipients, subject, status, queuedAt, updatedAt, bounceReason, sizeBytes, from, to, cc, bcc, text, html, headers);
+    return Objects.hash(id, tenantId, messageId, sender, recipients, subject, status, queuedAt, updatedAt, bounceReason, sizeBytes, metadata, tags, from, to, cc, bcc, text, html, headers);
   }
 
   @Override
@@ -641,6 +707,8 @@ public class MessageDetail {
     sb.append("    updatedAt: ").append(toIndentedString(updatedAt)).append("\n");
     sb.append("    bounceReason: ").append(toIndentedString(bounceReason)).append("\n");
     sb.append("    sizeBytes: ").append(toIndentedString(sizeBytes)).append("\n");
+    sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
+    sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
     sb.append("    from: ").append(toIndentedString(from)).append("\n");
     sb.append("    to: ").append(toIndentedString(to)).append("\n");
     sb.append("    cc: ").append(toIndentedString(cc)).append("\n");
@@ -666,7 +734,7 @@ public class MessageDetail {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("id", "tenant_id", "message_id", "sender", "recipients", "subject", "status", "queued_at", "updated_at", "bounce_reason", "size_bytes", "from", "to", "cc", "bcc", "text", "html", "headers"));
+    openapiFields = new HashSet<String>(Arrays.asList("id", "tenant_id", "message_id", "sender", "recipients", "subject", "status", "queued_at", "updated_at", "bounce_reason", "size_bytes", "metadata", "tags", "from", "to", "cc", "bcc", "text", "html", "headers"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(Arrays.asList("id", "tenant_id", "message_id", "sender", "recipients", "status", "queued_at", "updated_at"));
@@ -728,6 +796,10 @@ public class MessageDetail {
       StatusEnum.validateJsonElement(jsonObj.get("status"));
       if ((jsonObj.get("bounce_reason") != null && !jsonObj.get("bounce_reason").isJsonNull()) && !jsonObj.get("bounce_reason").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `bounce_reason` to be a primitive type in the JSON string but got `%s`", jsonObj.get("bounce_reason").toString()));
+      }
+      // ensure the optional json data is an array if present
+      if (jsonObj.get("tags") != null && !jsonObj.get("tags").isJsonNull() && !jsonObj.get("tags").isJsonArray()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `tags` to be an array in the JSON string but got `%s`", jsonObj.get("tags").toString()));
       }
       if ((jsonObj.get("from") != null && !jsonObj.get("from").isJsonNull()) && !jsonObj.get("from").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `from` to be a primitive type in the JSON string but got `%s`", jsonObj.get("from").toString()));

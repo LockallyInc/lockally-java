@@ -23,7 +23,9 @@ import com.lockally.sdk.model.SendMessage;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -51,12 +53,17 @@ import com.lockally.sdk.JSON;
 /**
  * SendEmailBatchRequest
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-16T20:39:47.874933+01:00[Africa/Lagos]", comments = "Generator version: 7.23.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-06T02:15:10.968235+01:00[Africa/Lagos]", comments = "Generator version: 7.23.0")
 public class SendEmailBatchRequest {
   public static final String SERIALIZED_NAME_MESSAGES = "messages";
   @SerializedName(SERIALIZED_NAME_MESSAGES)
   @jakarta.annotation.Nonnull
   private List<SendMessage> messages = new ArrayList<>();
+
+  public static final String SERIALIZED_NAME_VARIABLES = "variables";
+  @SerializedName(SERIALIZED_NAME_VARIABLES)
+  @jakarta.annotation.Nullable
+  private Map<String, String> variables = new HashMap<>();
 
   public SendEmailBatchRequest() {
   }
@@ -88,6 +95,33 @@ public class SendEmailBatchRequest {
   }
 
 
+  public SendEmailBatchRequest variables(@jakarta.annotation.Nullable Map<String, String> variables) {
+    this.variables = variables;
+    return this;
+  }
+
+  public SendEmailBatchRequest putVariablesItem(String key, String variablesItem) {
+    if (this.variables == null) {
+      this.variables = new HashMap<>();
+    }
+    this.variables.put(key, variablesItem);
+    return this;
+  }
+
+  /**
+   * Template variables every message in the batch inherits. Each message&#39;s own &#x60;variables&#x60; override these key by key, so shared values are written once and per-recipient ones stay per-recipient.  Without this, a 500-message batch repeats every shared variable 500 times: most of the payload, and 500 places for one of them to differ by a typo. 
+   * @return variables
+   */
+  @jakarta.annotation.Nullable
+  public Map<String, String> getVariables() {
+    return variables;
+  }
+
+  public void setVariables(@jakarta.annotation.Nullable Map<String, String> variables) {
+    this.variables = variables;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -98,12 +132,13 @@ public class SendEmailBatchRequest {
       return false;
     }
     SendEmailBatchRequest sendEmailBatchRequest = (SendEmailBatchRequest) o;
-    return Objects.equals(this.messages, sendEmailBatchRequest.messages);
+    return Objects.equals(this.messages, sendEmailBatchRequest.messages) &&
+        Objects.equals(this.variables, sendEmailBatchRequest.variables);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(messages);
+    return Objects.hash(messages, variables);
   }
 
   @Override
@@ -111,6 +146,7 @@ public class SendEmailBatchRequest {
     StringBuilder sb = new StringBuilder();
     sb.append("class SendEmailBatchRequest {\n");
     sb.append("    messages: ").append(toIndentedString(messages)).append("\n");
+    sb.append("    variables: ").append(toIndentedString(variables)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -129,7 +165,7 @@ public class SendEmailBatchRequest {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("messages"));
+    openapiFields = new HashSet<String>(Arrays.asList("messages", "variables"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(Arrays.asList("messages"));

@@ -20,6 +20,7 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+import java.time.OffsetDateTime;
 import java.util.Arrays;
 import java.util.UUID;
 
@@ -49,7 +50,7 @@ import com.lockally.sdk.JSON;
 /**
  * GetEncryptionKey200Response
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-16T20:39:47.874933+01:00[Africa/Lagos]", comments = "Generator version: 7.23.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-06T02:15:10.968235+01:00[Africa/Lagos]", comments = "Generator version: 7.23.0")
 public class GetEncryptionKey200Response {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -80,6 +81,31 @@ public class GetEncryptionKey200Response {
   @SerializedName(SERIALIZED_NAME_VERSION)
   @jakarta.annotation.Nullable
   private Integer version;
+
+  public static final String SERIALIZED_NAME_CREATED_AT = "created_at";
+  @SerializedName(SERIALIZED_NAME_CREATED_AT)
+  @jakarta.annotation.Nullable
+  private OffsetDateTime createdAt;
+
+  public static final String SERIALIZED_NAME_ROTATED_AT = "rotated_at";
+  @SerializedName(SERIALIZED_NAME_ROTATED_AT)
+  @jakarta.annotation.Nullable
+  private OffsetDateTime rotatedAt;
+
+  public static final String SERIALIZED_NAME_HAS_RECOVERY = "has_recovery";
+  @SerializedName(SERIALIZED_NAME_HAS_RECOVERY)
+  @jakarta.annotation.Nullable
+  private Boolean hasRecovery;
+
+  public static final String SERIALIZED_NAME_RECOVERY_SET_AT = "recovery_set_at";
+  @SerializedName(SERIALIZED_NAME_RECOVERY_SET_AT)
+  @jakarta.annotation.Nullable
+  private OffsetDateTime recoverySetAt;
+
+  public static final String SERIALIZED_NAME_RECOVERY_BLOB = "recovery_blob";
+  @SerializedName(SERIALIZED_NAME_RECOVERY_BLOB)
+  @jakarta.annotation.Nullable
+  private String recoveryBlob;
 
   public GetEncryptionKey200Response() {
   }
@@ -198,6 +224,101 @@ public class GetEncryptionKey200Response {
   }
 
 
+  public GetEncryptionKey200Response createdAt(@jakarta.annotation.Nullable OffsetDateTime createdAt) {
+    this.createdAt = createdAt;
+    return this;
+  }
+
+  /**
+   * Get createdAt
+   * @return createdAt
+   */
+  @jakarta.annotation.Nullable
+  public OffsetDateTime getCreatedAt() {
+    return createdAt;
+  }
+
+  public void setCreatedAt(@jakarta.annotation.Nullable OffsetDateTime createdAt) {
+    this.createdAt = createdAt;
+  }
+
+
+  public GetEncryptionKey200Response rotatedAt(@jakarta.annotation.Nullable OffsetDateTime rotatedAt) {
+    this.rotatedAt = rotatedAt;
+    return this;
+  }
+
+  /**
+   * Get rotatedAt
+   * @return rotatedAt
+   */
+  @jakarta.annotation.Nullable
+  public OffsetDateTime getRotatedAt() {
+    return rotatedAt;
+  }
+
+  public void setRotatedAt(@jakarta.annotation.Nullable OffsetDateTime rotatedAt) {
+    this.rotatedAt = rotatedAt;
+  }
+
+
+  public GetEncryptionKey200Response hasRecovery(@jakarta.annotation.Nullable Boolean hasRecovery) {
+    this.hasRecovery = hasRecovery;
+    return this;
+  }
+
+  /**
+   * Get hasRecovery
+   * @return hasRecovery
+   */
+  @jakarta.annotation.Nullable
+  public Boolean getHasRecovery() {
+    return hasRecovery;
+  }
+
+  public void setHasRecovery(@jakarta.annotation.Nullable Boolean hasRecovery) {
+    this.hasRecovery = hasRecovery;
+  }
+
+
+  public GetEncryptionKey200Response recoverySetAt(@jakarta.annotation.Nullable OffsetDateTime recoverySetAt) {
+    this.recoverySetAt = recoverySetAt;
+    return this;
+  }
+
+  /**
+   * Get recoverySetAt
+   * @return recoverySetAt
+   */
+  @jakarta.annotation.Nullable
+  public OffsetDateTime getRecoverySetAt() {
+    return recoverySetAt;
+  }
+
+  public void setRecoverySetAt(@jakarta.annotation.Nullable OffsetDateTime recoverySetAt) {
+    this.recoverySetAt = recoverySetAt;
+  }
+
+
+  public GetEncryptionKey200Response recoveryBlob(@jakarta.annotation.Nullable String recoveryBlob) {
+    this.recoveryBlob = recoveryBlob;
+    return this;
+  }
+
+  /**
+   * Get recoveryBlob
+   * @return recoveryBlob
+   */
+  @jakarta.annotation.Nullable
+  public String getRecoveryBlob() {
+    return recoveryBlob;
+  }
+
+  public void setRecoveryBlob(@jakarta.annotation.Nullable String recoveryBlob) {
+    this.recoveryBlob = recoveryBlob;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -213,12 +334,17 @@ public class GetEncryptionKey200Response {
         Objects.equals(this.publicKey, getEncryptionKey200Response.publicKey) &&
         Objects.equals(this.encryptedPrivateKey, getEncryptionKey200Response.encryptedPrivateKey) &&
         Objects.equals(this.kdfParams, getEncryptionKey200Response.kdfParams) &&
-        Objects.equals(this.version, getEncryptionKey200Response.version);
+        Objects.equals(this.version, getEncryptionKey200Response.version) &&
+        Objects.equals(this.createdAt, getEncryptionKey200Response.createdAt) &&
+        Objects.equals(this.rotatedAt, getEncryptionKey200Response.rotatedAt) &&
+        Objects.equals(this.hasRecovery, getEncryptionKey200Response.hasRecovery) &&
+        Objects.equals(this.recoverySetAt, getEncryptionKey200Response.recoverySetAt) &&
+        Objects.equals(this.recoveryBlob, getEncryptionKey200Response.recoveryBlob);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, email, publicKey, encryptedPrivateKey, kdfParams, version);
+    return Objects.hash(id, email, publicKey, encryptedPrivateKey, kdfParams, version, createdAt, rotatedAt, hasRecovery, recoverySetAt, recoveryBlob);
   }
 
   @Override
@@ -231,6 +357,11 @@ public class GetEncryptionKey200Response {
     sb.append("    encryptedPrivateKey: ").append(toIndentedString(encryptedPrivateKey)).append("\n");
     sb.append("    kdfParams: ").append(toIndentedString(kdfParams)).append("\n");
     sb.append("    version: ").append(toIndentedString(version)).append("\n");
+    sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
+    sb.append("    rotatedAt: ").append(toIndentedString(rotatedAt)).append("\n");
+    sb.append("    hasRecovery: ").append(toIndentedString(hasRecovery)).append("\n");
+    sb.append("    recoverySetAt: ").append(toIndentedString(recoverySetAt)).append("\n");
+    sb.append("    recoveryBlob: ").append(toIndentedString(recoveryBlob)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -249,7 +380,7 @@ public class GetEncryptionKey200Response {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("id", "email", "public_key", "encrypted_private_key", "kdf_params", "version"));
+    openapiFields = new HashSet<String>(Arrays.asList("id", "email", "public_key", "encrypted_private_key", "kdf_params", "version", "created_at", "rotated_at", "has_recovery", "recovery_set_at", "recovery_blob"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(0);
@@ -287,6 +418,9 @@ public class GetEncryptionKey200Response {
       }
       if ((jsonObj.get("encrypted_private_key") != null && !jsonObj.get("encrypted_private_key").isJsonNull()) && !jsonObj.get("encrypted_private_key").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `encrypted_private_key` to be a primitive type in the JSON string but got `%s`", jsonObj.get("encrypted_private_key").toString()));
+      }
+      if ((jsonObj.get("recovery_blob") != null && !jsonObj.get("recovery_blob").isJsonNull()) && !jsonObj.get("recovery_blob").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `recovery_blob` to be a primitive type in the JSON string but got `%s`", jsonObj.get("recovery_blob").toString()));
       }
   }
 

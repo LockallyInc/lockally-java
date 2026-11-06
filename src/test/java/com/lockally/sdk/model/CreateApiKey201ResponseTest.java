@@ -106,6 +106,30 @@ public class CreateApiKey201ResponseTest {
     }
 
     /**
+     * Test the property 'test'
+     */
+    @Test
+    public void testTest() {
+        // TODO: test test
+    }
+
+    /**
+     * Test the property 'expiresAt'
+     */
+    @Test
+    public void expiresAtTest() {
+        // TODO: test expiresAt
+    }
+
+    /**
+     * Test the property 'rotatedTo'
+     */
+    @Test
+    public void rotatedToTest() {
+        // TODO: test rotatedTo
+    }
+
+    /**
      * Test the property 'secret'
      */
     @Test

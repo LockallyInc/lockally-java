@@ -48,7 +48,7 @@ import com.lockally.sdk.JSON;
 /**
  * SignupRequest
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-16T20:39:47.874933+01:00[Africa/Lagos]", comments = "Generator version: 7.23.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-06T02:15:10.968235+01:00[Africa/Lagos]", comments = "Generator version: 7.23.0")
 public class SignupRequest {
   public static final String SERIALIZED_NAME_SLUG = "slug";
   @SerializedName(SERIALIZED_NAME_SLUG)
@@ -138,7 +138,7 @@ public class SignupRequest {
   }
 
   /**
-   * Get slug
+   * Workspace id. 3 to 63 characters of lowercase a-z, 0-9 and hyphens, starting and ending with a letter or digit. Anything else is refused with 400 Invalid workspace id.
    * @return slug
    */
   @jakarta.annotation.Nonnull

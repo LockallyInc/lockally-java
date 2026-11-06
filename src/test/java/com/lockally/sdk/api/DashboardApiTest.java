@@ -21,6 +21,7 @@ import com.lockally.sdk.model.GetSecurity200Response;
 import com.lockally.sdk.model.GetStorage200Response;
 import com.lockally.sdk.model.GetUserInsights200Response;
 import com.lockally.sdk.model.Problem;
+import com.lockally.sdk.model.TenantHealthReport;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -99,7 +100,7 @@ public class DashboardApiTest {
      */
     @Test
     public void getTenantHealthTest() throws ApiException {
-        Object response = api.getTenantHealth();
+        TenantHealthReport response = api.getTenantHealth();
         // TODO: test validations
     }
 

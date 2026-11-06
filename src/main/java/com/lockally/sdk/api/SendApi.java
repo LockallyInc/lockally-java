@@ -358,6 +358,7 @@ public class SendApi {
      * @param from Window start (default 7 days ago). (optional)
      * @param to Window end (default now). (optional)
      * @param domain Filter by sender domain. (optional)
+     * @param tag Group the window by the sender&#39;s own tags: one tag, or a comma-separated set meaning ANY. Case-insensitive. This is the dimension that tells a transactional stream from a notification one. (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -370,7 +371,7 @@ public class SendApi {
         <tr><td> 401 </td><td> Missing, malformed, or invalid API key. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getMessageStatsCall(@jakarta.annotation.Nullable OffsetDateTime from, @jakarta.annotation.Nullable OffsetDateTime to, @jakarta.annotation.Nullable String domain, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getMessageStatsCall(@jakarta.annotation.Nullable OffsetDateTime from, @jakarta.annotation.Nullable OffsetDateTime to, @jakarta.annotation.Nullable String domain, @jakarta.annotation.Nullable String tag, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -407,6 +408,10 @@ public class SendApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("domain", domain));
         }
 
+        if (tag != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("tag", tag));
+        }
+
         final String[] localVarAccepts = {
             "application/json",
             "application/problem+json"
@@ -428,8 +433,8 @@ public class SendApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getMessageStatsValidateBeforeCall(@jakarta.annotation.Nullable OffsetDateTime from, @jakarta.annotation.Nullable OffsetDateTime to, @jakarta.annotation.Nullable String domain, final ApiCallback _callback) throws ApiException {
-        return getMessageStatsCall(from, to, domain, _callback);
+    private okhttp3.Call getMessageStatsValidateBeforeCall(@jakarta.annotation.Nullable OffsetDateTime from, @jakarta.annotation.Nullable OffsetDateTime to, @jakarta.annotation.Nullable String domain, @jakarta.annotation.Nullable String tag, final ApiCallback _callback) throws ApiException {
+        return getMessageStatsCall(from, to, domain, tag, _callback);
 
     }
 
@@ -439,6 +444,7 @@ public class SendApi {
      * @param from Window start (default 7 days ago). (optional)
      * @param to Window end (default now). (optional)
      * @param domain Filter by sender domain. (optional)
+     * @param tag Group the window by the sender&#39;s own tags: one tag, or a comma-separated set meaning ANY. Case-insensitive. This is the dimension that tells a transactional stream from a notification one. (optional)
      * @return MessageStats
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -450,8 +456,8 @@ public class SendApi {
         <tr><td> 401 </td><td> Missing, malformed, or invalid API key. </td><td>  -  </td></tr>
      </table>
      */
-    public MessageStats getMessageStats(@jakarta.annotation.Nullable OffsetDateTime from, @jakarta.annotation.Nullable OffsetDateTime to, @jakarta.annotation.Nullable String domain) throws ApiException {
-        ApiResponse<MessageStats> localVarResp = getMessageStatsWithHttpInfo(from, to, domain);
+    public MessageStats getMessageStats(@jakarta.annotation.Nullable OffsetDateTime from, @jakarta.annotation.Nullable OffsetDateTime to, @jakarta.annotation.Nullable String domain, @jakarta.annotation.Nullable String tag) throws ApiException {
+        ApiResponse<MessageStats> localVarResp = getMessageStatsWithHttpInfo(from, to, domain, tag);
         return localVarResp.getData();
     }
 
@@ -461,6 +467,7 @@ public class SendApi {
      * @param from Window start (default 7 days ago). (optional)
      * @param to Window end (default now). (optional)
      * @param domain Filter by sender domain. (optional)
+     * @param tag Group the window by the sender&#39;s own tags: one tag, or a comma-separated set meaning ANY. Case-insensitive. This is the dimension that tells a transactional stream from a notification one. (optional)
      * @return ApiResponse&lt;MessageStats&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -472,8 +479,8 @@ public class SendApi {
         <tr><td> 401 </td><td> Missing, malformed, or invalid API key. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<MessageStats> getMessageStatsWithHttpInfo(@jakarta.annotation.Nullable OffsetDateTime from, @jakarta.annotation.Nullable OffsetDateTime to, @jakarta.annotation.Nullable String domain) throws ApiException {
-        okhttp3.Call localVarCall = getMessageStatsValidateBeforeCall(from, to, domain, null);
+    public ApiResponse<MessageStats> getMessageStatsWithHttpInfo(@jakarta.annotation.Nullable OffsetDateTime from, @jakarta.annotation.Nullable OffsetDateTime to, @jakarta.annotation.Nullable String domain, @jakarta.annotation.Nullable String tag) throws ApiException {
+        okhttp3.Call localVarCall = getMessageStatsValidateBeforeCall(from, to, domain, tag, null);
         Type localVarReturnType = new TypeToken<MessageStats>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -484,6 +491,7 @@ public class SendApi {
      * @param from Window start (default 7 days ago). (optional)
      * @param to Window end (default now). (optional)
      * @param domain Filter by sender domain. (optional)
+     * @param tag Group the window by the sender&#39;s own tags: one tag, or a comma-separated set meaning ANY. Case-insensitive. This is the dimension that tells a transactional stream from a notification one. (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -496,9 +504,9 @@ public class SendApi {
         <tr><td> 401 </td><td> Missing, malformed, or invalid API key. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getMessageStatsAsync(@jakarta.annotation.Nullable OffsetDateTime from, @jakarta.annotation.Nullable OffsetDateTime to, @jakarta.annotation.Nullable String domain, final ApiCallback<MessageStats> _callback) throws ApiException {
+    public okhttp3.Call getMessageStatsAsync(@jakarta.annotation.Nullable OffsetDateTime from, @jakarta.annotation.Nullable OffsetDateTime to, @jakarta.annotation.Nullable String domain, @jakarta.annotation.Nullable String tag, final ApiCallback<MessageStats> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getMessageStatsValidateBeforeCall(from, to, domain, _callback);
+        okhttp3.Call localVarCall = getMessageStatsValidateBeforeCall(from, to, domain, tag, _callback);
         Type localVarReturnType = new TypeToken<MessageStats>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -507,10 +515,13 @@ public class SendApi {
      * Build call for listMessages
      * @param status  (optional)
      * @param sender Exact match against the &#x60;from&#x60; mailbox. (optional)
+     * @param tag Filter to messages carrying any of these tags. One tag, or a comma-separated set meaning ANY. Case-insensitive: the value is normalised the same way tags are on write. (optional)
      * @param q Free-text search across subject + sender. (optional)
      * @param since Only messages queued at or after this RFC 3339 instant. (optional)
      * @param cursor queued_at of the prior page boundary. Pass back the &#x60;next_cursor&#x60; returned by the previous call. (optional)
      * @param limit  (optional, default to 50)
+     * @param sort Field to order by. Only indexed columns are offered: an unindexed sort on this table is a full scan of the account&#39;s send history. status and sender are filters instead. (optional, default to queued_at)
+     * @param order Defaults to desc for the default field and asc for any other. The order is always made total by a tie-break on id, so paging cannot repeat or skip a row that shares a timestamp. cursor encodes queued_at, so combining it with another sort is a 400 rather than a wrong page. (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -523,7 +534,7 @@ public class SendApi {
         <tr><td> 403 </td><td> API key lacks the required scope. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call listMessagesCall(@jakarta.annotation.Nullable String status, @jakarta.annotation.Nullable String sender, @jakarta.annotation.Nullable String q, @jakarta.annotation.Nullable OffsetDateTime since, @jakarta.annotation.Nullable String cursor, @jakarta.annotation.Nullable Integer limit, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call listMessagesCall(@jakarta.annotation.Nullable String status, @jakarta.annotation.Nullable String sender, @jakarta.annotation.Nullable String tag, @jakarta.annotation.Nullable String q, @jakarta.annotation.Nullable OffsetDateTime since, @jakarta.annotation.Nullable String cursor, @jakarta.annotation.Nullable Integer limit, @jakarta.annotation.Nullable String sort, @jakarta.annotation.Nullable String order, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -556,6 +567,10 @@ public class SendApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("sender", sender));
         }
 
+        if (tag != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("tag", tag));
+        }
+
         if (q != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("q", q));
         }
@@ -570,6 +585,14 @@ public class SendApi {
 
         if (limit != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("limit", limit));
+        }
+
+        if (sort != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("sort", sort));
+        }
+
+        if (order != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("order", order));
         }
 
         final String[] localVarAccepts = {
@@ -593,8 +616,8 @@ public class SendApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call listMessagesValidateBeforeCall(@jakarta.annotation.Nullable String status, @jakarta.annotation.Nullable String sender, @jakarta.annotation.Nullable String q, @jakarta.annotation.Nullable OffsetDateTime since, @jakarta.annotation.Nullable String cursor, @jakarta.annotation.Nullable Integer limit, final ApiCallback _callback) throws ApiException {
-        return listMessagesCall(status, sender, q, since, cursor, limit, _callback);
+    private okhttp3.Call listMessagesValidateBeforeCall(@jakarta.annotation.Nullable String status, @jakarta.annotation.Nullable String sender, @jakarta.annotation.Nullable String tag, @jakarta.annotation.Nullable String q, @jakarta.annotation.Nullable OffsetDateTime since, @jakarta.annotation.Nullable String cursor, @jakarta.annotation.Nullable Integer limit, @jakarta.annotation.Nullable String sort, @jakarta.annotation.Nullable String order, final ApiCallback _callback) throws ApiException {
+        return listMessagesCall(status, sender, tag, q, since, cursor, limit, sort, order, _callback);
 
     }
 
@@ -603,10 +626,13 @@ public class SendApi {
      * Returns recent outbound messages for the calling tenant, sorted newest first. 
      * @param status  (optional)
      * @param sender Exact match against the &#x60;from&#x60; mailbox. (optional)
+     * @param tag Filter to messages carrying any of these tags. One tag, or a comma-separated set meaning ANY. Case-insensitive: the value is normalised the same way tags are on write. (optional)
      * @param q Free-text search across subject + sender. (optional)
      * @param since Only messages queued at or after this RFC 3339 instant. (optional)
      * @param cursor queued_at of the prior page boundary. Pass back the &#x60;next_cursor&#x60; returned by the previous call. (optional)
      * @param limit  (optional, default to 50)
+     * @param sort Field to order by. Only indexed columns are offered: an unindexed sort on this table is a full scan of the account&#39;s send history. status and sender are filters instead. (optional, default to queued_at)
+     * @param order Defaults to desc for the default field and asc for any other. The order is always made total by a tie-break on id, so paging cannot repeat or skip a row that shares a timestamp. cursor encodes queued_at, so combining it with another sort is a 400 rather than a wrong page. (optional)
      * @return ListMessages200Response
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -618,8 +644,8 @@ public class SendApi {
         <tr><td> 403 </td><td> API key lacks the required scope. </td><td>  -  </td></tr>
      </table>
      */
-    public ListMessages200Response listMessages(@jakarta.annotation.Nullable String status, @jakarta.annotation.Nullable String sender, @jakarta.annotation.Nullable String q, @jakarta.annotation.Nullable OffsetDateTime since, @jakarta.annotation.Nullable String cursor, @jakarta.annotation.Nullable Integer limit) throws ApiException {
-        ApiResponse<ListMessages200Response> localVarResp = listMessagesWithHttpInfo(status, sender, q, since, cursor, limit);
+    public ListMessages200Response listMessages(@jakarta.annotation.Nullable String status, @jakarta.annotation.Nullable String sender, @jakarta.annotation.Nullable String tag, @jakarta.annotation.Nullable String q, @jakarta.annotation.Nullable OffsetDateTime since, @jakarta.annotation.Nullable String cursor, @jakarta.annotation.Nullable Integer limit, @jakarta.annotation.Nullable String sort, @jakarta.annotation.Nullable String order) throws ApiException {
+        ApiResponse<ListMessages200Response> localVarResp = listMessagesWithHttpInfo(status, sender, tag, q, since, cursor, limit, sort, order);
         return localVarResp.getData();
     }
 
@@ -628,10 +654,13 @@ public class SendApi {
      * Returns recent outbound messages for the calling tenant, sorted newest first. 
      * @param status  (optional)
      * @param sender Exact match against the &#x60;from&#x60; mailbox. (optional)
+     * @param tag Filter to messages carrying any of these tags. One tag, or a comma-separated set meaning ANY. Case-insensitive: the value is normalised the same way tags are on write. (optional)
      * @param q Free-text search across subject + sender. (optional)
      * @param since Only messages queued at or after this RFC 3339 instant. (optional)
      * @param cursor queued_at of the prior page boundary. Pass back the &#x60;next_cursor&#x60; returned by the previous call. (optional)
      * @param limit  (optional, default to 50)
+     * @param sort Field to order by. Only indexed columns are offered: an unindexed sort on this table is a full scan of the account&#39;s send history. status and sender are filters instead. (optional, default to queued_at)
+     * @param order Defaults to desc for the default field and asc for any other. The order is always made total by a tie-break on id, so paging cannot repeat or skip a row that shares a timestamp. cursor encodes queued_at, so combining it with another sort is a 400 rather than a wrong page. (optional)
      * @return ApiResponse&lt;ListMessages200Response&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -643,8 +672,8 @@ public class SendApi {
         <tr><td> 403 </td><td> API key lacks the required scope. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<ListMessages200Response> listMessagesWithHttpInfo(@jakarta.annotation.Nullable String status, @jakarta.annotation.Nullable String sender, @jakarta.annotation.Nullable String q, @jakarta.annotation.Nullable OffsetDateTime since, @jakarta.annotation.Nullable String cursor, @jakarta.annotation.Nullable Integer limit) throws ApiException {
-        okhttp3.Call localVarCall = listMessagesValidateBeforeCall(status, sender, q, since, cursor, limit, null);
+    public ApiResponse<ListMessages200Response> listMessagesWithHttpInfo(@jakarta.annotation.Nullable String status, @jakarta.annotation.Nullable String sender, @jakarta.annotation.Nullable String tag, @jakarta.annotation.Nullable String q, @jakarta.annotation.Nullable OffsetDateTime since, @jakarta.annotation.Nullable String cursor, @jakarta.annotation.Nullable Integer limit, @jakarta.annotation.Nullable String sort, @jakarta.annotation.Nullable String order) throws ApiException {
+        okhttp3.Call localVarCall = listMessagesValidateBeforeCall(status, sender, tag, q, since, cursor, limit, sort, order, null);
         Type localVarReturnType = new TypeToken<ListMessages200Response>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -654,10 +683,13 @@ public class SendApi {
      * Returns recent outbound messages for the calling tenant, sorted newest first. 
      * @param status  (optional)
      * @param sender Exact match against the &#x60;from&#x60; mailbox. (optional)
+     * @param tag Filter to messages carrying any of these tags. One tag, or a comma-separated set meaning ANY. Case-insensitive: the value is normalised the same way tags are on write. (optional)
      * @param q Free-text search across subject + sender. (optional)
      * @param since Only messages queued at or after this RFC 3339 instant. (optional)
      * @param cursor queued_at of the prior page boundary. Pass back the &#x60;next_cursor&#x60; returned by the previous call. (optional)
      * @param limit  (optional, default to 50)
+     * @param sort Field to order by. Only indexed columns are offered: an unindexed sort on this table is a full scan of the account&#39;s send history. status and sender are filters instead. (optional, default to queued_at)
+     * @param order Defaults to desc for the default field and asc for any other. The order is always made total by a tie-break on id, so paging cannot repeat or skip a row that shares a timestamp. cursor encodes queued_at, so combining it with another sort is a 400 rather than a wrong page. (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -670,9 +702,9 @@ public class SendApi {
         <tr><td> 403 </td><td> API key lacks the required scope. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call listMessagesAsync(@jakarta.annotation.Nullable String status, @jakarta.annotation.Nullable String sender, @jakarta.annotation.Nullable String q, @jakarta.annotation.Nullable OffsetDateTime since, @jakarta.annotation.Nullable String cursor, @jakarta.annotation.Nullable Integer limit, final ApiCallback<ListMessages200Response> _callback) throws ApiException {
+    public okhttp3.Call listMessagesAsync(@jakarta.annotation.Nullable String status, @jakarta.annotation.Nullable String sender, @jakarta.annotation.Nullable String tag, @jakarta.annotation.Nullable String q, @jakarta.annotation.Nullable OffsetDateTime since, @jakarta.annotation.Nullable String cursor, @jakarta.annotation.Nullable Integer limit, @jakarta.annotation.Nullable String sort, @jakarta.annotation.Nullable String order, final ApiCallback<ListMessages200Response> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = listMessagesValidateBeforeCall(status, sender, q, since, cursor, limit, _callback);
+        okhttp3.Call localVarCall = listMessagesValidateBeforeCall(status, sender, tag, q, since, cursor, limit, sort, order, _callback);
         Type localVarReturnType = new TypeToken<ListMessages200Response>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

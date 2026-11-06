@@ -32,6 +32,7 @@ import com.lockally.sdk.model.CreateEncryptionKey201Response;
 import com.lockally.sdk.model.CreateEncryptionKeyRequest;
 import com.lockally.sdk.model.CreateEncryptionRecoveryRequest;
 import com.lockally.sdk.model.GetEncryptionKey200Response;
+import com.lockally.sdk.model.GetEncryptionStatus200Response;
 import com.lockally.sdk.model.Problem;
 import com.lockally.sdk.model.RotateEncryptionKeyRequest;
 
@@ -296,7 +297,7 @@ public class EncryptionApi {
 
     /**
      * Upload an encryption key pair
-     * 
+     * Only the mailbox&#39;s own webmail session may call this; an API key is refused with 403. The private key is sealed under that mailbox&#39;s password, which an administrator never has. &#x60;mailbox_email&#x60;, if sent, must be the caller&#39;s own mailbox. A mailbox that already has a key is starting over: the old key is kept inactive, not destroyed, and the new one starts without a recovery code.
      * @param createEncryptionKeyRequest  (required)
      * @return CreateEncryptionKey201Response
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -317,7 +318,7 @@ public class EncryptionApi {
 
     /**
      * Upload an encryption key pair
-     * 
+     * Only the mailbox&#39;s own webmail session may call this; an API key is refused with 403. The private key is sealed under that mailbox&#39;s password, which an administrator never has. &#x60;mailbox_email&#x60;, if sent, must be the caller&#39;s own mailbox. A mailbox that already has a key is starting over: the old key is kept inactive, not destroyed, and the new one starts without a recovery code.
      * @param createEncryptionKeyRequest  (required)
      * @return ApiResponse&lt;CreateEncryptionKey201Response&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -339,7 +340,7 @@ public class EncryptionApi {
 
     /**
      * Upload an encryption key pair (asynchronously)
-     * 
+     * Only the mailbox&#39;s own webmail session may call this; an API key is refused with 403. The private key is sealed under that mailbox&#39;s password, which an administrator never has. &#x60;mailbox_email&#x60;, if sent, must be the caller&#39;s own mailbox. A mailbox that already has a key is starting over: the old key is kept inactive, not destroyed, and the new one starts without a recovery code.
      * @param createEncryptionKeyRequest  (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -435,7 +436,7 @@ public class EncryptionApi {
 
     /**
      * Store an encryption recovery blob
-     * 
+     * Only the mailbox&#39;s own webmail session may call this; an API key is refused with 403. The private key is sealed under that mailbox&#39;s password, which an administrator never has. &#x60;mailbox_email&#x60;, if sent, must be the caller&#39;s own mailbox. The blob is the private key sealed under a recovery code the browser generated; the code itself is never sent. Replaces any earlier one.
      * @param createEncryptionRecoveryRequest  (required)
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -454,7 +455,7 @@ public class EncryptionApi {
 
     /**
      * Store an encryption recovery blob
-     * 
+     * Only the mailbox&#39;s own webmail session may call this; an API key is refused with 403. The private key is sealed under that mailbox&#39;s password, which an administrator never has. &#x60;mailbox_email&#x60;, if sent, must be the caller&#39;s own mailbox. The blob is the private key sealed under a recovery code the browser generated; the code itself is never sent. Replaces any earlier one.
      * @param createEncryptionRecoveryRequest  (required)
      * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -475,7 +476,7 @@ public class EncryptionApi {
 
     /**
      * Store an encryption recovery blob (asynchronously)
-     * 
+     * Only the mailbox&#39;s own webmail session may call this; an API key is refused with 403. The private key is sealed under that mailbox&#39;s password, which an administrator never has. &#x60;mailbox_email&#x60;, if sent, must be the caller&#39;s own mailbox. The blob is the private key sealed under a recovery code the browser generated; the code itself is never sent. Replaces any earlier one.
      * @param createEncryptionRecoveryRequest  (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -571,7 +572,7 @@ public class EncryptionApi {
 
     /**
      * Get encryption key for a mailbox
-     * 
+     * Anyone in the workspace gets the public key. The mailbox&#39;s own webmail session also gets its sealed private key, its sealed recovery copy and the recovery state.
      * @param email  (required)
      * @return GetEncryptionKey200Response
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -592,7 +593,7 @@ public class EncryptionApi {
 
     /**
      * Get encryption key for a mailbox
-     * 
+     * Anyone in the workspace gets the public key. The mailbox&#39;s own webmail session also gets its sealed private key, its sealed recovery copy and the recovery state.
      * @param email  (required)
      * @return ApiResponse&lt;GetEncryptionKey200Response&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -614,7 +615,7 @@ public class EncryptionApi {
 
     /**
      * Get encryption key for a mailbox (asynchronously)
-     * 
+     * Anyone in the workspace gets the public key. The mailbox&#39;s own webmail session also gets its sealed private key, its sealed recovery copy and the recovery state.
      * @param email  (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -633,6 +634,132 @@ public class EncryptionApi {
 
         okhttp3.Call localVarCall = getEncryptionKeyValidateBeforeCall(email, _callback);
         Type localVarReturnType = new TypeToken<GetEncryptionKey200Response>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for getEncryptionStatus
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Status </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Missing, malformed, or invalid API key. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> API key lacks the required scope. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call getEncryptionStatusCall(final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/v1/encryption/status";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json",
+            "application/problem+json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call getEncryptionStatusValidateBeforeCall(final ApiCallback _callback) throws ApiException {
+        return getEncryptionStatusCall(_callback);
+
+    }
+
+    /**
+     * End-to-end encryption status for the workspace
+     * For administrators: whether the add-on is on, and for each mailbox whether it has a key and a recovery code. Carries no key material.
+     * @return GetEncryptionStatus200Response
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Status </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Missing, malformed, or invalid API key. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> API key lacks the required scope. </td><td>  -  </td></tr>
+     </table>
+     */
+    public GetEncryptionStatus200Response getEncryptionStatus() throws ApiException {
+        ApiResponse<GetEncryptionStatus200Response> localVarResp = getEncryptionStatusWithHttpInfo();
+        return localVarResp.getData();
+    }
+
+    /**
+     * End-to-end encryption status for the workspace
+     * For administrators: whether the add-on is on, and for each mailbox whether it has a key and a recovery code. Carries no key material.
+     * @return ApiResponse&lt;GetEncryptionStatus200Response&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Status </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Missing, malformed, or invalid API key. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> API key lacks the required scope. </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<GetEncryptionStatus200Response> getEncryptionStatusWithHttpInfo() throws ApiException {
+        okhttp3.Call localVarCall = getEncryptionStatusValidateBeforeCall(null);
+        Type localVarReturnType = new TypeToken<GetEncryptionStatus200Response>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * End-to-end encryption status for the workspace (asynchronously)
+     * For administrators: whether the add-on is on, and for each mailbox whether it has a key and a recovery code. Carries no key material.
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Status </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Missing, malformed, or invalid API key. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> API key lacks the required scope. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call getEncryptionStatusAsync(final ApiCallback<GetEncryptionStatus200Response> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = getEncryptionStatusValidateBeforeCall(_callback);
+        Type localVarReturnType = new TypeToken<GetEncryptionStatus200Response>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
@@ -709,8 +836,8 @@ public class EncryptionApi {
     }
 
     /**
-     * Rotate an encryption key
-     * 
+     * Re-seal an encryption key under a new password
+     * Only the mailbox&#39;s own webmail session may call this; an API key is refused with 403. The private key is sealed under that mailbox&#39;s password, which an administrator never has. &#x60;mailbox_email&#x60;, if sent, must be the caller&#39;s own mailbox. The key pair does not change, so every message stays readable.
      * @param rotateEncryptionKeyRequest  (required)
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -728,8 +855,8 @@ public class EncryptionApi {
     }
 
     /**
-     * Rotate an encryption key
-     * 
+     * Re-seal an encryption key under a new password
+     * Only the mailbox&#39;s own webmail session may call this; an API key is refused with 403. The private key is sealed under that mailbox&#39;s password, which an administrator never has. &#x60;mailbox_email&#x60;, if sent, must be the caller&#39;s own mailbox. The key pair does not change, so every message stays readable.
      * @param rotateEncryptionKeyRequest  (required)
      * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -749,8 +876,8 @@ public class EncryptionApi {
     }
 
     /**
-     * Rotate an encryption key (asynchronously)
-     * 
+     * Re-seal an encryption key under a new password (asynchronously)
+     * Only the mailbox&#39;s own webmail session may call this; an API key is refused with 403. The private key is sealed under that mailbox&#39;s password, which an administrator never has. &#x60;mailbox_email&#x60;, if sent, must be the caller&#39;s own mailbox. The key pair does not change, so every message stays readable.
      * @param rotateEncryptionKeyRequest  (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call

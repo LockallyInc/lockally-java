@@ -99,7 +99,7 @@ public class Example {
 
 <a id="checkMigrationDNS"></a>
 # **checkMigrationDNS**
-> Object checkMigrationDNS(id)
+> MigrationDNSCheck checkMigrationDNS(id)
 
 Check DNS readiness for cutover
 
@@ -125,7 +125,7 @@ public class Example {
     MigrationsApi apiInstance = new MigrationsApi(defaultClient);
     UUID id = UUID.randomUUID(); // UUID | 
     try {
-      Object result = apiInstance.checkMigrationDNS(id);
+      MigrationDNSCheck result = apiInstance.checkMigrationDNS(id);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling MigrationsApi#checkMigrationDNS");
@@ -146,7 +146,7 @@ public class Example {
 
 ### Return type
 
-**Object**
+[**MigrationDNSCheck**](MigrationDNSCheck.md)
 
 ### Authorization
 
@@ -161,6 +161,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | DNS readiness check results |  -  |
+| **400** | The id is not a UUID, or the migration has no mapped destination mailboxes to check. |  -  |
 | **401** | Missing, malformed, or invalid API key. |  -  |
 | **403** | API key lacks the required scope. |  -  |
 | **404** | Resource not found under the calling tenant. |  -  |

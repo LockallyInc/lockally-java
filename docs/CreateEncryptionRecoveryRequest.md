@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**mailboxEmail** | **String** |  |  |
+|**mailboxEmail** | **String** |  |  [optional] |
 |**recoveryBlob** | **String** |  |  |
 
 

@@ -235,6 +235,7 @@ public class UsersApi {
         <tr><td> 401 </td><td> Missing, malformed, or invalid API key. </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> API key lacks the required scope. </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Resource not found under the calling tenant. </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> The person is the caller, or the workspace&#39;s last active admin. </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call deleteUserCall(@jakarta.annotation.Nonnull UUID id, final ApiCallback _callback) throws ApiException {
@@ -294,8 +295,8 @@ public class UsersApi {
     }
 
     /**
-     * Delete a user
-     * Soft-deletes the user by setting status to deprovisioned.
+     * Deprovision a user
+     * Sets the user&#39;s status to &#x60;deprovisioned&#x60; and ends their access: each of their mailboxes and their console membership is disabled, app passwords are revoked, and every webmail and console session ends. Their mail is kept. API keys belong to the workspace and are not revoked; rotate any the person had access to. 
      * @param id  (required)
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -306,6 +307,7 @@ public class UsersApi {
         <tr><td> 401 </td><td> Missing, malformed, or invalid API key. </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> API key lacks the required scope. </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Resource not found under the calling tenant. </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> The person is the caller, or the workspace&#39;s last active admin. </td><td>  -  </td></tr>
      </table>
      */
     public void deleteUser(@jakarta.annotation.Nonnull UUID id) throws ApiException {
@@ -313,8 +315,8 @@ public class UsersApi {
     }
 
     /**
-     * Delete a user
-     * Soft-deletes the user by setting status to deprovisioned.
+     * Deprovision a user
+     * Sets the user&#39;s status to &#x60;deprovisioned&#x60; and ends their access: each of their mailboxes and their console membership is disabled, app passwords are revoked, and every webmail and console session ends. Their mail is kept. API keys belong to the workspace and are not revoked; rotate any the person had access to. 
      * @param id  (required)
      * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -326,6 +328,7 @@ public class UsersApi {
         <tr><td> 401 </td><td> Missing, malformed, or invalid API key. </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> API key lacks the required scope. </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Resource not found under the calling tenant. </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> The person is the caller, or the workspace&#39;s last active admin. </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<Void> deleteUserWithHttpInfo(@jakarta.annotation.Nonnull UUID id) throws ApiException {
@@ -334,8 +337,8 @@ public class UsersApi {
     }
 
     /**
-     * Delete a user (asynchronously)
-     * Soft-deletes the user by setting status to deprovisioned.
+     * Deprovision a user (asynchronously)
+     * Sets the user&#39;s status to &#x60;deprovisioned&#x60; and ends their access: each of their mailboxes and their console membership is disabled, app passwords are revoked, and every webmail and console session ends. Their mail is kept. API keys belong to the workspace and are not revoked; rotate any the person had access to. 
      * @param id  (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -348,6 +351,7 @@ public class UsersApi {
         <tr><td> 401 </td><td> Missing, malformed, or invalid API key. </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> API key lacks the required scope. </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Resource not found under the calling tenant. </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> The person is the caller, or the workspace&#39;s last active admin. </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call deleteUserAsync(@jakarta.annotation.Nonnull UUID id, final ApiCallback<Void> _callback) throws ApiException {
@@ -646,6 +650,7 @@ public class UsersApi {
         <tr><td> 401 </td><td> Missing, malformed, or invalid API key. </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> API key lacks the required scope. </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Resource not found under the calling tenant. </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> The person is the caller, or the workspace&#39;s last active admin. </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call updateUserCall(@jakarta.annotation.Nonnull UUID id, @jakarta.annotation.Nonnull UpdateUserRequest updateUserRequest, final ApiCallback _callback) throws ApiException {
@@ -713,7 +718,7 @@ public class UsersApi {
 
     /**
      * Update a user
-     * 
+     * Setting &#x60;status&#x60; to &#x60;suspended&#x60; or &#x60;deprovisioned&#x60; takes away everything the person signs in with: each of their mailboxes and their console membership is disabled, app passwords are revoked, and every webmail and console session ends. Setting it back to &#x60;active&#x60; restores what the suspension disabled, and nothing an admin disabled for another reason. API keys belong to the workspace, not to the person who created them, and are not revoked; rotate any the person had access to. 
      * @param id  (required)
      * @param updateUserRequest  (required)
      * @return User
@@ -727,6 +732,7 @@ public class UsersApi {
         <tr><td> 401 </td><td> Missing, malformed, or invalid API key. </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> API key lacks the required scope. </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Resource not found under the calling tenant. </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> The person is the caller, or the workspace&#39;s last active admin. </td><td>  -  </td></tr>
      </table>
      */
     public User updateUser(@jakarta.annotation.Nonnull UUID id, @jakarta.annotation.Nonnull UpdateUserRequest updateUserRequest) throws ApiException {
@@ -736,7 +742,7 @@ public class UsersApi {
 
     /**
      * Update a user
-     * 
+     * Setting &#x60;status&#x60; to &#x60;suspended&#x60; or &#x60;deprovisioned&#x60; takes away everything the person signs in with: each of their mailboxes and their console membership is disabled, app passwords are revoked, and every webmail and console session ends. Setting it back to &#x60;active&#x60; restores what the suspension disabled, and nothing an admin disabled for another reason. API keys belong to the workspace, not to the person who created them, and are not revoked; rotate any the person had access to. 
      * @param id  (required)
      * @param updateUserRequest  (required)
      * @return ApiResponse&lt;User&gt;
@@ -750,6 +756,7 @@ public class UsersApi {
         <tr><td> 401 </td><td> Missing, malformed, or invalid API key. </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> API key lacks the required scope. </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Resource not found under the calling tenant. </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> The person is the caller, or the workspace&#39;s last active admin. </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<User> updateUserWithHttpInfo(@jakarta.annotation.Nonnull UUID id, @jakarta.annotation.Nonnull UpdateUserRequest updateUserRequest) throws ApiException {
@@ -760,7 +767,7 @@ public class UsersApi {
 
     /**
      * Update a user (asynchronously)
-     * 
+     * Setting &#x60;status&#x60; to &#x60;suspended&#x60; or &#x60;deprovisioned&#x60; takes away everything the person signs in with: each of their mailboxes and their console membership is disabled, app passwords are revoked, and every webmail and console session ends. Setting it back to &#x60;active&#x60; restores what the suspension disabled, and nothing an admin disabled for another reason. API keys belong to the workspace, not to the person who created them, and are not revoked; rotate any the person had access to. 
      * @param id  (required)
      * @param updateUserRequest  (required)
      * @param _callback The callback to be executed when the API call finishes
@@ -775,6 +782,7 @@ public class UsersApi {
         <tr><td> 401 </td><td> Missing, malformed, or invalid API key. </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> API key lacks the required scope. </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Resource not found under the calling tenant. </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> The person is the caller, or the workspace&#39;s last active admin. </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call updateUserAsync(@jakarta.annotation.Nonnull UUID id, @jakarta.annotation.Nonnull UpdateUserRequest updateUserRequest, final ApiCallback<User> _callback) throws ApiException {

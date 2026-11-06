@@ -19,6 +19,7 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -61,6 +62,14 @@ public class CreateApiKeyRequestTest {
     @Test
     public void testTest() {
         // TODO: test test
+    }
+
+    /**
+     * Test the property 'expiresAt'
+     */
+    @Test
+    public void expiresAtTest() {
+        // TODO: test expiresAt
     }
 
 }

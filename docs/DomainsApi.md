@@ -437,7 +437,7 @@ public class Example {
 
 <a id="listDomains"></a>
 # **listDomains**
-> ListDomains200Response listDomains()
+> ListDomains200Response listDomains(sort, order)
 
 List domains
 
@@ -463,8 +463,10 @@ public class Example {
     bearerAuth.setBearerToken("BEARER TOKEN");
 
     DomainsApi apiInstance = new DomainsApi(defaultClient);
+    String sort = "domain"; // String | Field to order by. This list holds tens of rows per account, so every column is offered and none needs an index.
+    String order = "asc"; // String | Defaults to desc for the default field and asc for any other. Always tie-broken on id, so the order is total.
     try {
-      ListDomains200Response result = apiInstance.listDomains();
+      ListDomains200Response result = apiInstance.listDomains(sort, order);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DomainsApi#listDomains");
@@ -478,7 +480,11 @@ public class Example {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **sort** | **String**| Field to order by. This list holds tens of rows per account, so every column is offered and none needs an index. | [optional] [default to created_at] [enum: domain, created_at, verified_at] |
+| **order** | **String**| Defaults to desc for the default field and asc for any other. Always tie-broken on id, so the order is total. | [optional] [enum: asc, desc] |
 
 ### Return type
 

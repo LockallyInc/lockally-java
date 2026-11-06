@@ -48,11 +48,11 @@ import com.lockally.sdk.JSON;
 /**
  * CreateEncryptionKeyRequest
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-16T20:39:47.874933+01:00[Africa/Lagos]", comments = "Generator version: 7.23.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-06T02:15:10.968235+01:00[Africa/Lagos]", comments = "Generator version: 7.23.0")
 public class CreateEncryptionKeyRequest {
   public static final String SERIALIZED_NAME_MAILBOX_EMAIL = "mailbox_email";
   @SerializedName(SERIALIZED_NAME_MAILBOX_EMAIL)
-  @jakarta.annotation.Nonnull
+  @jakarta.annotation.Nullable
   private String mailboxEmail;
 
   public static final String SERIALIZED_NAME_PUBLIC_KEY = "public_key";
@@ -73,7 +73,7 @@ public class CreateEncryptionKeyRequest {
   public CreateEncryptionKeyRequest() {
   }
 
-  public CreateEncryptionKeyRequest mailboxEmail(@jakarta.annotation.Nonnull String mailboxEmail) {
+  public CreateEncryptionKeyRequest mailboxEmail(@jakarta.annotation.Nullable String mailboxEmail) {
     this.mailboxEmail = mailboxEmail;
     return this;
   }
@@ -82,12 +82,12 @@ public class CreateEncryptionKeyRequest {
    * Get mailboxEmail
    * @return mailboxEmail
    */
-  @jakarta.annotation.Nonnull
+  @jakarta.annotation.Nullable
   public String getMailboxEmail() {
     return mailboxEmail;
   }
 
-  public void setMailboxEmail(@jakarta.annotation.Nonnull String mailboxEmail) {
+  public void setMailboxEmail(@jakarta.annotation.Nullable String mailboxEmail) {
     this.mailboxEmail = mailboxEmail;
   }
 
@@ -199,7 +199,7 @@ public class CreateEncryptionKeyRequest {
     openapiFields = new HashSet<String>(Arrays.asList("mailbox_email", "public_key", "encrypted_private_key", "kdf_params"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>(Arrays.asList("mailbox_email", "public_key", "encrypted_private_key"));
+    openapiRequiredFields = new HashSet<String>(Arrays.asList("public_key", "encrypted_private_key"));
   }
 
   /**
@@ -230,7 +230,7 @@ public class CreateEncryptionKeyRequest {
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if (!jsonObj.get("mailbox_email").isJsonPrimitive()) {
+      if ((jsonObj.get("mailbox_email") != null && !jsonObj.get("mailbox_email").isJsonNull()) && !jsonObj.get("mailbox_email").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `mailbox_email` to be a primitive type in the JSON string but got `%s`", jsonObj.get("mailbox_email").toString()));
       }
       if (!jsonObj.get("public_key").isJsonPrimitive()) {

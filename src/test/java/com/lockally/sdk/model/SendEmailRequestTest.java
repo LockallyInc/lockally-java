@@ -157,6 +157,38 @@ public class SendEmailRequestTest {
     }
 
     /**
+     * Test the property 'metadata'
+     */
+    @Test
+    public void metadataTest() {
+        // TODO: test metadata
+    }
+
+    /**
+     * Test the property 'tags'
+     */
+    @Test
+    public void tagsTest() {
+        // TODO: test tags
+    }
+
+    /**
+     * Test the property 'trackOpens'
+     */
+    @Test
+    public void trackOpensTest() {
+        // TODO: test trackOpens
+    }
+
+    /**
+     * Test the property 'trackClicks'
+     */
+    @Test
+    public void trackClicksTest() {
+        // TODO: test trackClicks
+    }
+
+    /**
      * Test the property 'attachments'
      */
     @Test

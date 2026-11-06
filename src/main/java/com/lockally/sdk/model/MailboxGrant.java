@@ -50,7 +50,7 @@ import com.lockally.sdk.JSON;
 /**
  * MailboxGrant
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-16T20:39:47.874933+01:00[Africa/Lagos]", comments = "Generator version: 7.23.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-06T02:15:10.968235+01:00[Africa/Lagos]", comments = "Generator version: 7.23.0")
 public class MailboxGrant {
   public static final String SERIALIZED_NAME_API_KEY_ID = "api_key_id";
   @SerializedName(SERIALIZED_NAME_API_KEY_ID)

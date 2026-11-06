@@ -50,7 +50,7 @@ import com.lockally.sdk.JSON;
 /**
  * Contact
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-16T20:39:47.874933+01:00[Africa/Lagos]", comments = "Generator version: 7.23.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-06T02:15:10.968235+01:00[Africa/Lagos]", comments = "Generator version: 7.23.0")
 public class Contact {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -173,6 +173,16 @@ public class Contact {
   @SerializedName(SERIALIZED_NAME_UPDATED_AT)
   @jakarta.annotation.Nonnull
   private OffsetDateTime updatedAt;
+
+  public static final String SERIALIZED_NAME_EXTERNAL_SYSTEM = "external_system";
+  @SerializedName(SERIALIZED_NAME_EXTERNAL_SYSTEM)
+  @jakarta.annotation.Nullable
+  private String externalSystem;
+
+  public static final String SERIALIZED_NAME_EXTERNAL_ID = "external_id";
+  @SerializedName(SERIALIZED_NAME_EXTERNAL_ID)
+  @jakarta.annotation.Nullable
+  private String externalId;
 
   public Contact() {
   }
@@ -443,6 +453,44 @@ public class Contact {
   }
 
 
+  public Contact externalSystem(@jakarta.annotation.Nullable String externalSystem) {
+    this.externalSystem = externalSystem;
+    return this;
+  }
+
+  /**
+   * The system that owns this contact&#39;s external id. Absent on contacts made by hand.
+   * @return externalSystem
+   */
+  @jakarta.annotation.Nullable
+  public String getExternalSystem() {
+    return externalSystem;
+  }
+
+  public void setExternalSystem(@jakarta.annotation.Nullable String externalSystem) {
+    this.externalSystem = externalSystem;
+  }
+
+
+  public Contact externalId(@jakarta.annotation.Nullable String externalId) {
+    this.externalId = externalId;
+    return this;
+  }
+
+  /**
+   * The contact&#39;s id in &#x60;external_system&#x60;. Absent on contacts made by hand.
+   * @return externalId
+   */
+  @jakarta.annotation.Nullable
+  public String getExternalId() {
+    return externalId;
+  }
+
+  public void setExternalId(@jakarta.annotation.Nullable String externalId) {
+    this.externalId = externalId;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -466,12 +514,14 @@ public class Contact {
         Objects.equals(this.role, contact.role) &&
         Objects.equals(this.status, contact.status) &&
         Objects.equals(this.createdAt, contact.createdAt) &&
-        Objects.equals(this.updatedAt, contact.updatedAt);
+        Objects.equals(this.updatedAt, contact.updatedAt) &&
+        Objects.equals(this.externalSystem, contact.externalSystem) &&
+        Objects.equals(this.externalId, contact.externalId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, tenantId, name, email, phone, company, notes, contactType, source, department, role, status, createdAt, updatedAt);
+    return Objects.hash(id, tenantId, name, email, phone, company, notes, contactType, source, department, role, status, createdAt, updatedAt, externalSystem, externalId);
   }
 
   @Override
@@ -492,6 +542,8 @@ public class Contact {
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
     sb.append("    updatedAt: ").append(toIndentedString(updatedAt)).append("\n");
+    sb.append("    externalSystem: ").append(toIndentedString(externalSystem)).append("\n");
+    sb.append("    externalId: ").append(toIndentedString(externalId)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -510,7 +562,7 @@ public class Contact {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("id", "tenant_id", "name", "email", "phone", "company", "notes", "contact_type", "source", "department", "role", "status", "created_at", "updated_at"));
+    openapiFields = new HashSet<String>(Arrays.asList("id", "tenant_id", "name", "email", "phone", "company", "notes", "contact_type", "source", "department", "role", "status", "created_at", "updated_at", "external_system", "external_id"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(Arrays.asList("id", "tenant_id", "name", "email", "contact_type", "status", "created_at", "updated_at"));
@@ -581,6 +633,12 @@ public class Contact {
       }
       if (!jsonObj.get("status").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `status` to be a primitive type in the JSON string but got `%s`", jsonObj.get("status").toString()));
+      }
+      if ((jsonObj.get("external_system") != null && !jsonObj.get("external_system").isJsonNull()) && !jsonObj.get("external_system").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `external_system` to be a primitive type in the JSON string but got `%s`", jsonObj.get("external_system").toString()));
+      }
+      if ((jsonObj.get("external_id") != null && !jsonObj.get("external_id").isJsonNull()) && !jsonObj.get("external_id").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `external_id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("external_id").toString()));
       }
   }
 

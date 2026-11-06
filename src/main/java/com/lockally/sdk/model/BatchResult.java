@@ -49,7 +49,7 @@ import com.lockally.sdk.JSON;
 /**
  * BatchResult
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-16T20:39:47.874933+01:00[Africa/Lagos]", comments = "Generator version: 7.23.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-06T02:15:10.968235+01:00[Africa/Lagos]", comments = "Generator version: 7.23.0")
 public class BatchResult {
   public static final String SERIALIZED_NAME_INDEX = "index";
   @SerializedName(SERIALIZED_NAME_INDEX)
@@ -131,6 +131,11 @@ public class BatchResult {
   @SerializedName(SERIALIZED_NAME_ERROR)
   @jakarta.annotation.Nullable
   private String error;
+
+  public static final String SERIALIZED_NAME_WARNING = "warning";
+  @SerializedName(SERIALIZED_NAME_WARNING)
+  @jakarta.annotation.Nullable
+  private String warning;
 
   public BatchResult() {
   }
@@ -230,6 +235,25 @@ public class BatchResult {
   }
 
 
+  public BatchResult warning(@jakarta.annotation.Nullable String warning) {
+    this.warning = warning;
+    return this;
+  }
+
+  /**
+   * Advisory, and NOT a failure. Today the only one is a template variable the template referenced and the request never supplied, which rendered as the empty string.
+   * @return warning
+   */
+  @jakarta.annotation.Nullable
+  public String getWarning() {
+    return warning;
+  }
+
+  public void setWarning(@jakarta.annotation.Nullable String warning) {
+    this.warning = warning;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -244,12 +268,13 @@ public class BatchResult {
         Objects.equals(this.id, batchResult.id) &&
         Objects.equals(this.messageId, batchResult.messageId) &&
         Objects.equals(this.status, batchResult.status) &&
-        Objects.equals(this.error, batchResult.error);
+        Objects.equals(this.error, batchResult.error) &&
+        Objects.equals(this.warning, batchResult.warning);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(index, id, messageId, status, error);
+    return Objects.hash(index, id, messageId, status, error, warning);
   }
 
   @Override
@@ -261,6 +286,7 @@ public class BatchResult {
     sb.append("    messageId: ").append(toIndentedString(messageId)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    error: ").append(toIndentedString(error)).append("\n");
+    sb.append("    warning: ").append(toIndentedString(warning)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -279,7 +305,7 @@ public class BatchResult {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("index", "id", "message_id", "status", "error"));
+    openapiFields = new HashSet<String>(Arrays.asList("index", "id", "message_id", "status", "error", "warning"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(0);
@@ -321,6 +347,9 @@ public class BatchResult {
       }
       if ((jsonObj.get("error") != null && !jsonObj.get("error").isJsonNull()) && !jsonObj.get("error").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `error` to be a primitive type in the JSON string but got `%s`", jsonObj.get("error").toString()));
+      }
+      if ((jsonObj.get("warning") != null && !jsonObj.get("warning").isJsonNull()) && !jsonObj.get("warning").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `warning` to be a primitive type in the JSON string but got `%s`", jsonObj.get("warning").toString()));
       }
   }
 

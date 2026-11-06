@@ -27,11 +27,14 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
+import com.lockally.sdk.model.APIKey;
 import com.lockally.sdk.model.CreateApiKey201Response;
 import com.lockally.sdk.model.CreateApiKeyRequest;
 import com.lockally.sdk.model.ListApiKeys200Response;
 import com.lockally.sdk.model.Problem;
+import com.lockally.sdk.model.RotateApiKeyRequest;
 import java.util.UUID;
+import com.lockally.sdk.model.UpdateApiKeyRequest;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -218,6 +221,8 @@ public class ApiKeysApi {
     }
     /**
      * Build call for listApiKeys
+     * @param sort Field to order by. This list holds tens of rows per account, so every column is offered and none needs an index. (optional, default to created_at)
+     * @param order Defaults to desc for the default field and asc for any other. Always tie-broken on id, so the order is total. (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -230,7 +235,7 @@ public class ApiKeysApi {
         <tr><td> 403 </td><td> API key lacks the required scope. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call listApiKeysCall(final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call listApiKeysCall(@jakarta.annotation.Nullable String sort, @jakarta.annotation.Nullable String order, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -255,6 +260,14 @@ public class ApiKeysApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (sort != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("sort", sort));
+        }
+
+        if (order != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("order", order));
+        }
+
         final String[] localVarAccepts = {
             "application/json",
             "application/problem+json"
@@ -276,14 +289,16 @@ public class ApiKeysApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call listApiKeysValidateBeforeCall(final ApiCallback _callback) throws ApiException {
-        return listApiKeysCall(_callback);
+    private okhttp3.Call listApiKeysValidateBeforeCall(@jakarta.annotation.Nullable String sort, @jakarta.annotation.Nullable String order, final ApiCallback _callback) throws ApiException {
+        return listApiKeysCall(sort, order, _callback);
 
     }
 
     /**
      * List API keys
      * Returns all API keys (active and revoked) belonging to the calling tenant. The &#x60;secret&#x60; is **never** returned, only prefix + metadata. 
+     * @param sort Field to order by. This list holds tens of rows per account, so every column is offered and none needs an index. (optional, default to created_at)
+     * @param order Defaults to desc for the default field and asc for any other. Always tie-broken on id, so the order is total. (optional)
      * @return ListApiKeys200Response
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -295,14 +310,16 @@ public class ApiKeysApi {
         <tr><td> 403 </td><td> API key lacks the required scope. </td><td>  -  </td></tr>
      </table>
      */
-    public ListApiKeys200Response listApiKeys() throws ApiException {
-        ApiResponse<ListApiKeys200Response> localVarResp = listApiKeysWithHttpInfo();
+    public ListApiKeys200Response listApiKeys(@jakarta.annotation.Nullable String sort, @jakarta.annotation.Nullable String order) throws ApiException {
+        ApiResponse<ListApiKeys200Response> localVarResp = listApiKeysWithHttpInfo(sort, order);
         return localVarResp.getData();
     }
 
     /**
      * List API keys
      * Returns all API keys (active and revoked) belonging to the calling tenant. The &#x60;secret&#x60; is **never** returned, only prefix + metadata. 
+     * @param sort Field to order by. This list holds tens of rows per account, so every column is offered and none needs an index. (optional, default to created_at)
+     * @param order Defaults to desc for the default field and asc for any other. Always tie-broken on id, so the order is total. (optional)
      * @return ApiResponse&lt;ListApiKeys200Response&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -314,8 +331,8 @@ public class ApiKeysApi {
         <tr><td> 403 </td><td> API key lacks the required scope. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<ListApiKeys200Response> listApiKeysWithHttpInfo() throws ApiException {
-        okhttp3.Call localVarCall = listApiKeysValidateBeforeCall(null);
+    public ApiResponse<ListApiKeys200Response> listApiKeysWithHttpInfo(@jakarta.annotation.Nullable String sort, @jakarta.annotation.Nullable String order) throws ApiException {
+        okhttp3.Call localVarCall = listApiKeysValidateBeforeCall(sort, order, null);
         Type localVarReturnType = new TypeToken<ListApiKeys200Response>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -323,6 +340,8 @@ public class ApiKeysApi {
     /**
      * List API keys (asynchronously)
      * Returns all API keys (active and revoked) belonging to the calling tenant. The &#x60;secret&#x60; is **never** returned, only prefix + metadata. 
+     * @param sort Field to order by. This list holds tens of rows per account, so every column is offered and none needs an index. (optional, default to created_at)
+     * @param order Defaults to desc for the default field and asc for any other. Always tie-broken on id, so the order is total. (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -335,9 +354,9 @@ public class ApiKeysApi {
         <tr><td> 403 </td><td> API key lacks the required scope. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call listApiKeysAsync(final ApiCallback<ListApiKeys200Response> _callback) throws ApiException {
+    public okhttp3.Call listApiKeysAsync(@jakarta.annotation.Nullable String sort, @jakarta.annotation.Nullable String order, final ApiCallback<ListApiKeys200Response> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = listApiKeysValidateBeforeCall(_callback);
+        okhttp3.Call localVarCall = listApiKeysValidateBeforeCall(sort, order, _callback);
         Type localVarReturnType = new TypeToken<ListApiKeys200Response>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -479,6 +498,317 @@ public class ApiKeysApi {
 
         okhttp3.Call localVarCall = revokeApiKeyValidateBeforeCall(id, _callback);
         localVarApiClient.executeAsync(localVarCall, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for rotateApiKey
+     * @param id  (required)
+     * @param rotateApiKeyRequest  (optional)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> The successor key. Its &#x60;secret&#x60; is shown only here; &#x60;expires_at&#x60; is the predecessor&#39;s deadline. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Malformed request. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Missing, malformed, or invalid API key. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> API key lacks the required scope. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Resource not found under the calling tenant. </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> The key is revoked, or was already rotated. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call rotateApiKeyCall(@jakarta.annotation.Nonnull UUID id, @jakarta.annotation.Nullable RotateApiKeyRequest rotateApiKeyRequest, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = rotateApiKeyRequest;
+
+        // create path and map variables
+        String localVarPath = "/v1/api-keys/{id}/rotate"
+            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json",
+            "application/problem+json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call rotateApiKeyValidateBeforeCall(@jakarta.annotation.Nonnull UUID id, @jakarta.annotation.Nullable RotateApiKeyRequest rotateApiKeyRequest, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling rotateApiKey(Async)");
+        }
+
+        return rotateApiKeyCall(id, rotateApiKeyRequest, _callback);
+
+    }
+
+    /**
+     * Rotate an API key
+     * Issues a successor key and puts a short expiry on this one, so **both work until the overlap ends**. That window is the point: without it, rotation is revocation with extra steps and every caller has to swap credentials in the same instant.  The successor inherits this key&#39;s scopes, its label (the label names the integration, and the integration has not changed) and its test flag. Its full &#x60;secret&#x60; is in this response and nowhere else.  The response&#39;s &#x60;expires_at&#x60; is the **predecessor&#39;s** deadline, so you can see from the rotation itself how long you have to cut over.  A key that has already been rotated cannot be rotated again: chaining overlaps would leave several live keys for one integration, which is the opposite of the intent. Rotate the successor instead. 
+     * @param id  (required)
+     * @param rotateApiKeyRequest  (optional)
+     * @return CreateApiKey201Response
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> The successor key. Its &#x60;secret&#x60; is shown only here; &#x60;expires_at&#x60; is the predecessor&#39;s deadline. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Malformed request. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Missing, malformed, or invalid API key. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> API key lacks the required scope. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Resource not found under the calling tenant. </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> The key is revoked, or was already rotated. </td><td>  -  </td></tr>
+     </table>
+     */
+    public CreateApiKey201Response rotateApiKey(@jakarta.annotation.Nonnull UUID id, @jakarta.annotation.Nullable RotateApiKeyRequest rotateApiKeyRequest) throws ApiException {
+        ApiResponse<CreateApiKey201Response> localVarResp = rotateApiKeyWithHttpInfo(id, rotateApiKeyRequest);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Rotate an API key
+     * Issues a successor key and puts a short expiry on this one, so **both work until the overlap ends**. That window is the point: without it, rotation is revocation with extra steps and every caller has to swap credentials in the same instant.  The successor inherits this key&#39;s scopes, its label (the label names the integration, and the integration has not changed) and its test flag. Its full &#x60;secret&#x60; is in this response and nowhere else.  The response&#39;s &#x60;expires_at&#x60; is the **predecessor&#39;s** deadline, so you can see from the rotation itself how long you have to cut over.  A key that has already been rotated cannot be rotated again: chaining overlaps would leave several live keys for one integration, which is the opposite of the intent. Rotate the successor instead. 
+     * @param id  (required)
+     * @param rotateApiKeyRequest  (optional)
+     * @return ApiResponse&lt;CreateApiKey201Response&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> The successor key. Its &#x60;secret&#x60; is shown only here; &#x60;expires_at&#x60; is the predecessor&#39;s deadline. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Malformed request. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Missing, malformed, or invalid API key. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> API key lacks the required scope. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Resource not found under the calling tenant. </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> The key is revoked, or was already rotated. </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<CreateApiKey201Response> rotateApiKeyWithHttpInfo(@jakarta.annotation.Nonnull UUID id, @jakarta.annotation.Nullable RotateApiKeyRequest rotateApiKeyRequest) throws ApiException {
+        okhttp3.Call localVarCall = rotateApiKeyValidateBeforeCall(id, rotateApiKeyRequest, null);
+        Type localVarReturnType = new TypeToken<CreateApiKey201Response>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Rotate an API key (asynchronously)
+     * Issues a successor key and puts a short expiry on this one, so **both work until the overlap ends**. That window is the point: without it, rotation is revocation with extra steps and every caller has to swap credentials in the same instant.  The successor inherits this key&#39;s scopes, its label (the label names the integration, and the integration has not changed) and its test flag. Its full &#x60;secret&#x60; is in this response and nowhere else.  The response&#39;s &#x60;expires_at&#x60; is the **predecessor&#39;s** deadline, so you can see from the rotation itself how long you have to cut over.  A key that has already been rotated cannot be rotated again: chaining overlaps would leave several live keys for one integration, which is the opposite of the intent. Rotate the successor instead. 
+     * @param id  (required)
+     * @param rotateApiKeyRequest  (optional)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> The successor key. Its &#x60;secret&#x60; is shown only here; &#x60;expires_at&#x60; is the predecessor&#39;s deadline. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Malformed request. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Missing, malformed, or invalid API key. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> API key lacks the required scope. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Resource not found under the calling tenant. </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> The key is revoked, or was already rotated. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call rotateApiKeyAsync(@jakarta.annotation.Nonnull UUID id, @jakarta.annotation.Nullable RotateApiKeyRequest rotateApiKeyRequest, final ApiCallback<CreateApiKey201Response> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = rotateApiKeyValidateBeforeCall(id, rotateApiKeyRequest, _callback);
+        Type localVarReturnType = new TypeToken<CreateApiKey201Response>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for updateApiKey
+     * @param id  (required)
+     * @param updateApiKeyRequest  (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> The updated key. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Malformed request. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Missing, malformed, or invalid API key. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> API key lacks the required scope. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Resource not found under the calling tenant. </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> The key is revoked and cannot be changed. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call updateApiKeyCall(@jakarta.annotation.Nonnull UUID id, @jakarta.annotation.Nonnull UpdateApiKeyRequest updateApiKeyRequest, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = updateApiKeyRequest;
+
+        // create path and map variables
+        String localVarPath = "/v1/api-keys/{id}"
+            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json",
+            "application/problem+json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "PATCH", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call updateApiKeyValidateBeforeCall(@jakarta.annotation.Nonnull UUID id, @jakarta.annotation.Nonnull UpdateApiKeyRequest updateApiKeyRequest, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling updateApiKey(Async)");
+        }
+
+        // verify the required parameter 'updateApiKeyRequest' is set
+        if (updateApiKeyRequest == null) {
+            throw new ApiException("Missing the required parameter 'updateApiKeyRequest' when calling updateApiKey(Async)");
+        }
+
+        return updateApiKeyCall(id, updateApiKeyRequest, _callback);
+
+    }
+
+    /**
+     * Update an API key
+     * Changes a key&#39;s label, scopes or expiry in place, without reissuing the secret.  **Every field is optional and absent means unchanged.** Renaming a key does not clear its expiry. For &#x60;expires_at&#x60; there are three distinct requests: omit the field to leave the expiry alone, send a timestamp to set one, and send an explicit &#x60;null&#x60; to remove one.  Scopes are replaced wholesale, not merged. This endpoint does not restrict which scopes you may grant, because &#x60;POST /v1/api-keys&#x60; never has either: a key with &#x60;tenant:admin&#x60; can already mint a key with any scope, so &#x60;tenant:admin&#x60; is root-equivalent for key management.  A revoked key cannot be updated. 
+     * @param id  (required)
+     * @param updateApiKeyRequest  (required)
+     * @return APIKey
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> The updated key. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Malformed request. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Missing, malformed, or invalid API key. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> API key lacks the required scope. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Resource not found under the calling tenant. </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> The key is revoked and cannot be changed. </td><td>  -  </td></tr>
+     </table>
+     */
+    public APIKey updateApiKey(@jakarta.annotation.Nonnull UUID id, @jakarta.annotation.Nonnull UpdateApiKeyRequest updateApiKeyRequest) throws ApiException {
+        ApiResponse<APIKey> localVarResp = updateApiKeyWithHttpInfo(id, updateApiKeyRequest);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Update an API key
+     * Changes a key&#39;s label, scopes or expiry in place, without reissuing the secret.  **Every field is optional and absent means unchanged.** Renaming a key does not clear its expiry. For &#x60;expires_at&#x60; there are three distinct requests: omit the field to leave the expiry alone, send a timestamp to set one, and send an explicit &#x60;null&#x60; to remove one.  Scopes are replaced wholesale, not merged. This endpoint does not restrict which scopes you may grant, because &#x60;POST /v1/api-keys&#x60; never has either: a key with &#x60;tenant:admin&#x60; can already mint a key with any scope, so &#x60;tenant:admin&#x60; is root-equivalent for key management.  A revoked key cannot be updated. 
+     * @param id  (required)
+     * @param updateApiKeyRequest  (required)
+     * @return ApiResponse&lt;APIKey&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> The updated key. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Malformed request. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Missing, malformed, or invalid API key. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> API key lacks the required scope. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Resource not found under the calling tenant. </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> The key is revoked and cannot be changed. </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<APIKey> updateApiKeyWithHttpInfo(@jakarta.annotation.Nonnull UUID id, @jakarta.annotation.Nonnull UpdateApiKeyRequest updateApiKeyRequest) throws ApiException {
+        okhttp3.Call localVarCall = updateApiKeyValidateBeforeCall(id, updateApiKeyRequest, null);
+        Type localVarReturnType = new TypeToken<APIKey>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Update an API key (asynchronously)
+     * Changes a key&#39;s label, scopes or expiry in place, without reissuing the secret.  **Every field is optional and absent means unchanged.** Renaming a key does not clear its expiry. For &#x60;expires_at&#x60; there are three distinct requests: omit the field to leave the expiry alone, send a timestamp to set one, and send an explicit &#x60;null&#x60; to remove one.  Scopes are replaced wholesale, not merged. This endpoint does not restrict which scopes you may grant, because &#x60;POST /v1/api-keys&#x60; never has either: a key with &#x60;tenant:admin&#x60; can already mint a key with any scope, so &#x60;tenant:admin&#x60; is root-equivalent for key management.  A revoked key cannot be updated. 
+     * @param id  (required)
+     * @param updateApiKeyRequest  (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> The updated key. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Malformed request. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Missing, malformed, or invalid API key. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> API key lacks the required scope. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Resource not found under the calling tenant. </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> The key is revoked and cannot be changed. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call updateApiKeyAsync(@jakarta.annotation.Nonnull UUID id, @jakarta.annotation.Nonnull UpdateApiKeyRequest updateApiKeyRequest, final ApiCallback<APIKey> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = updateApiKeyValidateBeforeCall(id, updateApiKeyRequest, _callback);
+        Type localVarReturnType = new TypeToken<APIKey>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 }

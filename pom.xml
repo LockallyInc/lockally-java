@@ -5,7 +5,7 @@
     <artifactId>lockally-sdk</artifactId>
     <packaging>jar</packaging>
     <name>lockally-sdk</name>
-    <version>0.3.3</version>
+    <version>0.4.0</version>
     <url>https://github.com/lockallyinc/lockally-java</url>
     <description>Official Lockally SDK for Java — transactional email, contacts, and agent inboxes.</description>
     <scm>

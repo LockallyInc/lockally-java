@@ -477,6 +477,8 @@ public class TemplatesApi {
     }
     /**
      * Build call for listTemplates
+     * @param sort Field to order by. This list holds tens of rows per account, so every column is offered and none needs an index. (optional, default to name)
+     * @param order Defaults to asc for the default field and asc for any other. Always tie-broken on id, so the order is total. (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -489,7 +491,7 @@ public class TemplatesApi {
         <tr><td> 403 </td><td> API key lacks the required scope. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call listTemplatesCall(final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call listTemplatesCall(@jakarta.annotation.Nullable String sort, @jakarta.annotation.Nullable String order, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -514,6 +516,14 @@ public class TemplatesApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (sort != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("sort", sort));
+        }
+
+        if (order != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("order", order));
+        }
+
         final String[] localVarAccepts = {
             "application/json",
             "application/problem+json"
@@ -535,14 +545,16 @@ public class TemplatesApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call listTemplatesValidateBeforeCall(final ApiCallback _callback) throws ApiException {
-        return listTemplatesCall(_callback);
+    private okhttp3.Call listTemplatesValidateBeforeCall(@jakarta.annotation.Nullable String sort, @jakarta.annotation.Nullable String order, final ApiCallback _callback) throws ApiException {
+        return listTemplatesCall(sort, order, _callback);
 
     }
 
     /**
      * List templates
      * 
+     * @param sort Field to order by. This list holds tens of rows per account, so every column is offered and none needs an index. (optional, default to name)
+     * @param order Defaults to asc for the default field and asc for any other. Always tie-broken on id, so the order is total. (optional)
      * @return ListTemplates200Response
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -554,14 +566,16 @@ public class TemplatesApi {
         <tr><td> 403 </td><td> API key lacks the required scope. </td><td>  -  </td></tr>
      </table>
      */
-    public ListTemplates200Response listTemplates() throws ApiException {
-        ApiResponse<ListTemplates200Response> localVarResp = listTemplatesWithHttpInfo();
+    public ListTemplates200Response listTemplates(@jakarta.annotation.Nullable String sort, @jakarta.annotation.Nullable String order) throws ApiException {
+        ApiResponse<ListTemplates200Response> localVarResp = listTemplatesWithHttpInfo(sort, order);
         return localVarResp.getData();
     }
 
     /**
      * List templates
      * 
+     * @param sort Field to order by. This list holds tens of rows per account, so every column is offered and none needs an index. (optional, default to name)
+     * @param order Defaults to asc for the default field and asc for any other. Always tie-broken on id, so the order is total. (optional)
      * @return ApiResponse&lt;ListTemplates200Response&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -573,8 +587,8 @@ public class TemplatesApi {
         <tr><td> 403 </td><td> API key lacks the required scope. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<ListTemplates200Response> listTemplatesWithHttpInfo() throws ApiException {
-        okhttp3.Call localVarCall = listTemplatesValidateBeforeCall(null);
+    public ApiResponse<ListTemplates200Response> listTemplatesWithHttpInfo(@jakarta.annotation.Nullable String sort, @jakarta.annotation.Nullable String order) throws ApiException {
+        okhttp3.Call localVarCall = listTemplatesValidateBeforeCall(sort, order, null);
         Type localVarReturnType = new TypeToken<ListTemplates200Response>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -582,6 +596,8 @@ public class TemplatesApi {
     /**
      * List templates (asynchronously)
      * 
+     * @param sort Field to order by. This list holds tens of rows per account, so every column is offered and none needs an index. (optional, default to name)
+     * @param order Defaults to asc for the default field and asc for any other. Always tie-broken on id, so the order is total. (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -594,9 +610,9 @@ public class TemplatesApi {
         <tr><td> 403 </td><td> API key lacks the required scope. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call listTemplatesAsync(final ApiCallback<ListTemplates200Response> _callback) throws ApiException {
+    public okhttp3.Call listTemplatesAsync(@jakarta.annotation.Nullable String sort, @jakarta.annotation.Nullable String order, final ApiCallback<ListTemplates200Response> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = listTemplatesValidateBeforeCall(_callback);
+        okhttp3.Call localVarCall = listTemplatesValidateBeforeCall(sort, order, _callback);
         Type localVarReturnType = new TypeToken<ListTemplates200Response>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

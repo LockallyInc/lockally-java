@@ -50,7 +50,7 @@ import com.lockally.sdk.JSON;
 /**
  * Why a draft was held. A key is absent when that check passed. The set is closed: a flag added to the policy engine must be added here too, or typed clients will drop it. 
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-16T20:39:47.874933+01:00[Africa/Lagos]", comments = "Generator version: 7.23.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-06T02:15:10.968235+01:00[Africa/Lagos]", comments = "Generator version: 7.23.0")
 public class PolicyFlags {
   public static final String SERIALIZED_NAME_ALWAYS_APPROVE = "always_approve";
   @SerializedName(SERIALIZED_NAME_ALWAYS_APPROVE)

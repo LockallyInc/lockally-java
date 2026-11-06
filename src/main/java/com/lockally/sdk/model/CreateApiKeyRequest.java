@@ -20,6 +20,7 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -50,7 +51,7 @@ import com.lockally.sdk.JSON;
 /**
  * CreateApiKeyRequest
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-16T20:39:47.874933+01:00[Africa/Lagos]", comments = "Generator version: 7.23.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-06T02:15:10.968235+01:00[Africa/Lagos]", comments = "Generator version: 7.23.0")
 public class CreateApiKeyRequest {
   public static final String SERIALIZED_NAME_LABEL = "label";
   @SerializedName(SERIALIZED_NAME_LABEL)
@@ -153,6 +154,11 @@ public class CreateApiKeyRequest {
   @jakarta.annotation.Nullable
   private Boolean test = false;
 
+  public static final String SERIALIZED_NAME_EXPIRES_AT = "expires_at";
+  @SerializedName(SERIALIZED_NAME_EXPIRES_AT)
+  @jakarta.annotation.Nullable
+  private OffsetDateTime expiresAt;
+
   public CreateApiKeyRequest() {
   }
 
@@ -221,6 +227,25 @@ public class CreateApiKeyRequest {
   }
 
 
+  public CreateApiKeyRequest expiresAt(@jakarta.annotation.Nullable OffsetDateTime expiresAt) {
+    this.expiresAt = expiresAt;
+    return this;
+  }
+
+  /**
+   * Optional. When the key stops authenticating. Omit it for a key that does not expire. Must be in the future: an expiry already past would mint a key that fails its first request. 
+   * @return expiresAt
+   */
+  @jakarta.annotation.Nullable
+  public OffsetDateTime getExpiresAt() {
+    return expiresAt;
+  }
+
+  public void setExpiresAt(@jakarta.annotation.Nullable OffsetDateTime expiresAt) {
+    this.expiresAt = expiresAt;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -233,12 +258,13 @@ public class CreateApiKeyRequest {
     CreateApiKeyRequest createApiKeyRequest = (CreateApiKeyRequest) o;
     return Objects.equals(this.label, createApiKeyRequest.label) &&
         Objects.equals(this.scopes, createApiKeyRequest.scopes) &&
-        Objects.equals(this.test, createApiKeyRequest.test);
+        Objects.equals(this.test, createApiKeyRequest.test) &&
+        Objects.equals(this.expiresAt, createApiKeyRequest.expiresAt);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(label, scopes, test);
+    return Objects.hash(label, scopes, test, expiresAt);
   }
 
   @Override
@@ -248,6 +274,7 @@ public class CreateApiKeyRequest {
     sb.append("    label: ").append(toIndentedString(label)).append("\n");
     sb.append("    scopes: ").append(toIndentedString(scopes)).append("\n");
     sb.append("    test: ").append(toIndentedString(test)).append("\n");
+    sb.append("    expiresAt: ").append(toIndentedString(expiresAt)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -266,7 +293,7 @@ public class CreateApiKeyRequest {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("label", "scopes", "test"));
+    openapiFields = new HashSet<String>(Arrays.asList("label", "scopes", "test", "expires_at"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(Arrays.asList("label", "scopes"));

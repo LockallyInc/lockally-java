@@ -14,11 +14,14 @@
 package com.lockally.sdk.api;
 
 import com.lockally.sdk.ApiException;
+import com.lockally.sdk.model.APIKey;
 import com.lockally.sdk.model.CreateApiKey201Response;
 import com.lockally.sdk.model.CreateApiKeyRequest;
 import com.lockally.sdk.model.ListApiKeys200Response;
 import com.lockally.sdk.model.Problem;
+import com.lockally.sdk.model.RotateApiKeyRequest;
 import java.util.UUID;
+import com.lockally.sdk.model.UpdateApiKeyRequest;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -58,7 +61,9 @@ public class ApiKeysApiTest {
      */
     @Test
     public void listApiKeysTest() throws ApiException {
-        ListApiKeys200Response response = api.listApiKeys();
+        String sort = null;
+        String order = null;
+        ListApiKeys200Response response = api.listApiKeys(sort, order);
         // TODO: test validations
     }
 
@@ -73,6 +78,36 @@ public class ApiKeysApiTest {
     public void revokeApiKeyTest() throws ApiException {
         UUID id = null;
         api.revokeApiKey(id);
+        // TODO: test validations
+    }
+
+    /**
+     * Rotate an API key
+     *
+     * Issues a successor key and puts a short expiry on this one, so **both work until the overlap ends**. That window is the point: without it, rotation is revocation with extra steps and every caller has to swap credentials in the same instant.  The successor inherits this key&#39;s scopes, its label (the label names the integration, and the integration has not changed) and its test flag. Its full &#x60;secret&#x60; is in this response and nowhere else.  The response&#39;s &#x60;expires_at&#x60; is the **predecessor&#39;s** deadline, so you can see from the rotation itself how long you have to cut over.  A key that has already been rotated cannot be rotated again: chaining overlaps would leave several live keys for one integration, which is the opposite of the intent. Rotate the successor instead. 
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void rotateApiKeyTest() throws ApiException {
+        UUID id = null;
+        RotateApiKeyRequest rotateApiKeyRequest = null;
+        CreateApiKey201Response response = api.rotateApiKey(id, rotateApiKeyRequest);
+        // TODO: test validations
+    }
+
+    /**
+     * Update an API key
+     *
+     * Changes a key&#39;s label, scopes or expiry in place, without reissuing the secret.  **Every field is optional and absent means unchanged.** Renaming a key does not clear its expiry. For &#x60;expires_at&#x60; there are three distinct requests: omit the field to leave the expiry alone, send a timestamp to set one, and send an explicit &#x60;null&#x60; to remove one.  Scopes are replaced wholesale, not merged. This endpoint does not restrict which scopes you may grant, because &#x60;POST /v1/api-keys&#x60; never has either: a key with &#x60;tenant:admin&#x60; can already mint a key with any scope, so &#x60;tenant:admin&#x60; is root-equivalent for key management.  A revoked key cannot be updated. 
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void updateApiKeyTest() throws ApiException {
+        UUID id = null;
+        UpdateApiKeyRequest updateApiKeyRequest = null;
+        APIKey response = api.updateApiKey(id, updateApiKeyRequest);
         // TODO: test validations
     }
 

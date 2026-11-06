@@ -150,7 +150,7 @@ public class Example {
 
 <a id="getMessageStats"></a>
 # **getMessageStats**
-> MessageStats getMessageStats(from, to, domain)
+> MessageStats getMessageStats(from, to, domain, tag)
 
 Aggregate delivery stats
 
@@ -179,8 +179,9 @@ public class Example {
     OffsetDateTime from = OffsetDateTime.now(); // OffsetDateTime | Window start (default 7 days ago).
     OffsetDateTime to = OffsetDateTime.now(); // OffsetDateTime | Window end (default now).
     String domain = "domain_example"; // String | Filter by sender domain.
+    String tag = "tag_example"; // String | Group the window by the sender's own tags: one tag, or a comma-separated set meaning ANY. Case-insensitive. This is the dimension that tells a transactional stream from a notification one.
     try {
-      MessageStats result = apiInstance.getMessageStats(from, to, domain);
+      MessageStats result = apiInstance.getMessageStats(from, to, domain, tag);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SendApi#getMessageStats");
@@ -200,6 +201,7 @@ public class Example {
 | **from** | **OffsetDateTime**| Window start (default 7 days ago). | [optional] |
 | **to** | **OffsetDateTime**| Window end (default now). | [optional] |
 | **domain** | **String**| Filter by sender domain. | [optional] |
+| **tag** | **String**| Group the window by the sender&#39;s own tags: one tag, or a comma-separated set meaning ANY. Case-insensitive. This is the dimension that tells a transactional stream from a notification one. | [optional] |
 
 ### Return type
 
@@ -223,7 +225,7 @@ public class Example {
 
 <a id="listMessages"></a>
 # **listMessages**
-> ListMessages200Response listMessages(status, sender, q, since, cursor, limit)
+> ListMessages200Response listMessages(status, sender, tag, q, since, cursor, limit, sort, order)
 
 List outbound messages
 
@@ -251,12 +253,15 @@ public class Example {
     SendApi apiInstance = new SendApi(defaultClient);
     String status = "queued"; // String | 
     String sender = "sender_example"; // String | Exact match against the `from` mailbox.
+    String tag = "tag_example"; // String | Filter to messages carrying any of these tags. One tag, or a comma-separated set meaning ANY. Case-insensitive: the value is normalised the same way tags are on write.
     String q = "q_example"; // String | Free-text search across subject + sender.
     OffsetDateTime since = OffsetDateTime.now(); // OffsetDateTime | Only messages queued at or after this RFC 3339 instant.
     String cursor = "cursor_example"; // String | queued_at of the prior page boundary. Pass back the `next_cursor` returned by the previous call.
     Integer limit = 50; // Integer | 
+    String sort = "queued_at"; // String | Field to order by. Only indexed columns are offered: an unindexed sort on this table is a full scan of the account's send history. status and sender are filters instead.
+    String order = "asc"; // String | Defaults to desc for the default field and asc for any other. The order is always made total by a tie-break on id, so paging cannot repeat or skip a row that shares a timestamp. cursor encodes queued_at, so combining it with another sort is a 400 rather than a wrong page.
     try {
-      ListMessages200Response result = apiInstance.listMessages(status, sender, q, since, cursor, limit);
+      ListMessages200Response result = apiInstance.listMessages(status, sender, tag, q, since, cursor, limit, sort, order);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SendApi#listMessages");
@@ -275,10 +280,13 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **status** | **String**|  | [optional] [enum: queued, sending, delivered, bounced, deferred, complaint] |
 | **sender** | **String**| Exact match against the &#x60;from&#x60; mailbox. | [optional] |
+| **tag** | **String**| Filter to messages carrying any of these tags. One tag, or a comma-separated set meaning ANY. Case-insensitive: the value is normalised the same way tags are on write. | [optional] |
 | **q** | **String**| Free-text search across subject + sender. | [optional] |
 | **since** | **OffsetDateTime**| Only messages queued at or after this RFC 3339 instant. | [optional] |
 | **cursor** | **String**| queued_at of the prior page boundary. Pass back the &#x60;next_cursor&#x60; returned by the previous call. | [optional] |
 | **limit** | **Integer**|  | [optional] [default to 50] |
+| **sort** | **String**| Field to order by. Only indexed columns are offered: an unindexed sort on this table is a full scan of the account&#39;s send history. status and sender are filters instead. | [optional] [default to queued_at] [enum: queued_at, updated_at] |
+| **order** | **String**| Defaults to desc for the default field and asc for any other. The order is always made total by a tie-break on id, so paging cannot repeat or skip a row that shares a timestamp. cursor encodes queued_at, so combining it with another sort is a 400 rather than a wrong page. | [optional] [enum: asc, desc] |
 
 ### Return type
 

@@ -30,6 +30,8 @@ import java.io.IOException;
 import com.lockally.sdk.model.GetUsage200Response;
 import com.lockally.sdk.model.Problem;
 import com.lockally.sdk.model.Tenant;
+import com.lockally.sdk.model.TrackingPolicy;
+import com.lockally.sdk.model.UpdateTrackingPolicyRequest;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -201,6 +203,132 @@ public class TenantApi {
         return localVarCall;
     }
     /**
+     * Build call for getTrackingPolicy
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> The policy. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Missing, malformed, or invalid API key. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> API key lacks the required scope. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call getTrackingPolicyCall(final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/v1/tracking";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json",
+            "application/problem+json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call getTrackingPolicyValidateBeforeCall(final ApiCallback _callback) throws ApiException {
+        return getTrackingPolicyCall(_callback);
+
+    }
+
+    /**
+     * Get the engagement tracking policy
+     * Whether open and click tracking are enabled for this account. **Both are off until switched on**, and an account that has never set a policy reads as off rather than as an error.  &#x60;configured&#x60; reports whether this deployment holds a signing secret. Without one no tracking token can be minted or verified, so tracking cannot work however the flags are set, and a caller seeing &#x60;track_opens: true&#x60; with nothing arriving deserves to know why. 
+     * @return TrackingPolicy
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> The policy. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Missing, malformed, or invalid API key. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> API key lacks the required scope. </td><td>  -  </td></tr>
+     </table>
+     */
+    public TrackingPolicy getTrackingPolicy() throws ApiException {
+        ApiResponse<TrackingPolicy> localVarResp = getTrackingPolicyWithHttpInfo();
+        return localVarResp.getData();
+    }
+
+    /**
+     * Get the engagement tracking policy
+     * Whether open and click tracking are enabled for this account. **Both are off until switched on**, and an account that has never set a policy reads as off rather than as an error.  &#x60;configured&#x60; reports whether this deployment holds a signing secret. Without one no tracking token can be minted or verified, so tracking cannot work however the flags are set, and a caller seeing &#x60;track_opens: true&#x60; with nothing arriving deserves to know why. 
+     * @return ApiResponse&lt;TrackingPolicy&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> The policy. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Missing, malformed, or invalid API key. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> API key lacks the required scope. </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<TrackingPolicy> getTrackingPolicyWithHttpInfo() throws ApiException {
+        okhttp3.Call localVarCall = getTrackingPolicyValidateBeforeCall(null);
+        Type localVarReturnType = new TypeToken<TrackingPolicy>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Get the engagement tracking policy (asynchronously)
+     * Whether open and click tracking are enabled for this account. **Both are off until switched on**, and an account that has never set a policy reads as off rather than as an error.  &#x60;configured&#x60; reports whether this deployment holds a signing secret. Without one no tracking token can be minted or verified, so tracking cannot work however the flags are set, and a caller seeing &#x60;track_opens: true&#x60; with nothing arriving deserves to know why. 
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> The policy. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Missing, malformed, or invalid API key. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> API key lacks the required scope. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call getTrackingPolicyAsync(final ApiCallback<TrackingPolicy> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = getTrackingPolicyValidateBeforeCall(_callback);
+        Type localVarReturnType = new TypeToken<TrackingPolicy>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
      * Build call for getUsage
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -323,6 +451,146 @@ public class TenantApi {
 
         okhttp3.Call localVarCall = getUsageValidateBeforeCall(_callback);
         Type localVarReturnType = new TypeToken<GetUsage200Response>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for updateTrackingPolicy
+     * @param updateTrackingPolicyRequest  (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> The updated policy. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Malformed request. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Missing, malformed, or invalid API key. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> API key lacks the required scope. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call updateTrackingPolicyCall(@jakarta.annotation.Nonnull UpdateTrackingPolicyRequest updateTrackingPolicyRequest, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = updateTrackingPolicyRequest;
+
+        // create path and map variables
+        String localVarPath = "/v1/tracking";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json",
+            "application/problem+json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "bearerAuth" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call updateTrackingPolicyValidateBeforeCall(@jakarta.annotation.Nonnull UpdateTrackingPolicyRequest updateTrackingPolicyRequest, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'updateTrackingPolicyRequest' is set
+        if (updateTrackingPolicyRequest == null) {
+            throw new ApiException("Missing the required parameter 'updateTrackingPolicyRequest' when calling updateTrackingPolicy(Async)");
+        }
+
+        return updateTrackingPolicyCall(updateTrackingPolicyRequest, _callback);
+
+    }
+
+    /**
+     * Update the engagement tracking policy
+     * Enables or disables tracking for the account. Send either flag or both; an omitted flag is left unchanged rather than reset.  **Enabling this changes what Lockally collects about your recipients**, who have no relationship with us. You are the controller for them. What is collected is a user-agent string, a timestamp, and for a click the destination URL: **no IP address**, ever. The change is written to your audit log. 
+     * @param updateTrackingPolicyRequest  (required)
+     * @return TrackingPolicy
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> The updated policy. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Malformed request. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Missing, malformed, or invalid API key. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> API key lacks the required scope. </td><td>  -  </td></tr>
+     </table>
+     */
+    public TrackingPolicy updateTrackingPolicy(@jakarta.annotation.Nonnull UpdateTrackingPolicyRequest updateTrackingPolicyRequest) throws ApiException {
+        ApiResponse<TrackingPolicy> localVarResp = updateTrackingPolicyWithHttpInfo(updateTrackingPolicyRequest);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Update the engagement tracking policy
+     * Enables or disables tracking for the account. Send either flag or both; an omitted flag is left unchanged rather than reset.  **Enabling this changes what Lockally collects about your recipients**, who have no relationship with us. You are the controller for them. What is collected is a user-agent string, a timestamp, and for a click the destination URL: **no IP address**, ever. The change is written to your audit log. 
+     * @param updateTrackingPolicyRequest  (required)
+     * @return ApiResponse&lt;TrackingPolicy&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> The updated policy. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Malformed request. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Missing, malformed, or invalid API key. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> API key lacks the required scope. </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<TrackingPolicy> updateTrackingPolicyWithHttpInfo(@jakarta.annotation.Nonnull UpdateTrackingPolicyRequest updateTrackingPolicyRequest) throws ApiException {
+        okhttp3.Call localVarCall = updateTrackingPolicyValidateBeforeCall(updateTrackingPolicyRequest, null);
+        Type localVarReturnType = new TypeToken<TrackingPolicy>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Update the engagement tracking policy (asynchronously)
+     * Enables or disables tracking for the account. Send either flag or both; an omitted flag is left unchanged rather than reset.  **Enabling this changes what Lockally collects about your recipients**, who have no relationship with us. You are the controller for them. What is collected is a user-agent string, a timestamp, and for a click the destination URL: **no IP address**, ever. The change is written to your audit log. 
+     * @param updateTrackingPolicyRequest  (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> The updated policy. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Malformed request. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Missing, malformed, or invalid API key. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> API key lacks the required scope. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call updateTrackingPolicyAsync(@jakarta.annotation.Nonnull UpdateTrackingPolicyRequest updateTrackingPolicyRequest, final ApiCallback<TrackingPolicy> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = updateTrackingPolicyValidateBeforeCall(updateTrackingPolicyRequest, _callback);
+        Type localVarReturnType = new TypeToken<TrackingPolicy>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }

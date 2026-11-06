@@ -151,4 +151,20 @@ public class ContactTest {
         // TODO: test updatedAt
     }
 
+    /**
+     * Test the property 'externalSystem'
+     */
+    @Test
+    public void externalSystemTest() {
+        // TODO: test externalSystem
+    }
+
+    /**
+     * Test the property 'externalId'
+     */
+    @Test
+    public void externalIdTest() {
+        // TODO: test externalId
+    }
+
 }

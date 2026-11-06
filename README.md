@@ -13,7 +13,7 @@
 
 lockally control plane
 - API version: 0.1.0
-  - Build date: 2026-10-16T20:39:47.874933+01:00[Africa/Lagos]
+  - Build date: 2026-11-06T02:15:10.968235+01:00[Africa/Lagos]
   - Generator version: 7.23.0
 
 The lockally control plane lets integrators and direct customers manage
@@ -69,7 +69,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.lockally</groupId>
   <artifactId>lockally-sdk</artifactId>
-  <version>0.3.3</version>
+  <version>0.4.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -85,7 +85,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "com.lockally:lockally-sdk:0.3.3"
+     implementation "com.lockally:lockally-sdk:0.4.0"
   }
 ```
 
@@ -99,7 +99,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/lockally-sdk-0.3.3.jar`
+* `target/lockally-sdk-0.4.0.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -182,6 +182,8 @@ Class | Method | HTTP request | Description
 *ApiKeysApi* | [**createApiKey**](docs/ApiKeysApi.md#createApiKey) | **POST** /v1/api-keys | Create an API key
 *ApiKeysApi* | [**listApiKeys**](docs/ApiKeysApi.md#listApiKeys) | **GET** /v1/api-keys | List API keys
 *ApiKeysApi* | [**revokeApiKey**](docs/ApiKeysApi.md#revokeApiKey) | **DELETE** /v1/api-keys/{id} | Revoke an API key
+*ApiKeysApi* | [**rotateApiKey**](docs/ApiKeysApi.md#rotateApiKey) | **POST** /v1/api-keys/{id}/rotate | Rotate an API key
+*ApiKeysApi* | [**updateApiKey**](docs/ApiKeysApi.md#updateApiKey) | **PATCH** /v1/api-keys/{id} | Update an API key
 *BillingApi* | [**createBillingCheckout**](docs/BillingApi.md#createBillingCheckout) | **POST** /v1/billing/checkout | Create a plan checkout session
 *BillingApi* | [**createUnitsCheckout**](docs/BillingApi.md#createUnitsCheckout) | **POST** /v1/billing/units/checkout | Create a send-units checkout session
 *BillingApi* | [**getBilling**](docs/BillingApi.md#getBilling) | **GET** /v1/billing | Get billing status
@@ -214,12 +216,16 @@ Class | Method | HTTP request | Description
 *ContactListsApi* | [**listContactLists**](docs/ContactListsApi.md#listContactLists) | **GET** /v1/contact-lists | List contact lists
 *ContactListsApi* | [**removeContactListMember**](docs/ContactListsApi.md#removeContactListMember) | **DELETE** /v1/contact-lists/{id}/members/{contactId} | Remove a member from a contact list
 *ContactListsApi* | [**updateContactList**](docs/ContactListsApi.md#updateContactList) | **PATCH** /v1/contact-lists/{id} | Update a contact list
+*ContactsApi* | [**bulkUpsertExternalContacts**](docs/ContactsApi.md#bulkUpsertExternalContacts) | **PUT** /v1/contacts/external/{system} | Create or update up to 500 contacts by their ids in another system
 *ContactsApi* | [**createContact**](docs/ContactsApi.md#createContact) | **POST** /v1/contacts | Create a contact
 *ContactsApi* | [**deleteContact**](docs/ContactsApi.md#deleteContact) | **DELETE** /v1/contacts/{id} | Delete a contact
+*ContactsApi* | [**deleteExternalContact**](docs/ContactsApi.md#deleteExternalContact) | **DELETE** /v1/contacts/external/{system}/{external_id} | Delete a contact by its id in another system
 *ContactsApi* | [**getContact**](docs/ContactsApi.md#getContact) | **GET** /v1/contacts/{id} | Get a contact
 *ContactsApi* | [**getContactLists**](docs/ContactsApi.md#getContactLists) | **GET** /v1/contacts/{id}/lists | Get lists a contact belongs to
+*ContactsApi* | [**getExternalContact**](docs/ContactsApi.md#getExternalContact) | **GET** /v1/contacts/external/{system}/{external_id} | Get a contact by its id in another system
 *ContactsApi* | [**listContacts**](docs/ContactsApi.md#listContacts) | **GET** /v1/contacts | List contacts
 *ContactsApi* | [**updateContact**](docs/ContactsApi.md#updateContact) | **PATCH** /v1/contacts/{id} | Update a contact
+*ContactsApi* | [**upsertExternalContact**](docs/ContactsApi.md#upsertExternalContact) | **PUT** /v1/contacts/external/{system}/{external_id} | Create or update a contact by its id in another system
 *DashboardApi* | [**getAuditSummary**](docs/DashboardApi.md#getAuditSummary) | **GET** /v1/audit-summary | Audit summary for the dashboard
 *DashboardApi* | [**getDomainsStatus**](docs/DashboardApi.md#getDomainsStatus) | **GET** /v1/domains/status | Domain health status for the dashboard
 *DashboardApi* | [**getIntegrationsSummary**](docs/DashboardApi.md#getIntegrationsSummary) | **GET** /v1/integrations-summary | Integrations summary for the dashboard
@@ -260,7 +266,8 @@ Class | Method | HTTP request | Description
 *EncryptionApi* | [**createEncryptionKey**](docs/EncryptionApi.md#createEncryptionKey) | **POST** /v1/encryption/keys | Upload an encryption key pair
 *EncryptionApi* | [**createEncryptionRecovery**](docs/EncryptionApi.md#createEncryptionRecovery) | **POST** /v1/encryption/recovery | Store an encryption recovery blob
 *EncryptionApi* | [**getEncryptionKey**](docs/EncryptionApi.md#getEncryptionKey) | **GET** /v1/encryption/keys/{email} | Get encryption key for a mailbox
-*EncryptionApi* | [**rotateEncryptionKey**](docs/EncryptionApi.md#rotateEncryptionKey) | **POST** /v1/encryption/keys/rotate | Rotate an encryption key
+*EncryptionApi* | [**getEncryptionStatus**](docs/EncryptionApi.md#getEncryptionStatus) | **GET** /v1/encryption/status | End-to-end encryption status for the workspace
+*EncryptionApi* | [**rotateEncryptionKey**](docs/EncryptionApi.md#rotateEncryptionKey) | **POST** /v1/encryption/keys/rotate | Re-seal an encryption key under a new password
 *HealthApi* | [**healthCheck**](docs/HealthApi.md#healthCheck) | **GET** /healthz | Liveness check
 *IpPoolsApi* | [**createDedicatedIPRequest**](docs/IpPoolsApi.md#createDedicatedIPRequest) | **POST** /v1/dedicated-ip-requests | Request a dedicated IP
 *IpPoolsApi* | [**getIPAssignment**](docs/IpPoolsApi.md#getIPAssignment) | **GET** /v1/ip-assignment | Get current IP assignment
@@ -322,10 +329,12 @@ Class | Method | HTTP request | Description
 *TemplatesApi* | [**listTemplates**](docs/TemplatesApi.md#listTemplates) | **GET** /v1/templates | List templates
 *TemplatesApi* | [**updateTemplate**](docs/TemplatesApi.md#updateTemplate) | **PUT** /v1/templates/{id} | Update a template
 *TenantApi* | [**getTenant**](docs/TenantApi.md#getTenant) | **GET** /v1/tenant | Get the calling tenant
+*TenantApi* | [**getTrackingPolicy**](docs/TenantApi.md#getTrackingPolicy) | **GET** /v1/tracking | Get the engagement tracking policy
 *TenantApi* | [**getUsage**](docs/TenantApi.md#getUsage) | **GET** /v1/usage | Usage snapshot
+*TenantApi* | [**updateTrackingPolicy**](docs/TenantApi.md#updateTrackingPolicy) | **PUT** /v1/tracking | Update the engagement tracking policy
 *TestApi* | [**simulateInboundEmail**](docs/TestApi.md#simulateInboundEmail) | **POST** /v1/test/inbound | Simulate an inbound email (test keys only)
 *UsersApi* | [**createUser**](docs/UsersApi.md#createUser) | **POST** /v1/users | Create a user
-*UsersApi* | [**deleteUser**](docs/UsersApi.md#deleteUser) | **DELETE** /v1/users/{id} | Delete a user
+*UsersApi* | [**deleteUser**](docs/UsersApi.md#deleteUser) | **DELETE** /v1/users/{id} | Deprovision a user
 *UsersApi* | [**getUser**](docs/UsersApi.md#getUser) | **GET** /v1/users/{id} | Get a user
 *UsersApi* | [**listUsers**](docs/UsersApi.md#listUsers) | **GET** /v1/users | List users
 *UsersApi* | [**updateUser**](docs/UsersApi.md#updateUser) | **PATCH** /v1/users/{id} | Update a user
@@ -358,6 +367,10 @@ Class | Method | HTTP request | Description
  - [BatchLookupPublicKeys200ResponseDataInner](docs/BatchLookupPublicKeys200ResponseDataInner.md)
  - [BatchResult](docs/BatchResult.md)
  - [BillingStatus](docs/BillingStatus.md)
+ - [BulkUpsertExternalContacts200Response](docs/BulkUpsertExternalContacts200Response.md)
+ - [BulkUpsertExternalContacts200ResponseResultsInner](docs/BulkUpsertExternalContacts200ResponseResultsInner.md)
+ - [BulkUpsertExternalContactsRequest](docs/BulkUpsertExternalContactsRequest.md)
+ - [BulkUpsertExternalContactsRequestContactsInner](docs/BulkUpsertExternalContactsRequestContactsInner.md)
  - [Calendar](docs/Calendar.md)
  - [CalendarEvent](docs/CalendarEvent.md)
  - [CalendarIntegration](docs/CalendarIntegration.md)
@@ -407,6 +420,7 @@ Class | Method | HTTP request | Description
  - [DraftList](docs/DraftList.md)
  - [DraftResult](docs/DraftResult.md)
  - [ExportMailbox201Response](docs/ExportMailbox201Response.md)
+ - [ExternalContactInput](docs/ExternalContactInput.md)
  - [GALSettings](docs/GALSettings.md)
  - [GetAddOnStatus200Response](docs/GetAddOnStatus200Response.md)
  - [GetAuditSummary200Response](docs/GetAuditSummary200Response.md)
@@ -429,6 +443,8 @@ Class | Method | HTTP request | Description
  - [GetDomainsStatus200ResponseDomainsInner](docs/GetDomainsStatus200ResponseDomainsInner.md)
  - [GetDomainsStatus200ResponseDomainsInnerChecksInner](docs/GetDomainsStatus200ResponseDomainsInnerChecksInner.md)
  - [GetEncryptionKey200Response](docs/GetEncryptionKey200Response.md)
+ - [GetEncryptionStatus200Response](docs/GetEncryptionStatus200Response.md)
+ - [GetEncryptionStatus200ResponseMailboxesInner](docs/GetEncryptionStatus200ResponseMailboxesInner.md)
  - [GetIPAssignment200Response](docs/GetIPAssignment200Response.md)
  - [GetIntegrationsSummary200Response](docs/GetIntegrationsSummary200Response.md)
  - [GetIntegrationsSummary200ResponseApiKeysInner](docs/GetIntegrationsSummary200ResponseApiKeysInner.md)
@@ -486,6 +502,8 @@ Class | Method | HTTP request | Description
  - [MessageStatsWindow](docs/MessageStatsWindow.md)
  - [Migration](docs/Migration.md)
  - [MigrationCredential](docs/MigrationCredential.md)
+ - [MigrationDNSCheck](docs/MigrationDNSCheck.md)
+ - [MigrationDomainDNS](docs/MigrationDomainDNS.md)
  - [MigrationEvent](docs/MigrationEvent.md)
  - [MigrationMailbox](docs/MigrationMailbox.md)
  - [MigrationProgress](docs/MigrationProgress.md)
@@ -499,6 +517,7 @@ Class | Method | HTTP request | Description
  - [Resource](docs/Resource.md)
  - [ReturnPath](docs/ReturnPath.md)
  - [ReturnPathCheck](docs/ReturnPathCheck.md)
+ - [RotateApiKeyRequest](docs/RotateApiKeyRequest.md)
  - [RotateEncryptionKeyRequest](docs/RotateEncryptionKeyRequest.md)
  - [SendEmail200Response](docs/SendEmail200Response.md)
  - [SendEmail202Response](docs/SendEmail202Response.md)
@@ -517,6 +536,8 @@ Class | Method | HTTP request | Description
  - [Template](docs/Template.md)
  - [TemplateInput](docs/TemplateInput.md)
  - [Tenant](docs/Tenant.md)
+ - [TenantHealthCheck](docs/TenantHealthCheck.md)
+ - [TenantHealthReport](docs/TenantHealthReport.md)
  - [Thread](docs/Thread.md)
  - [ThreadClassification](docs/ThreadClassification.md)
  - [ThreadList](docs/ThreadList.md)
@@ -524,8 +545,10 @@ Class | Method | HTTP request | Description
  - [ThreadMessageBody](docs/ThreadMessageBody.md)
  - [ThreadMessageBodyBody](docs/ThreadMessageBodyBody.md)
  - [ThreadSummary](docs/ThreadSummary.md)
+ - [TrackingPolicy](docs/TrackingPolicy.md)
  - [UnitBundle](docs/UnitBundle.md)
  - [UpdateAdminRequest](docs/UpdateAdminRequest.md)
+ - [UpdateApiKeyRequest](docs/UpdateApiKeyRequest.md)
  - [UpdateCalendarEventRequest](docs/UpdateCalendarEventRequest.md)
  - [UpdateCalendarIntegrationRequest](docs/UpdateCalendarIntegrationRequest.md)
  - [UpdateCalendarMemberRequest](docs/UpdateCalendarMemberRequest.md)
@@ -539,6 +562,7 @@ Class | Method | HTTP request | Description
  - [UpdateMigrationMailboxRequest](docs/UpdateMigrationMailboxRequest.md)
  - [UpdateMigrationRequest](docs/UpdateMigrationRequest.md)
  - [UpdateResourceRequest](docs/UpdateResourceRequest.md)
+ - [UpdateTrackingPolicyRequest](docs/UpdateTrackingPolicyRequest.md)
  - [UpdateUserRequest](docs/UpdateUserRequest.md)
  - [UpdateWebhookRequest](docs/UpdateWebhookRequest.md)
  - [User](docs/User.md)

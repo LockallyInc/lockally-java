@@ -924,6 +924,8 @@ public class DomainsApi {
     }
     /**
      * Build call for listDomains
+     * @param sort Field to order by. This list holds tens of rows per account, so every column is offered and none needs an index. (optional, default to created_at)
+     * @param order Defaults to desc for the default field and asc for any other. Always tie-broken on id, so the order is total. (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -936,7 +938,7 @@ public class DomainsApi {
         <tr><td> 403 </td><td> API key lacks the required scope. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call listDomainsCall(final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call listDomainsCall(@jakarta.annotation.Nullable String sort, @jakarta.annotation.Nullable String order, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -961,6 +963,14 @@ public class DomainsApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (sort != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("sort", sort));
+        }
+
+        if (order != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("order", order));
+        }
+
         final String[] localVarAccepts = {
             "application/json",
             "application/problem+json"
@@ -982,14 +992,16 @@ public class DomainsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call listDomainsValidateBeforeCall(final ApiCallback _callback) throws ApiException {
-        return listDomainsCall(_callback);
+    private okhttp3.Call listDomainsValidateBeforeCall(@jakarta.annotation.Nullable String sort, @jakarta.annotation.Nullable String order, final ApiCallback _callback) throws ApiException {
+        return listDomainsCall(sort, order, _callback);
 
     }
 
     /**
      * List domains
      * Returns every domain registered under the calling tenant.
+     * @param sort Field to order by. This list holds tens of rows per account, so every column is offered and none needs an index. (optional, default to created_at)
+     * @param order Defaults to desc for the default field and asc for any other. Always tie-broken on id, so the order is total. (optional)
      * @return ListDomains200Response
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -1001,14 +1013,16 @@ public class DomainsApi {
         <tr><td> 403 </td><td> API key lacks the required scope. </td><td>  -  </td></tr>
      </table>
      */
-    public ListDomains200Response listDomains() throws ApiException {
-        ApiResponse<ListDomains200Response> localVarResp = listDomainsWithHttpInfo();
+    public ListDomains200Response listDomains(@jakarta.annotation.Nullable String sort, @jakarta.annotation.Nullable String order) throws ApiException {
+        ApiResponse<ListDomains200Response> localVarResp = listDomainsWithHttpInfo(sort, order);
         return localVarResp.getData();
     }
 
     /**
      * List domains
      * Returns every domain registered under the calling tenant.
+     * @param sort Field to order by. This list holds tens of rows per account, so every column is offered and none needs an index. (optional, default to created_at)
+     * @param order Defaults to desc for the default field and asc for any other. Always tie-broken on id, so the order is total. (optional)
      * @return ApiResponse&lt;ListDomains200Response&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -1020,8 +1034,8 @@ public class DomainsApi {
         <tr><td> 403 </td><td> API key lacks the required scope. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<ListDomains200Response> listDomainsWithHttpInfo() throws ApiException {
-        okhttp3.Call localVarCall = listDomainsValidateBeforeCall(null);
+    public ApiResponse<ListDomains200Response> listDomainsWithHttpInfo(@jakarta.annotation.Nullable String sort, @jakarta.annotation.Nullable String order) throws ApiException {
+        okhttp3.Call localVarCall = listDomainsValidateBeforeCall(sort, order, null);
         Type localVarReturnType = new TypeToken<ListDomains200Response>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -1029,6 +1043,8 @@ public class DomainsApi {
     /**
      * List domains (asynchronously)
      * Returns every domain registered under the calling tenant.
+     * @param sort Field to order by. This list holds tens of rows per account, so every column is offered and none needs an index. (optional, default to created_at)
+     * @param order Defaults to desc for the default field and asc for any other. Always tie-broken on id, so the order is total. (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -1041,9 +1057,9 @@ public class DomainsApi {
         <tr><td> 403 </td><td> API key lacks the required scope. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call listDomainsAsync(final ApiCallback<ListDomains200Response> _callback) throws ApiException {
+    public okhttp3.Call listDomainsAsync(@jakarta.annotation.Nullable String sort, @jakarta.annotation.Nullable String order, final ApiCallback<ListDomains200Response> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = listDomainsValidateBeforeCall(_callback);
+        okhttp3.Call localVarCall = listDomainsValidateBeforeCall(sort, order, _callback);
         Type localVarReturnType = new TypeToken<ListDomains200Response>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

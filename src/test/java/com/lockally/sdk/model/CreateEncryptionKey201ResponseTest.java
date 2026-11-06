@@ -63,4 +63,12 @@ public class CreateEncryptionKey201ResponseTest {
         // TODO: test createdAt
     }
 
+    /**
+     * Test the property 'replacedOld'
+     */
+    @Test
+    public void replacedOldTest() {
+        // TODO: test replacedOld
+    }
+
 }

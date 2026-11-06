@@ -35,6 +35,10 @@ docs/BatchLookupPublicKeys200ResponseDataInner.md
 docs/BatchResult.md
 docs/BillingApi.md
 docs/BillingStatus.md
+docs/BulkUpsertExternalContacts200Response.md
+docs/BulkUpsertExternalContacts200ResponseResultsInner.md
+docs/BulkUpsertExternalContactsRequest.md
+docs/BulkUpsertExternalContactsRequestContactsInner.md
 docs/Calendar.md
 docs/CalendarEvent.md
 docs/CalendarIntegration.md
@@ -93,6 +97,7 @@ docs/DraftResult.md
 docs/DraftsApi.md
 docs/EncryptionApi.md
 docs/ExportMailbox201Response.md
+docs/ExternalContactInput.md
 docs/GALSettings.md
 docs/GetAddOnStatus200Response.md
 docs/GetAuditSummary200Response.md
@@ -115,6 +120,8 @@ docs/GetDomainsStatus200Response.md
 docs/GetDomainsStatus200ResponseDomainsInner.md
 docs/GetDomainsStatus200ResponseDomainsInnerChecksInner.md
 docs/GetEncryptionKey200Response.md
+docs/GetEncryptionStatus200Response.md
+docs/GetEncryptionStatus200ResponseMailboxesInner.md
 docs/GetIPAssignment200Response.md
 docs/GetIntegrationsSummary200Response.md
 docs/GetIntegrationsSummary200ResponseApiKeysInner.md
@@ -175,6 +182,8 @@ docs/MessageStatsRates.md
 docs/MessageStatsWindow.md
 docs/Migration.md
 docs/MigrationCredential.md
+docs/MigrationDNSCheck.md
+docs/MigrationDomainDNS.md
 docs/MigrationEvent.md
 docs/MigrationMailbox.md
 docs/MigrationProgress.md
@@ -190,6 +199,7 @@ docs/Resource.md
 docs/ResourcesApi.md
 docs/ReturnPath.md
 docs/ReturnPathCheck.md
+docs/RotateApiKeyRequest.md
 docs/RotateEncryptionKeyRequest.md
 docs/SendApi.md
 docs/SendEmail200Response.md
@@ -213,6 +223,8 @@ docs/TemplateInput.md
 docs/TemplatesApi.md
 docs/Tenant.md
 docs/TenantApi.md
+docs/TenantHealthCheck.md
+docs/TenantHealthReport.md
 docs/TestApi.md
 docs/Thread.md
 docs/ThreadClassification.md
@@ -221,8 +233,10 @@ docs/ThreadMessage.md
 docs/ThreadMessageBody.md
 docs/ThreadMessageBodyBody.md
 docs/ThreadSummary.md
+docs/TrackingPolicy.md
 docs/UnitBundle.md
 docs/UpdateAdminRequest.md
+docs/UpdateApiKeyRequest.md
 docs/UpdateCalendarEventRequest.md
 docs/UpdateCalendarIntegrationRequest.md
 docs/UpdateCalendarMemberRequest.md
@@ -236,6 +250,7 @@ docs/UpdateMailboxRequest.md
 docs/UpdateMigrationMailboxRequest.md
 docs/UpdateMigrationRequest.md
 docs/UpdateResourceRequest.md
+docs/UpdateTrackingPolicyRequest.md
 docs/UpdateUserRequest.md
 docs/UpdateWebhookRequest.md
 docs/User.md
@@ -330,6 +345,10 @@ src/main/java/com/lockally/sdk/model/BatchLookupPublicKeys200Response.java
 src/main/java/com/lockally/sdk/model/BatchLookupPublicKeys200ResponseDataInner.java
 src/main/java/com/lockally/sdk/model/BatchResult.java
 src/main/java/com/lockally/sdk/model/BillingStatus.java
+src/main/java/com/lockally/sdk/model/BulkUpsertExternalContacts200Response.java
+src/main/java/com/lockally/sdk/model/BulkUpsertExternalContacts200ResponseResultsInner.java
+src/main/java/com/lockally/sdk/model/BulkUpsertExternalContactsRequest.java
+src/main/java/com/lockally/sdk/model/BulkUpsertExternalContactsRequestContactsInner.java
 src/main/java/com/lockally/sdk/model/Calendar.java
 src/main/java/com/lockally/sdk/model/CalendarEvent.java
 src/main/java/com/lockally/sdk/model/CalendarIntegration.java
@@ -379,6 +398,7 @@ src/main/java/com/lockally/sdk/model/Draft.java
 src/main/java/com/lockally/sdk/model/DraftList.java
 src/main/java/com/lockally/sdk/model/DraftResult.java
 src/main/java/com/lockally/sdk/model/ExportMailbox201Response.java
+src/main/java/com/lockally/sdk/model/ExternalContactInput.java
 src/main/java/com/lockally/sdk/model/GALSettings.java
 src/main/java/com/lockally/sdk/model/GetAddOnStatus200Response.java
 src/main/java/com/lockally/sdk/model/GetAuditSummary200Response.java
@@ -401,6 +421,8 @@ src/main/java/com/lockally/sdk/model/GetDomainsStatus200Response.java
 src/main/java/com/lockally/sdk/model/GetDomainsStatus200ResponseDomainsInner.java
 src/main/java/com/lockally/sdk/model/GetDomainsStatus200ResponseDomainsInnerChecksInner.java
 src/main/java/com/lockally/sdk/model/GetEncryptionKey200Response.java
+src/main/java/com/lockally/sdk/model/GetEncryptionStatus200Response.java
+src/main/java/com/lockally/sdk/model/GetEncryptionStatus200ResponseMailboxesInner.java
 src/main/java/com/lockally/sdk/model/GetIPAssignment200Response.java
 src/main/java/com/lockally/sdk/model/GetIntegrationsSummary200Response.java
 src/main/java/com/lockally/sdk/model/GetIntegrationsSummary200ResponseApiKeysInner.java
@@ -458,6 +480,8 @@ src/main/java/com/lockally/sdk/model/MessageStatsRates.java
 src/main/java/com/lockally/sdk/model/MessageStatsWindow.java
 src/main/java/com/lockally/sdk/model/Migration.java
 src/main/java/com/lockally/sdk/model/MigrationCredential.java
+src/main/java/com/lockally/sdk/model/MigrationDNSCheck.java
+src/main/java/com/lockally/sdk/model/MigrationDomainDNS.java
 src/main/java/com/lockally/sdk/model/MigrationEvent.java
 src/main/java/com/lockally/sdk/model/MigrationMailbox.java
 src/main/java/com/lockally/sdk/model/MigrationProgress.java
@@ -471,6 +495,7 @@ src/main/java/com/lockally/sdk/model/ReplaceDistributionListMembersRequest.java
 src/main/java/com/lockally/sdk/model/Resource.java
 src/main/java/com/lockally/sdk/model/ReturnPath.java
 src/main/java/com/lockally/sdk/model/ReturnPathCheck.java
+src/main/java/com/lockally/sdk/model/RotateApiKeyRequest.java
 src/main/java/com/lockally/sdk/model/RotateEncryptionKeyRequest.java
 src/main/java/com/lockally/sdk/model/SendEmail200Response.java
 src/main/java/com/lockally/sdk/model/SendEmail202Response.java
@@ -489,6 +514,8 @@ src/main/java/com/lockally/sdk/model/Suppression.java
 src/main/java/com/lockally/sdk/model/Template.java
 src/main/java/com/lockally/sdk/model/TemplateInput.java
 src/main/java/com/lockally/sdk/model/Tenant.java
+src/main/java/com/lockally/sdk/model/TenantHealthCheck.java
+src/main/java/com/lockally/sdk/model/TenantHealthReport.java
 src/main/java/com/lockally/sdk/model/Thread.java
 src/main/java/com/lockally/sdk/model/ThreadClassification.java
 src/main/java/com/lockally/sdk/model/ThreadList.java
@@ -496,8 +523,10 @@ src/main/java/com/lockally/sdk/model/ThreadMessage.java
 src/main/java/com/lockally/sdk/model/ThreadMessageBody.java
 src/main/java/com/lockally/sdk/model/ThreadMessageBodyBody.java
 src/main/java/com/lockally/sdk/model/ThreadSummary.java
+src/main/java/com/lockally/sdk/model/TrackingPolicy.java
 src/main/java/com/lockally/sdk/model/UnitBundle.java
 src/main/java/com/lockally/sdk/model/UpdateAdminRequest.java
+src/main/java/com/lockally/sdk/model/UpdateApiKeyRequest.java
 src/main/java/com/lockally/sdk/model/UpdateCalendarEventRequest.java
 src/main/java/com/lockally/sdk/model/UpdateCalendarIntegrationRequest.java
 src/main/java/com/lockally/sdk/model/UpdateCalendarMemberRequest.java
@@ -511,6 +540,7 @@ src/main/java/com/lockally/sdk/model/UpdateMailboxRequest.java
 src/main/java/com/lockally/sdk/model/UpdateMigrationMailboxRequest.java
 src/main/java/com/lockally/sdk/model/UpdateMigrationRequest.java
 src/main/java/com/lockally/sdk/model/UpdateResourceRequest.java
+src/main/java/com/lockally/sdk/model/UpdateTrackingPolicyRequest.java
 src/main/java/com/lockally/sdk/model/UpdateUserRequest.java
 src/main/java/com/lockally/sdk/model/UpdateWebhookRequest.java
 src/main/java/com/lockally/sdk/model/User.java
@@ -572,6 +602,10 @@ src/test/java/com/lockally/sdk/model/BatchLookupPublicKeys200ResponseDataInnerTe
 src/test/java/com/lockally/sdk/model/BatchLookupPublicKeys200ResponseTest.java
 src/test/java/com/lockally/sdk/model/BatchResultTest.java
 src/test/java/com/lockally/sdk/model/BillingStatusTest.java
+src/test/java/com/lockally/sdk/model/BulkUpsertExternalContacts200ResponseResultsInnerTest.java
+src/test/java/com/lockally/sdk/model/BulkUpsertExternalContacts200ResponseTest.java
+src/test/java/com/lockally/sdk/model/BulkUpsertExternalContactsRequestContactsInnerTest.java
+src/test/java/com/lockally/sdk/model/BulkUpsertExternalContactsRequestTest.java
 src/test/java/com/lockally/sdk/model/CalendarEventTest.java
 src/test/java/com/lockally/sdk/model/CalendarIntegrationTest.java
 src/test/java/com/lockally/sdk/model/CalendarMemberTest.java
@@ -621,6 +655,7 @@ src/test/java/com/lockally/sdk/model/DraftListTest.java
 src/test/java/com/lockally/sdk/model/DraftResultTest.java
 src/test/java/com/lockally/sdk/model/DraftTest.java
 src/test/java/com/lockally/sdk/model/ExportMailbox201ResponseTest.java
+src/test/java/com/lockally/sdk/model/ExternalContactInputTest.java
 src/test/java/com/lockally/sdk/model/GALSettingsTest.java
 src/test/java/com/lockally/sdk/model/GetAddOnStatus200ResponseTest.java
 src/test/java/com/lockally/sdk/model/GetAuditSummary200ResponseTest.java
@@ -643,6 +678,8 @@ src/test/java/com/lockally/sdk/model/GetDomainsStatus200ResponseDomainsInnerChec
 src/test/java/com/lockally/sdk/model/GetDomainsStatus200ResponseDomainsInnerTest.java
 src/test/java/com/lockally/sdk/model/GetDomainsStatus200ResponseTest.java
 src/test/java/com/lockally/sdk/model/GetEncryptionKey200ResponseTest.java
+src/test/java/com/lockally/sdk/model/GetEncryptionStatus200ResponseMailboxesInnerTest.java
+src/test/java/com/lockally/sdk/model/GetEncryptionStatus200ResponseTest.java
 src/test/java/com/lockally/sdk/model/GetIPAssignment200ResponseTest.java
 src/test/java/com/lockally/sdk/model/GetIntegrationsSummary200ResponseApiKeysInnerTest.java
 src/test/java/com/lockally/sdk/model/GetIntegrationsSummary200ResponseTest.java
@@ -699,6 +736,8 @@ src/test/java/com/lockally/sdk/model/MessageStatsTest.java
 src/test/java/com/lockally/sdk/model/MessageStatsWindowTest.java
 src/test/java/com/lockally/sdk/model/MessageTest.java
 src/test/java/com/lockally/sdk/model/MigrationCredentialTest.java
+src/test/java/com/lockally/sdk/model/MigrationDNSCheckTest.java
+src/test/java/com/lockally/sdk/model/MigrationDomainDNSTest.java
 src/test/java/com/lockally/sdk/model/MigrationEventTest.java
 src/test/java/com/lockally/sdk/model/MigrationMailboxTest.java
 src/test/java/com/lockally/sdk/model/MigrationProgressMailboxesInnerTest.java
@@ -713,6 +752,7 @@ src/test/java/com/lockally/sdk/model/ReplaceDistributionListMembersRequestTest.j
 src/test/java/com/lockally/sdk/model/ResourceTest.java
 src/test/java/com/lockally/sdk/model/ReturnPathCheckTest.java
 src/test/java/com/lockally/sdk/model/ReturnPathTest.java
+src/test/java/com/lockally/sdk/model/RotateApiKeyRequestTest.java
 src/test/java/com/lockally/sdk/model/RotateEncryptionKeyRequestTest.java
 src/test/java/com/lockally/sdk/model/SendEmail200ResponseTest.java
 src/test/java/com/lockally/sdk/model/SendEmail202ResponseTest.java
@@ -730,6 +770,8 @@ src/test/java/com/lockally/sdk/model/StartMigration202ResponseTest.java
 src/test/java/com/lockally/sdk/model/SuppressionTest.java
 src/test/java/com/lockally/sdk/model/TemplateInputTest.java
 src/test/java/com/lockally/sdk/model/TemplateTest.java
+src/test/java/com/lockally/sdk/model/TenantHealthCheckTest.java
+src/test/java/com/lockally/sdk/model/TenantHealthReportTest.java
 src/test/java/com/lockally/sdk/model/TenantTest.java
 src/test/java/com/lockally/sdk/model/ThreadClassificationTest.java
 src/test/java/com/lockally/sdk/model/ThreadListTest.java
@@ -738,8 +780,10 @@ src/test/java/com/lockally/sdk/model/ThreadMessageBodyTest.java
 src/test/java/com/lockally/sdk/model/ThreadMessageTest.java
 src/test/java/com/lockally/sdk/model/ThreadSummaryTest.java
 src/test/java/com/lockally/sdk/model/ThreadTest.java
+src/test/java/com/lockally/sdk/model/TrackingPolicyTest.java
 src/test/java/com/lockally/sdk/model/UnitBundleTest.java
 src/test/java/com/lockally/sdk/model/UpdateAdminRequestTest.java
+src/test/java/com/lockally/sdk/model/UpdateApiKeyRequestTest.java
 src/test/java/com/lockally/sdk/model/UpdateCalendarEventRequestTest.java
 src/test/java/com/lockally/sdk/model/UpdateCalendarIntegrationRequestTest.java
 src/test/java/com/lockally/sdk/model/UpdateCalendarMemberRequestTest.java
@@ -753,6 +797,7 @@ src/test/java/com/lockally/sdk/model/UpdateMailboxRequestTest.java
 src/test/java/com/lockally/sdk/model/UpdateMigrationMailboxRequestTest.java
 src/test/java/com/lockally/sdk/model/UpdateMigrationRequestTest.java
 src/test/java/com/lockally/sdk/model/UpdateResourceRequestTest.java
+src/test/java/com/lockally/sdk/model/UpdateTrackingPolicyRequestTest.java
 src/test/java/com/lockally/sdk/model/UpdateUserRequestTest.java
 src/test/java/com/lockally/sdk/model/UpdateWebhookRequestTest.java
 src/test/java/com/lockally/sdk/model/UserEventTest.java

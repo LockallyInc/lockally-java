@@ -50,7 +50,7 @@ import com.lockally.sdk.JSON;
 /**
  * CreateEncryptionKey201Response
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-16T20:39:47.874933+01:00[Africa/Lagos]", comments = "Generator version: 7.23.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-06T02:15:10.968235+01:00[Africa/Lagos]", comments = "Generator version: 7.23.0")
 public class CreateEncryptionKey201Response {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -66,6 +66,11 @@ public class CreateEncryptionKey201Response {
   @SerializedName(SERIALIZED_NAME_CREATED_AT)
   @jakarta.annotation.Nullable
   private OffsetDateTime createdAt;
+
+  public static final String SERIALIZED_NAME_REPLACED_OLD = "replaced_old";
+  @SerializedName(SERIALIZED_NAME_REPLACED_OLD)
+  @jakarta.annotation.Nullable
+  private Boolean replacedOld;
 
   public CreateEncryptionKey201Response() {
   }
@@ -127,6 +132,25 @@ public class CreateEncryptionKey201Response {
   }
 
 
+  public CreateEncryptionKey201Response replacedOld(@jakarta.annotation.Nullable Boolean replacedOld) {
+    this.replacedOld = replacedOld;
+    return this;
+  }
+
+  /**
+   * Get replacedOld
+   * @return replacedOld
+   */
+  @jakarta.annotation.Nullable
+  public Boolean getReplacedOld() {
+    return replacedOld;
+  }
+
+  public void setReplacedOld(@jakarta.annotation.Nullable Boolean replacedOld) {
+    this.replacedOld = replacedOld;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -139,12 +163,13 @@ public class CreateEncryptionKey201Response {
     CreateEncryptionKey201Response createEncryptionKey201Response = (CreateEncryptionKey201Response) o;
     return Objects.equals(this.id, createEncryptionKey201Response.id) &&
         Objects.equals(this.mailboxId, createEncryptionKey201Response.mailboxId) &&
-        Objects.equals(this.createdAt, createEncryptionKey201Response.createdAt);
+        Objects.equals(this.createdAt, createEncryptionKey201Response.createdAt) &&
+        Objects.equals(this.replacedOld, createEncryptionKey201Response.replacedOld);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, mailboxId, createdAt);
+    return Objects.hash(id, mailboxId, createdAt, replacedOld);
   }
 
   @Override
@@ -154,6 +179,7 @@ public class CreateEncryptionKey201Response {
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    mailboxId: ").append(toIndentedString(mailboxId)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
+    sb.append("    replacedOld: ").append(toIndentedString(replacedOld)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -172,7 +198,7 @@ public class CreateEncryptionKey201Response {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("id", "mailbox_id", "created_at"));
+    openapiFields = new HashSet<String>(Arrays.asList("id", "mailbox_id", "created_at", "replaced_old"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(0);

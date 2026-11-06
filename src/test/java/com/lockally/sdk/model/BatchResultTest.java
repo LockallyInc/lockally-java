@@ -78,4 +78,12 @@ public class BatchResultTest {
         // TODO: test error
     }
 
+    /**
+     * Test the property 'warning'
+     */
+    @Test
+    public void warningTest() {
+        // TODO: test warning
+    }
+
 }

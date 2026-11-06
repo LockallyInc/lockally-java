@@ -79,7 +79,8 @@ public class SendApiTest {
         OffsetDateTime from = null;
         OffsetDateTime to = null;
         String domain = null;
-        MessageStats response = api.getMessageStats(from, to, domain);
+        String tag = null;
+        MessageStats response = api.getMessageStats(from, to, domain, tag);
         // TODO: test validations
     }
 
@@ -94,11 +95,14 @@ public class SendApiTest {
     public void listMessagesTest() throws ApiException {
         String status = null;
         String sender = null;
+        String tag = null;
         String q = null;
         OffsetDateTime since = null;
         String cursor = null;
         Integer limit = null;
-        ListMessages200Response response = api.listMessages(status, sender, q, since, cursor, limit);
+        String sort = null;
+        String order = null;
+        ListMessages200Response response = api.listMessages(status, sender, tag, q, since, cursor, limit, sort, order);
         // TODO: test validations
     }
 

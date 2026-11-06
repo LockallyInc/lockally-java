@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**mailboxEmail** | **String** |  |  |
+|**mailboxEmail** | **String** |  |  [optional] |
 |**publicKey** | **String** |  |  |
 |**encryptedPrivateKey** | **String** |  |  |
 |**kdfParams** | **Object** |  |  [optional] |

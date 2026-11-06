@@ -55,7 +55,7 @@ import com.lockally.sdk.JSON;
 /**
  * SendEmailRequest
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-16T20:39:47.874933+01:00[Africa/Lagos]", comments = "Generator version: 7.23.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-06T02:15:10.968235+01:00[Africa/Lagos]", comments = "Generator version: 7.23.0")
 public class SendEmailRequest {
   public static final String SERIALIZED_NAME_FROM = "from";
   @SerializedName(SERIALIZED_NAME_FROM)
@@ -126,6 +126,26 @@ public class SendEmailRequest {
   @SerializedName(SERIALIZED_NAME_SEND_AT)
   @jakarta.annotation.Nullable
   private OffsetDateTime sendAt;
+
+  public static final String SERIALIZED_NAME_METADATA = "metadata";
+  @SerializedName(SERIALIZED_NAME_METADATA)
+  @jakarta.annotation.Nullable
+  private Map<String, String> metadata = new HashMap<>();
+
+  public static final String SERIALIZED_NAME_TAGS = "tags";
+  @SerializedName(SERIALIZED_NAME_TAGS)
+  @jakarta.annotation.Nullable
+  private List<String> tags = new ArrayList<>();
+
+  public static final String SERIALIZED_NAME_TRACK_OPENS = "track_opens";
+  @SerializedName(SERIALIZED_NAME_TRACK_OPENS)
+  @jakarta.annotation.Nullable
+  private Boolean trackOpens;
+
+  public static final String SERIALIZED_NAME_TRACK_CLICKS = "track_clicks";
+  @SerializedName(SERIALIZED_NAME_TRACK_CLICKS)
+  @jakarta.annotation.Nullable
+  private Boolean trackClicks;
 
   public static final String SERIALIZED_NAME_ATTACHMENTS = "attachments";
   @SerializedName(SERIALIZED_NAME_ATTACHMENTS)
@@ -441,6 +461,98 @@ public class SendEmailRequest {
   }
 
 
+  public SendEmailRequest metadata(@jakarta.annotation.Nullable Map<String, String> metadata) {
+    this.metadata = metadata;
+    return this;
+  }
+
+  public SendEmailRequest putMetadataItem(String key, String metadataItem) {
+    if (this.metadata == null) {
+      this.metadata = new HashMap<>();
+    }
+    this.metadata.put(key, metadataItem);
+    return this;
+  }
+
+  /**
+   * Arbitrary key/value you attach to this message and get back on every delivery webhook for it, so a send can be matched to your own records without a lookup table.  **It never leaves Lockally.** A custom entry in &#x60;headers&#x60; goes out on the wire to the recipient, which is why that is not a substitute: order ids and internal identifiers do not belong in a header the recipient can read.  At most 20 keys, keys at most 64 characters, values at most 512. **Over a limit is refused with a &#x60;400&#x60;, never truncated**: a silently shortened order id succeeds and then fails to match weeks later.  Not indexed and not filterable. 
+   * @return metadata
+   */
+  @jakarta.annotation.Nullable
+  public Map<String, String> getMetadata() {
+    return metadata;
+  }
+
+  public void setMetadata(@jakarta.annotation.Nullable Map<String, String> metadata) {
+    this.metadata = metadata;
+  }
+
+
+  public SendEmailRequest tags(@jakarta.annotation.Nullable List<String> tags) {
+    this.tags = tags;
+    return this;
+  }
+
+  public SendEmailRequest addTagsItem(String tagsItem) {
+    if (this.tags == null) {
+      this.tags = new ArrayList<>();
+    }
+    this.tags.add(tagsItem);
+    return this;
+  }
+
+  /**
+   * Labels that group this send for filtering and analytics: campaign, template, environment.  **Lowercased, trimmed and deduplicated on write**, so the grouping does not depend on every caller spelling them identically. &#x60;Campaign-X&#x60; is stored as &#x60;campaign-x&#x60;, and either spelling matches it in a filter.  At most 10 per message after deduplication, each at most 32 characters. Over either is a &#x60;400&#x60; rather than a trimmed list: a send missing the tag it was tagged for is worse than a refusal.  Unlike &#x60;metadata&#x60;, tags ARE queryable: filter with &#x60;GET /v1/messages?tag&#x3D;&#x60; and group with &#x60;GET /v1/messages/stats?tag&#x3D;&#x60;. 
+   * @return tags
+   */
+  @jakarta.annotation.Nullable
+  public List<String> getTags() {
+    return tags;
+  }
+
+  public void setTags(@jakarta.annotation.Nullable List<String> tags) {
+    this.tags = tags;
+  }
+
+
+  public SendEmailRequest trackOpens(@jakarta.annotation.Nullable Boolean trackOpens) {
+    this.trackOpens = trackOpens;
+    return this;
+  }
+
+  /**
+   * Override the account&#39;s open-tracking setting for this one send. Omit to inherit it.  Three states matter here: &#x60;true&#x60;, &#x60;false&#x60;, and absent. A transactional receipt can set &#x60;false&#x60; without the account turning tracking off for its marketing. 
+   * @return trackOpens
+   */
+  @jakarta.annotation.Nullable
+  public Boolean getTrackOpens() {
+    return trackOpens;
+  }
+
+  public void setTrackOpens(@jakarta.annotation.Nullable Boolean trackOpens) {
+    this.trackOpens = trackOpens;
+  }
+
+
+  public SendEmailRequest trackClicks(@jakarta.annotation.Nullable Boolean trackClicks) {
+    this.trackClicks = trackClicks;
+    return this;
+  }
+
+  /**
+   * As &#x60;track_opens&#x60;, for click tracking. Click tracking rewrites &#x60;http(s)&#x60; links in the **HTML** part only: the plain-text part is never rewritten, because a visible redirect URL is what recipients complain about. A text-only send is therefore not click-tracked. 
+   * @return trackClicks
+   */
+  @jakarta.annotation.Nullable
+  public Boolean getTrackClicks() {
+    return trackClicks;
+  }
+
+  public void setTrackClicks(@jakarta.annotation.Nullable Boolean trackClicks) {
+    this.trackClicks = trackClicks;
+  }
+
+
   public SendEmailRequest attachments(@jakarta.annotation.Nullable List<SendEmailRequestAttachmentsInner> attachments) {
     this.attachments = attachments;
     return this;
@@ -492,12 +604,16 @@ public class SendEmailRequest {
         Objects.equals(this.templateId, sendEmailRequest.templateId) &&
         Objects.equals(this.variables, sendEmailRequest.variables) &&
         Objects.equals(this.sendAt, sendEmailRequest.sendAt) &&
+        Objects.equals(this.metadata, sendEmailRequest.metadata) &&
+        Objects.equals(this.tags, sendEmailRequest.tags) &&
+        Objects.equals(this.trackOpens, sendEmailRequest.trackOpens) &&
+        Objects.equals(this.trackClicks, sendEmailRequest.trackClicks) &&
         Objects.equals(this.attachments, sendEmailRequest.attachments);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(from, to, cc, bcc, subject, text, html, headers, replyTo, replyToName, unsubscribe, templateId, variables, sendAt, attachments);
+    return Objects.hash(from, to, cc, bcc, subject, text, html, headers, replyTo, replyToName, unsubscribe, templateId, variables, sendAt, metadata, tags, trackOpens, trackClicks, attachments);
   }
 
   @Override
@@ -518,6 +634,10 @@ public class SendEmailRequest {
     sb.append("    templateId: ").append(toIndentedString(templateId)).append("\n");
     sb.append("    variables: ").append(toIndentedString(variables)).append("\n");
     sb.append("    sendAt: ").append(toIndentedString(sendAt)).append("\n");
+    sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
+    sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
+    sb.append("    trackOpens: ").append(toIndentedString(trackOpens)).append("\n");
+    sb.append("    trackClicks: ").append(toIndentedString(trackClicks)).append("\n");
     sb.append("    attachments: ").append(toIndentedString(attachments)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -537,7 +657,7 @@ public class SendEmailRequest {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("from", "to", "cc", "bcc", "subject", "text", "html", "headers", "reply_to", "reply_to_name", "unsubscribe", "template_id", "variables", "send_at", "attachments"));
+    openapiFields = new HashSet<String>(Arrays.asList("from", "to", "cc", "bcc", "subject", "text", "html", "headers", "reply_to", "reply_to_name", "unsubscribe", "template_id", "variables", "send_at", "metadata", "tags", "track_opens", "track_clicks", "attachments"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(Arrays.asList("from", "to"));
@@ -605,6 +725,10 @@ public class SendEmailRequest {
       }
       if ((jsonObj.get("template_id") != null && !jsonObj.get("template_id").isJsonNull()) && !jsonObj.get("template_id").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `template_id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("template_id").toString()));
+      }
+      // ensure the optional json data is an array if present
+      if (jsonObj.get("tags") != null && !jsonObj.get("tags").isJsonNull() && !jsonObj.get("tags").isJsonArray()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `tags` to be an array in the JSON string but got `%s`", jsonObj.get("tags").toString()));
       }
       if (jsonObj.get("attachments") != null && !jsonObj.get("attachments").isJsonNull()) {
         JsonArray jsonArrayattachments = jsonObj.getAsJsonArray("attachments");

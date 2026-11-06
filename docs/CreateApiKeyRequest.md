@@ -10,6 +10,7 @@
 |**label** | **String** | Free-text identifier shown in the dashboard. |  |
 |**scopes** | [**List&lt;ScopesEnum&gt;**](#List&lt;ScopesEnum&gt;) | Allowed scopes on this key. |  |
 |**test** | **Boolean** | Issue a test key (&#x60;lk_test_&#x60; prefix). A test key accepts sends, records them and fires a simulated delivery webhook without sending mail, and counts against no limit or allowance.  |  [optional] |
+|**expiresAt** | **OffsetDateTime** | Optional. When the key stops authenticating. Omit it for a key that does not expire. Must be in the future: an expiry already past would mint a key that fails its first request.  |  [optional] |
 
 
 

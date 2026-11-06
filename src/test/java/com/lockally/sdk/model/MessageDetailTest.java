@@ -132,6 +132,22 @@ public class MessageDetailTest {
     }
 
     /**
+     * Test the property 'metadata'
+     */
+    @Test
+    public void metadataTest() {
+        // TODO: test metadata
+    }
+
+    /**
+     * Test the property 'tags'
+     */
+    @Test
+    public void tagsTest() {
+        // TODO: test tags
+    }
+
+    /**
      * Test the property 'from'
      */
     @Test

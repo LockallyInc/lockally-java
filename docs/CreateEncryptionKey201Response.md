@@ -10,6 +10,7 @@
 |**id** | **UUID** |  |  [optional] |
 |**mailboxId** | **UUID** |  |  [optional] |
 |**createdAt** | **OffsetDateTime** |  |  [optional] |
+|**replacedOld** | **Boolean** |  |  [optional] |
 
 
 

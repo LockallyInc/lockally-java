@@ -23,7 +23,9 @@ import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import com.google.gson.Gson;
@@ -52,7 +54,7 @@ import com.lockally.sdk.JSON;
 /**
  * Message
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-16T20:39:47.874933+01:00[Africa/Lagos]", comments = "Generator version: 7.23.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-06T02:15:10.968235+01:00[Africa/Lagos]", comments = "Generator version: 7.23.0")
 public class Message {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -168,6 +170,16 @@ public class Message {
   @SerializedName(SERIALIZED_NAME_SIZE_BYTES)
   @jakarta.annotation.Nullable
   private Integer sizeBytes;
+
+  public static final String SERIALIZED_NAME_METADATA = "metadata";
+  @SerializedName(SERIALIZED_NAME_METADATA)
+  @jakarta.annotation.Nullable
+  private Map<String, String> metadata = new HashMap<>();
+
+  public static final String SERIALIZED_NAME_TAGS = "tags";
+  @SerializedName(SERIALIZED_NAME_TAGS)
+  @jakarta.annotation.Nullable
+  private List<String> tags = new ArrayList<>();
 
   public Message() {
   }
@@ -389,6 +401,60 @@ public class Message {
   }
 
 
+  public Message metadata(@jakarta.annotation.Nullable Map<String, String> metadata) {
+    this.metadata = metadata;
+    return this;
+  }
+
+  public Message putMetadataItem(String key, String metadataItem) {
+    if (this.metadata == null) {
+      this.metadata = new HashMap<>();
+    }
+    this.metadata.put(key, metadataItem);
+    return this;
+  }
+
+  /**
+   * The sender&#39;s own key/value from the send request. Always present; &#x60;{}&#x60; when none was set.
+   * @return metadata
+   */
+  @jakarta.annotation.Nullable
+  public Map<String, String> getMetadata() {
+    return metadata;
+  }
+
+  public void setMetadata(@jakarta.annotation.Nullable Map<String, String> metadata) {
+    this.metadata = metadata;
+  }
+
+
+  public Message tags(@jakarta.annotation.Nullable List<String> tags) {
+    this.tags = tags;
+    return this;
+  }
+
+  public Message addTagsItem(String tagsItem) {
+    if (this.tags == null) {
+      this.tags = new ArrayList<>();
+    }
+    this.tags.add(tagsItem);
+    return this;
+  }
+
+  /**
+   * Grouping labels, lowercased and deduplicated. Always present; &#x60;[]&#x60; when none were set.
+   * @return tags
+   */
+  @jakarta.annotation.Nullable
+  public List<String> getTags() {
+    return tags;
+  }
+
+  public void setTags(@jakarta.annotation.Nullable List<String> tags) {
+    this.tags = tags;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -409,12 +475,14 @@ public class Message {
         Objects.equals(this.queuedAt, message.queuedAt) &&
         Objects.equals(this.updatedAt, message.updatedAt) &&
         Objects.equals(this.bounceReason, message.bounceReason) &&
-        Objects.equals(this.sizeBytes, message.sizeBytes);
+        Objects.equals(this.sizeBytes, message.sizeBytes) &&
+        Objects.equals(this.metadata, message.metadata) &&
+        Objects.equals(this.tags, message.tags);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, tenantId, messageId, sender, recipients, subject, status, queuedAt, updatedAt, bounceReason, sizeBytes);
+    return Objects.hash(id, tenantId, messageId, sender, recipients, subject, status, queuedAt, updatedAt, bounceReason, sizeBytes, metadata, tags);
   }
 
   @Override
@@ -432,6 +500,8 @@ public class Message {
     sb.append("    updatedAt: ").append(toIndentedString(updatedAt)).append("\n");
     sb.append("    bounceReason: ").append(toIndentedString(bounceReason)).append("\n");
     sb.append("    sizeBytes: ").append(toIndentedString(sizeBytes)).append("\n");
+    sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
+    sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -450,7 +520,7 @@ public class Message {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("id", "tenant_id", "message_id", "sender", "recipients", "subject", "status", "queued_at", "updated_at", "bounce_reason", "size_bytes"));
+    openapiFields = new HashSet<String>(Arrays.asList("id", "tenant_id", "message_id", "sender", "recipients", "subject", "status", "queued_at", "updated_at", "bounce_reason", "size_bytes", "metadata", "tags"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(Arrays.asList("id", "tenant_id", "message_id", "sender", "recipients", "status", "queued_at", "updated_at"));
@@ -512,6 +582,10 @@ public class Message {
       StatusEnum.validateJsonElement(jsonObj.get("status"));
       if ((jsonObj.get("bounce_reason") != null && !jsonObj.get("bounce_reason").isJsonNull()) && !jsonObj.get("bounce_reason").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `bounce_reason` to be a primitive type in the JSON string but got `%s`", jsonObj.get("bounce_reason").toString()));
+      }
+      // ensure the optional json data is an array if present
+      if (jsonObj.get("tags") != null && !jsonObj.get("tags").isJsonNull() && !jsonObj.get("tags").isJsonArray()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `tags` to be an array in the JSON string but got `%s`", jsonObj.get("tags").toString()));
       }
   }
 

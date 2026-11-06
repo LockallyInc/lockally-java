@@ -34,6 +34,7 @@ import com.lockally.sdk.model.GetSecurity200Response;
 import com.lockally.sdk.model.GetStorage200Response;
 import com.lockally.sdk.model.GetUserInsights200Response;
 import com.lockally.sdk.model.Problem;
+import com.lockally.sdk.model.TenantHealthReport;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -776,7 +777,7 @@ public class DashboardApi {
     /**
      * Full tenant health report
      * 
-     * @return Object
+     * @return TenantHealthReport
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table border="1">
@@ -787,15 +788,15 @@ public class DashboardApi {
         <tr><td> 403 </td><td> API key lacks the required scope. </td><td>  -  </td></tr>
      </table>
      */
-    public Object getTenantHealth() throws ApiException {
-        ApiResponse<Object> localVarResp = getTenantHealthWithHttpInfo();
+    public TenantHealthReport getTenantHealth() throws ApiException {
+        ApiResponse<TenantHealthReport> localVarResp = getTenantHealthWithHttpInfo();
         return localVarResp.getData();
     }
 
     /**
      * Full tenant health report
      * 
-     * @return ApiResponse&lt;Object&gt;
+     * @return ApiResponse&lt;TenantHealthReport&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table border="1">
@@ -806,9 +807,9 @@ public class DashboardApi {
         <tr><td> 403 </td><td> API key lacks the required scope. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Object> getTenantHealthWithHttpInfo() throws ApiException {
+    public ApiResponse<TenantHealthReport> getTenantHealthWithHttpInfo() throws ApiException {
         okhttp3.Call localVarCall = getTenantHealthValidateBeforeCall(null);
-        Type localVarReturnType = new TypeToken<Object>(){}.getType();
+        Type localVarReturnType = new TypeToken<TenantHealthReport>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
@@ -827,10 +828,10 @@ public class DashboardApi {
         <tr><td> 403 </td><td> API key lacks the required scope. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getTenantHealthAsync(final ApiCallback<Object> _callback) throws ApiException {
+    public okhttp3.Call getTenantHealthAsync(final ApiCallback<TenantHealthReport> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = getTenantHealthValidateBeforeCall(_callback);
-        Type localVarReturnType = new TypeToken<Object>(){}.getType();
+        Type localVarReturnType = new TypeToken<TenantHealthReport>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }

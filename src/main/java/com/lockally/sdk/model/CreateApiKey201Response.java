@@ -52,7 +52,7 @@ import com.lockally.sdk.JSON;
 /**
  * CreateApiKey201Response
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-16T20:39:47.874933+01:00[Africa/Lagos]", comments = "Generator version: 7.23.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-06T02:15:10.968235+01:00[Africa/Lagos]", comments = "Generator version: 7.23.0")
 public class CreateApiKey201Response {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -93,6 +93,21 @@ public class CreateApiKey201Response {
   @SerializedName(SERIALIZED_NAME_CREATED_AT)
   @jakarta.annotation.Nonnull
   private OffsetDateTime createdAt;
+
+  public static final String SERIALIZED_NAME_TEST = "test";
+  @SerializedName(SERIALIZED_NAME_TEST)
+  @jakarta.annotation.Nullable
+  private Boolean test;
+
+  public static final String SERIALIZED_NAME_EXPIRES_AT = "expires_at";
+  @SerializedName(SERIALIZED_NAME_EXPIRES_AT)
+  @jakarta.annotation.Nullable
+  private OffsetDateTime expiresAt;
+
+  public static final String SERIALIZED_NAME_ROTATED_TO = "rotated_to";
+  @SerializedName(SERIALIZED_NAME_ROTATED_TO)
+  @jakarta.annotation.Nullable
+  private UUID rotatedTo;
 
   public static final String SERIALIZED_NAME_SECRET = "secret";
   @SerializedName(SERIALIZED_NAME_SECRET)
@@ -262,6 +277,63 @@ public class CreateApiKey201Response {
   }
 
 
+  public CreateApiKey201Response test(@jakarta.annotation.Nullable Boolean test) {
+    this.test = test;
+    return this;
+  }
+
+  /**
+   * True for an lk_test_* key: the whole request path runs but a send never reaches the mail server and nothing counts against the account.
+   * @return test
+   */
+  @jakarta.annotation.Nullable
+  public Boolean getTest() {
+    return test;
+  }
+
+  public void setTest(@jakarta.annotation.Nullable Boolean test) {
+    this.test = test;
+  }
+
+
+  public CreateApiKey201Response expiresAt(@jakarta.annotation.Nullable OffsetDateTime expiresAt) {
+    this.expiresAt = expiresAt;
+    return this;
+  }
+
+  /**
+   * When the key stops authenticating. Null means it does not expire, which is how every key behaved before expiry existed. Enforced at authentication, so the key fails the first request after this moment rather than whenever a sweep runs. 
+   * @return expiresAt
+   */
+  @jakarta.annotation.Nullable
+  public OffsetDateTime getExpiresAt() {
+    return expiresAt;
+  }
+
+  public void setExpiresAt(@jakarta.annotation.Nullable OffsetDateTime expiresAt) {
+    this.expiresAt = expiresAt;
+  }
+
+
+  public CreateApiKey201Response rotatedTo(@jakarta.annotation.Nullable UUID rotatedTo) {
+    this.rotatedTo = rotatedTo;
+    return this;
+  }
+
+  /**
+   * The successor issued by &#x60;POST /v1/api-keys/{id}/rotate&#x60;. Set on the PREDECESSOR, so you can see which key replaced this one while both still work through the overlap window. 
+   * @return rotatedTo
+   */
+  @jakarta.annotation.Nullable
+  public UUID getRotatedTo() {
+    return rotatedTo;
+  }
+
+  public void setRotatedTo(@jakarta.annotation.Nullable UUID rotatedTo) {
+    this.rotatedTo = rotatedTo;
+  }
+
+
   public CreateApiKey201Response secret(@jakarta.annotation.Nonnull String secret) {
     this.secret = secret;
     return this;
@@ -299,12 +371,15 @@ public class CreateApiKey201Response {
         Objects.equals(this.lastUsedAt, createApiKey201Response.lastUsedAt) &&
         Objects.equals(this.revokedAt, createApiKey201Response.revokedAt) &&
         Objects.equals(this.createdAt, createApiKey201Response.createdAt) &&
+        Objects.equals(this.test, createApiKey201Response.test) &&
+        Objects.equals(this.expiresAt, createApiKey201Response.expiresAt) &&
+        Objects.equals(this.rotatedTo, createApiKey201Response.rotatedTo) &&
         Objects.equals(this.secret, createApiKey201Response.secret);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, tenantId, prefix, scopes, label, lastUsedAt, revokedAt, createdAt, secret);
+    return Objects.hash(id, tenantId, prefix, scopes, label, lastUsedAt, revokedAt, createdAt, test, expiresAt, rotatedTo, secret);
   }
 
   @Override
@@ -319,6 +394,9 @@ public class CreateApiKey201Response {
     sb.append("    lastUsedAt: ").append(toIndentedString(lastUsedAt)).append("\n");
     sb.append("    revokedAt: ").append(toIndentedString(revokedAt)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
+    sb.append("    test: ").append(toIndentedString(test)).append("\n");
+    sb.append("    expiresAt: ").append(toIndentedString(expiresAt)).append("\n");
+    sb.append("    rotatedTo: ").append(toIndentedString(rotatedTo)).append("\n");
     sb.append("    secret: ").append(toIndentedString(secret)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -338,7 +416,7 @@ public class CreateApiKey201Response {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("id", "tenant_id", "prefix", "scopes", "label", "last_used_at", "revoked_at", "created_at", "secret"));
+    openapiFields = new HashSet<String>(Arrays.asList("id", "tenant_id", "prefix", "scopes", "label", "last_used_at", "revoked_at", "created_at", "test", "expires_at", "rotated_to", "secret"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(Arrays.asList("id", "tenant_id", "prefix", "scopes", "label", "created_at", "secret"));
@@ -389,6 +467,9 @@ public class CreateApiKey201Response {
       }
       if (!jsonObj.get("label").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `label` to be a primitive type in the JSON string but got `%s`", jsonObj.get("label").toString()));
+      }
+      if ((jsonObj.get("rotated_to") != null && !jsonObj.get("rotated_to").isJsonNull()) && !jsonObj.get("rotated_to").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `rotated_to` to be a primitive type in the JSON string but got `%s`", jsonObj.get("rotated_to").toString()));
       }
       if (!jsonObj.get("secret").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `secret` to be a primitive type in the JSON string but got `%s`", jsonObj.get("secret").toString()));
