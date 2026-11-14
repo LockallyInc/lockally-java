@@ -165,7 +165,6 @@ docs/ListSharedMembers200Response.md
 docs/ListSuppressions200Response.md
 docs/ListTemplates200Response.md
 docs/ListUsers200Response.md
-docs/ListVacationResponders200Response.md
 docs/ListWebhooks200Response.md
 docs/Mailbox.md
 docs/MailboxGrant.md
@@ -209,7 +208,6 @@ docs/SendEmailBatchRequest.md
 docs/SendEmailRequest.md
 docs/SendEmailRequestAttachmentsInner.md
 docs/SendMessage.md
-docs/SetVacationResponderRequest.md
 docs/SharedMember.md
 docs/SignupApi.md
 docs/SignupRequest.md
@@ -256,8 +254,6 @@ docs/UpdateWebhookRequest.md
 docs/User.md
 docs/UserEvent.md
 docs/UsersApi.md
-docs/VacationParams.md
-docs/VacationResponder.md
 docs/Webhook.md
 docs/WebhooksApi.md
 docs/Whoami.md
@@ -464,7 +460,6 @@ src/main/java/com/lockally/sdk/model/ListSharedMembers200Response.java
 src/main/java/com/lockally/sdk/model/ListSuppressions200Response.java
 src/main/java/com/lockally/sdk/model/ListTemplates200Response.java
 src/main/java/com/lockally/sdk/model/ListUsers200Response.java
-src/main/java/com/lockally/sdk/model/ListVacationResponders200Response.java
 src/main/java/com/lockally/sdk/model/ListWebhooks200Response.java
 src/main/java/com/lockally/sdk/model/Mailbox.java
 src/main/java/com/lockally/sdk/model/MailboxGrant.java
@@ -504,7 +499,6 @@ src/main/java/com/lockally/sdk/model/SendEmailBatchRequest.java
 src/main/java/com/lockally/sdk/model/SendEmailRequest.java
 src/main/java/com/lockally/sdk/model/SendEmailRequestAttachmentsInner.java
 src/main/java/com/lockally/sdk/model/SendMessage.java
-src/main/java/com/lockally/sdk/model/SetVacationResponderRequest.java
 src/main/java/com/lockally/sdk/model/SharedMember.java
 src/main/java/com/lockally/sdk/model/SignupRequest.java
 src/main/java/com/lockally/sdk/model/SimulatedInbound.java
@@ -545,8 +539,6 @@ src/main/java/com/lockally/sdk/model/UpdateUserRequest.java
 src/main/java/com/lockally/sdk/model/UpdateWebhookRequest.java
 src/main/java/com/lockally/sdk/model/User.java
 src/main/java/com/lockally/sdk/model/UserEvent.java
-src/main/java/com/lockally/sdk/model/VacationParams.java
-src/main/java/com/lockally/sdk/model/VacationResponder.java
 src/main/java/com/lockally/sdk/model/Webhook.java
 src/main/java/com/lockally/sdk/model/Whoami.java
 src/main/java/com/lockally/sdk/model/WhoamiKey.java
@@ -721,7 +713,6 @@ src/test/java/com/lockally/sdk/model/ListSharedMembers200ResponseTest.java
 src/test/java/com/lockally/sdk/model/ListSuppressions200ResponseTest.java
 src/test/java/com/lockally/sdk/model/ListTemplates200ResponseTest.java
 src/test/java/com/lockally/sdk/model/ListUsers200ResponseTest.java
-src/test/java/com/lockally/sdk/model/ListVacationResponders200ResponseTest.java
 src/test/java/com/lockally/sdk/model/ListWebhooks200ResponseTest.java
 src/test/java/com/lockally/sdk/model/MailboxGrantListTest.java
 src/test/java/com/lockally/sdk/model/MailboxGrantTest.java
@@ -761,7 +752,6 @@ src/test/java/com/lockally/sdk/model/SendEmailBatchRequestTest.java
 src/test/java/com/lockally/sdk/model/SendEmailRequestAttachmentsInnerTest.java
 src/test/java/com/lockally/sdk/model/SendEmailRequestTest.java
 src/test/java/com/lockally/sdk/model/SendMessageTest.java
-src/test/java/com/lockally/sdk/model/SetVacationResponderRequestTest.java
 src/test/java/com/lockally/sdk/model/SharedMemberTest.java
 src/test/java/com/lockally/sdk/model/SignupRequestTest.java
 src/test/java/com/lockally/sdk/model/SimulatedInboundTest.java
@@ -802,8 +792,6 @@ src/test/java/com/lockally/sdk/model/UpdateUserRequestTest.java
 src/test/java/com/lockally/sdk/model/UpdateWebhookRequestTest.java
 src/test/java/com/lockally/sdk/model/UserEventTest.java
 src/test/java/com/lockally/sdk/model/UserTest.java
-src/test/java/com/lockally/sdk/model/VacationParamsTest.java
-src/test/java/com/lockally/sdk/model/VacationResponderTest.java
 src/test/java/com/lockally/sdk/model/WebhookTest.java
 src/test/java/com/lockally/sdk/model/WhoamiKeyTest.java
 src/test/java/com/lockally/sdk/model/WhoamiTenantTest.java

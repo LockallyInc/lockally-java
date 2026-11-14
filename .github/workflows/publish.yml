@@ -89,7 +89,7 @@ jobs:
         run: |
           bundle=target/central-publishing/central-bundle.zip
           if [ ! -f "$bundle" ]; then
-            echo "no bundle at $bundle (the build failed before staging)"
+            echo "::warning::no bundle at $bundle, so there is nothing to record. That is expected when the build failed before staging; if the deploy step above passed, the upload did not come from where this step looks and this release has no evidence kept."
             exit 0
           fi
           echo "## Bundle contents" >> "$GITHUB_STEP_SUMMARY"

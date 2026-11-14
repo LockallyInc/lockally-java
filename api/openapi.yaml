@@ -2,11 +2,10 @@ openapi: 3.1.0
 info:
   contact:
     email: support@lockally.com
-    name: lockally support
+    name: Lockally
+    url: https://lockally.com
   description: |
-    The lockally control plane lets integrators and direct customers manage
-    everything except actual mail data flow (which uses standard JMAP / IMAP /
-    SMTP-submission against the data plane endpoints).
+    Official Lockally SDK for Java: send email and manage mailboxes, domains and webhooks through the Lockally API.
 
     **Authentication.** All `/v1/*` endpoints require a Bearer API key in the
     `Authorization` header. Keys are formatted `lk_live_<8-char-prefix>_<32-char-secret>`,
@@ -22,8 +21,8 @@ info:
     **Scopes.** Each endpoint requires a specific scope on the presented key.
     Insufficient scope returns `403` with the required scope name in `detail`.
   license:
-    name: AGPL-3.0-only OR LicenseRef-LOC-Commercial
-  title: lockally control plane
+    name: MIT
+  title: Lockally API
   version: 0.1.0
 servers:
 - description: Production
@@ -2289,135 +2288,6 @@ paths:
       tags:
       - send
       x-required-scope: send:read
-      x-accepts:
-      - application/json
-      - application/problem+json
-  /v1/mailboxes/{email}/vacation:
-    delete:
-      description: "Idempotent, 204 whether or not a row existed."
-      operationId: deleteVacationResponder
-      parameters:
-      - explode: false
-        in: path
-        name: email
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "204":
-          description: Deleted.
-        "401":
-          $ref: "#/components/responses/ProblemUnauthorized"
-        "403":
-          $ref: "#/components/responses/ProblemForbidden"
-      summary: Remove the vacation responder
-      tags:
-      - mailboxes
-      x-required-scope: mailboxes:write
-      x-accepts:
-      - application/problem+json
-    get:
-      description: Returns the stored vacation rule or 404 if none is set.
-      operationId: getVacationResponder
-      parameters:
-      - explode: false
-        in: path
-        name: email
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/VacationResponder"
-          description: Vacation responder.
-        "401":
-          $ref: "#/components/responses/ProblemUnauthorized"
-        "403":
-          $ref: "#/components/responses/ProblemForbidden"
-        "404":
-          $ref: "#/components/responses/ProblemNotFound"
-      summary: Get the vacation responder
-      tags:
-      - mailboxes
-      x-required-scope: mailboxes:read
-      x-accepts:
-      - application/json
-      - application/problem+json
-    parameters:
-    - explode: false
-      in: path
-      name: email
-      required: true
-      schema:
-        type: string
-      style: simple
-    put:
-      description: |
-        Upsert, same endpoint creates or replaces the rule. Clears
-        `synced_at`; the rule is staged until a later sync
-        pushes it to the mail server.
-      operationId: setVacationResponder
-      parameters:
-      - explode: false
-        in: path
-        name: email
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/setVacationResponder_request"
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/VacationResponder"
-          description: Saved.
-        "400":
-          $ref: "#/components/responses/ProblemBadRequest"
-        "401":
-          $ref: "#/components/responses/ProblemUnauthorized"
-        "403":
-          $ref: "#/components/responses/ProblemForbidden"
-        "404":
-          $ref: "#/components/responses/ProblemNotFound"
-      summary: Set the vacation responder
-      tags:
-      - mailboxes
-      x-required-scope: mailboxes:write
-      x-content-type: application/json
-      x-accepts:
-      - application/json
-      - application/problem+json
-  /v1/vacation:
-    get:
-      description: Returns every vacation responder for the calling tenant.
-      operationId: listVacationResponders
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/listVacationResponders_200_response"
-          description: List.
-        "401":
-          $ref: "#/components/responses/ProblemUnauthorized"
-        "403":
-          $ref: "#/components/responses/ProblemForbidden"
-      summary: List all vacation responders
-      tags:
-      - mailboxes
-      x-required-scope: mailboxes:read
       x-accepts:
       - application/json
       - application/problem+json
@@ -9074,72 +8944,6 @@ components:
         html: html
         headers:
           key: headers
-    VacationParams:
-      example:
-        subject: Out of office until June 5
-        body: Hi! I'm away until June 5. For urgent matters please contact ...
-        starts_at: 2000-01-23T04:56:07.000+00:00
-        ends_at: 2000-01-23T04:56:07.000+00:00
-      properties:
-        subject:
-          example: Out of office until June 5
-          type: string
-        body:
-          example: Hi! I'm away until June 5. For urgent matters please contact ...
-          type: string
-        starts_at:
-          format: date-time
-          type: string
-          nullable: true
-        ends_at:
-          format: date-time
-          type: string
-          nullable: true
-      required:
-      - body
-      - subject
-    VacationResponder:
-      example:
-        mailbox_email: mailbox_email
-        enabled: true
-        params:
-          subject: Out of office until June 5
-          body: Hi! I'm away until June 5. For urgent matters please contact ...
-          starts_at: 2000-01-23T04:56:07.000+00:00
-          ends_at: 2000-01-23T04:56:07.000+00:00
-        script: script
-        synced_at: 2000-01-23T04:56:07.000+00:00
-        created_at: 2000-01-23T04:56:07.000+00:00
-        updated_at: 2000-01-23T04:56:07.000+00:00
-      properties:
-        mailbox_email:
-          format: email
-          type: string
-        enabled:
-          type: boolean
-        params:
-          $ref: "#/components/schemas/VacationParams"
-        script:
-          description: Pre-rendered Sieve script (RFC 5230).
-          type: string
-        synced_at:
-          description: Null = stored on lockally but not yet pushed to the mail server.
-          format: date-time
-          type: string
-          nullable: true
-        created_at:
-          format: date-time
-          type: string
-        updated_at:
-          format: date-time
-          type: string
-      required:
-      - created_at
-      - enabled
-      - mailbox_email
-      - params
-      - script
-      - updated_at
     User:
       example:
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -11601,48 +11405,6 @@ components:
           description: Pass as `cursor` to fetch the next page. Absent on the final
             page.
           type: string
-      required:
-      - data
-    setVacationResponder_request:
-      properties:
-        enabled:
-          default: true
-          type: boolean
-        params:
-          $ref: "#/components/schemas/VacationParams"
-      required:
-      - params
-    listVacationResponders_200_response:
-      example:
-        data:
-        - mailbox_email: mailbox_email
-          enabled: true
-          params:
-            subject: Out of office until June 5
-            body: Hi! I'm away until June 5. For urgent matters please contact ...
-            starts_at: 2000-01-23T04:56:07.000+00:00
-            ends_at: 2000-01-23T04:56:07.000+00:00
-          script: script
-          synced_at: 2000-01-23T04:56:07.000+00:00
-          created_at: 2000-01-23T04:56:07.000+00:00
-          updated_at: 2000-01-23T04:56:07.000+00:00
-        - mailbox_email: mailbox_email
-          enabled: true
-          params:
-            subject: Out of office until June 5
-            body: Hi! I'm away until June 5. For urgent matters please contact ...
-            starts_at: 2000-01-23T04:56:07.000+00:00
-            ends_at: 2000-01-23T04:56:07.000+00:00
-          script: script
-          synced_at: 2000-01-23T04:56:07.000+00:00
-          created_at: 2000-01-23T04:56:07.000+00:00
-          updated_at: 2000-01-23T04:56:07.000+00:00
-      properties:
-        data:
-          items:
-            $ref: "#/components/schemas/VacationResponder"
-          type: array
-          default: null
       required:
       - data
     startConversation_request:

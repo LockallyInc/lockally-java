@@ -5,13 +5,13 @@
     <artifactId>lockally-sdk</artifactId>
     <packaging>jar</packaging>
     <name>lockally-sdk</name>
-    <version>0.4.0</version>
-    <url>https://github.com/lockallyinc/lockally-java</url>
-    <description>Official Lockally SDK for Java — transactional email, contacts, and agent inboxes.</description>
+    <version>0.5.0</version>
+    <url>https://lockally.com</url>
+    <description>Official Lockally SDK for Java: send email and manage mailboxes, domains and webhooks through the Lockally API.</description>
     <scm>
-        <connection>scm:git:git://github.com/lockallyinc/lockally-java.git</connection>
-        <developerConnection>scm:git:ssh://git@github.com/lockallyinc/lockally-java.git</developerConnection>
-        <url>https://github.com/lockallyinc/lockally-java</url>
+        <connection>scm:git:git://github.com/LockallyInc/lockally-java.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com/LockallyInc/lockally-java.git</developerConnection>
+        <url>https://github.com/LockallyInc/lockally-java</url>
     </scm>
 
     <licenses>
