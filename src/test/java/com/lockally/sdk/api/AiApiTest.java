@@ -53,7 +53,7 @@ public class AiApiTest {
     /**
      * Buy prepaid AI units
      *
-     * Body: {\&quot;bundle\&quot;: \&quot;100|500|2000\&quot;}. One classification &#x3D; one unit; bundles expire after 6 months. Admin session required. 503 until Paystack billing is configured.
+     * Body: {\&quot;bundle\&quot;: \&quot;300|1500|6000\&quot;}. One classification &#x3D; one unit; bundles expire after 3 months. Admin session required. 503 until Paystack billing is configured; 409 while prepaid AI units are not available on this server.
      *
      * @throws ApiException if the Api call fails
      */

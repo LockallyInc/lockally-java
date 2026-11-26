@@ -52,7 +52,7 @@ import com.lockally.sdk.JSON;
 /**
  * Thread
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-14T11:05:04.910856+01:00[Africa/Lagos]", comments = "Generator version: 7.23.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-26T06:32:03.383389+01:00[Africa/Lagos]", comments = "Generator version: 7.23.0")
 public class Thread {
   public static final String SERIALIZED_NAME_THREAD = "thread";
   @SerializedName(SERIALIZED_NAME_THREAD)

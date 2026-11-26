@@ -55,12 +55,17 @@ import com.lockally.sdk.JSON;
 /**
  * SendMessage
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-14T11:05:04.910856+01:00[Africa/Lagos]", comments = "Generator version: 7.23.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-26T06:32:03.383389+01:00[Africa/Lagos]", comments = "Generator version: 7.23.0")
 public class SendMessage {
   public static final String SERIALIZED_NAME_FROM = "from";
   @SerializedName(SERIALIZED_NAME_FROM)
   @jakarta.annotation.Nonnull
   private String from;
+
+  public static final String SERIALIZED_NAME_FROM_NAME = "from_name";
+  @SerializedName(SERIALIZED_NAME_FROM_NAME)
+  @jakarta.annotation.Nullable
+  private String fromName;
 
   public static final String SERIALIZED_NAME_TO = "to";
   @SerializedName(SERIALIZED_NAME_TO)
@@ -141,7 +146,7 @@ public class SendMessage {
   }
 
   /**
-   * Get from
+   * Sender address, alone or as &#x60;Acme Orders &lt;orders@acme.com&gt;&#x60;.
    * @return from
    */
   @jakarta.annotation.Nonnull
@@ -151,6 +156,25 @@ public class SendMessage {
 
   public void setFrom(@jakarta.annotation.Nonnull String from) {
     this.from = from;
+  }
+
+
+  public SendMessage fromName(@jakarta.annotation.Nullable String fromName) {
+    this.fromName = fromName;
+    return this;
+  }
+
+  /**
+   * Display name shown next to &#x60;from&#x60;. Must match a name given in &#x60;from&#x60;. Cannot contain &#x60;@&#x60; or control characters.
+   * @return fromName
+   */
+  @jakarta.annotation.Nullable
+  public String getFromName() {
+    return fromName;
+  }
+
+  public void setFromName(@jakarta.annotation.Nullable String fromName) {
+    this.fromName = fromName;
   }
 
 
@@ -479,6 +503,7 @@ public class SendMessage {
     }
     SendMessage sendMessage = (SendMessage) o;
     return Objects.equals(this.from, sendMessage.from) &&
+        Objects.equals(this.fromName, sendMessage.fromName) &&
         Objects.equals(this.to, sendMessage.to) &&
         Objects.equals(this.cc, sendMessage.cc) &&
         Objects.equals(this.bcc, sendMessage.bcc) &&
@@ -497,7 +522,7 @@ public class SendMessage {
 
   @Override
   public int hashCode() {
-    return Objects.hash(from, to, cc, bcc, subject, text, html, headers, replyTo, replyToName, unsubscribe, templateId, variables, sendAt, attachments);
+    return Objects.hash(from, fromName, to, cc, bcc, subject, text, html, headers, replyTo, replyToName, unsubscribe, templateId, variables, sendAt, attachments);
   }
 
   @Override
@@ -505,6 +530,7 @@ public class SendMessage {
     StringBuilder sb = new StringBuilder();
     sb.append("class SendMessage {\n");
     sb.append("    from: ").append(toIndentedString(from)).append("\n");
+    sb.append("    fromName: ").append(toIndentedString(fromName)).append("\n");
     sb.append("    to: ").append(toIndentedString(to)).append("\n");
     sb.append("    cc: ").append(toIndentedString(cc)).append("\n");
     sb.append("    bcc: ").append(toIndentedString(bcc)).append("\n");
@@ -537,7 +563,7 @@ public class SendMessage {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("from", "to", "cc", "bcc", "subject", "text", "html", "headers", "reply_to", "reply_to_name", "unsubscribe", "template_id", "variables", "send_at", "attachments"));
+    openapiFields = new HashSet<String>(Arrays.asList("from", "from_name", "to", "cc", "bcc", "subject", "text", "html", "headers", "reply_to", "reply_to_name", "unsubscribe", "template_id", "variables", "send_at", "attachments"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(Arrays.asList("from", "to"));
@@ -573,6 +599,9 @@ public class SendMessage {
         JsonObject jsonObj = jsonElement.getAsJsonObject();
       if (!jsonObj.get("from").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `from` to be a primitive type in the JSON string but got `%s`", jsonObj.get("from").toString()));
+      }
+      if ((jsonObj.get("from_name") != null && !jsonObj.get("from_name").isJsonNull()) && !jsonObj.get("from_name").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `from_name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("from_name").toString()));
       }
       // ensure the required json array is present
       if (jsonObj.get("to") == null) {

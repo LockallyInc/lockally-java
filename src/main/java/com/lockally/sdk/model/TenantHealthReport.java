@@ -52,7 +52,7 @@ import com.lockally.sdk.JSON;
 /**
  * The workspace health snapshot behind the console dashboard. DNS checks are live lookups, so a domain whose DNS cannot be read shows as a warning rather than an error.
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-14T11:05:04.910856+01:00[Africa/Lagos]", comments = "Generator version: 7.23.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-26T06:32:03.383389+01:00[Africa/Lagos]", comments = "Generator version: 7.23.0")
 public class TenantHealthReport {
   public static final String SERIALIZED_NAME_OVERALL_SCORE = "overall_score";
   @SerializedName(SERIALIZED_NAME_OVERALL_SCORE)

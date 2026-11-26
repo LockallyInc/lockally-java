@@ -53,6 +53,14 @@ public class SendEmailRequestTest {
     }
 
     /**
+     * Test the property 'fromName'
+     */
+    @Test
+    public void fromNameTest() {
+        // TODO: test fromName
+    }
+
+    /**
      * Test the property 'to'
      */
     @Test

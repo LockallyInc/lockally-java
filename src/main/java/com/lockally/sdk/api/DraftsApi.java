@@ -552,7 +552,7 @@ public class DraftsApi {
 
     /**
      * Propose a reply as a draft
-     * The safe default over /reply: the deterministic policy engine auto-sends clean in-thread replies and holds anything risky (PII, new recipients, injection-flagged threads, always-approve mailboxes) for human approval. Fires draft.pending_approval when held. Idempotency-Key required.
+     * The safe default over /reply: the deterministic policy engine auto-sends clean in-thread replies and holds anything risky (PII, new recipients, injection-flagged threads, always-approve mailboxes) for human approval. A key with inboxes:draft but not inboxes:write may only propose: its clean drafts are held too, never auto-sent. Fires draft.pending_approval when held. Idempotency-Key required.
      * @param threadID  (required)
      * @param idempotencyKey  (required)
      * @return DraftResult
@@ -571,7 +571,7 @@ public class DraftsApi {
 
     /**
      * Propose a reply as a draft
-     * The safe default over /reply: the deterministic policy engine auto-sends clean in-thread replies and holds anything risky (PII, new recipients, injection-flagged threads, always-approve mailboxes) for human approval. Fires draft.pending_approval when held. Idempotency-Key required.
+     * The safe default over /reply: the deterministic policy engine auto-sends clean in-thread replies and holds anything risky (PII, new recipients, injection-flagged threads, always-approve mailboxes) for human approval. A key with inboxes:draft but not inboxes:write may only propose: its clean drafts are held too, never auto-sent. Fires draft.pending_approval when held. Idempotency-Key required.
      * @param threadID  (required)
      * @param idempotencyKey  (required)
      * @return ApiResponse&lt;DraftResult&gt;
@@ -591,7 +591,7 @@ public class DraftsApi {
 
     /**
      * Propose a reply as a draft (asynchronously)
-     * The safe default over /reply: the deterministic policy engine auto-sends clean in-thread replies and holds anything risky (PII, new recipients, injection-flagged threads, always-approve mailboxes) for human approval. Fires draft.pending_approval when held. Idempotency-Key required.
+     * The safe default over /reply: the deterministic policy engine auto-sends clean in-thread replies and holds anything risky (PII, new recipients, injection-flagged threads, always-approve mailboxes) for human approval. A key with inboxes:draft but not inboxes:write may only propose: its clean drafts are held too, never auto-sent. Fires draft.pending_approval when held. Idempotency-Key required.
      * @param threadID  (required)
      * @param idempotencyKey  (required)
      * @param _callback The callback to be executed when the API call finishes

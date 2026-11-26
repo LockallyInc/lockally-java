@@ -51,7 +51,7 @@ import com.lockally.sdk.JSON;
 /**
  * Live DNS readiness of the destination domains, for deciding when to cut over. &#x60;ready&#x60; is true only when every domain&#39;s MX points at Lockally and its SPF authorises it.
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-14T11:05:04.910856+01:00[Africa/Lagos]", comments = "Generator version: 7.23.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-26T06:32:03.383389+01:00[Africa/Lagos]", comments = "Generator version: 7.23.0")
 public class MigrationDNSCheck {
   public static final String SERIALIZED_NAME_READY = "ready";
   @SerializedName(SERIALIZED_NAME_READY)

@@ -5,7 +5,7 @@
     <artifactId>lockally-sdk</artifactId>
     <packaging>jar</packaging>
     <name>lockally-sdk</name>
-    <version>0.5.0</version>
+    <version>0.6.0</version>
     <url>https://lockally.com</url>
     <description>Official Lockally SDK for Java: send email and manage mailboxes, domains and webhooks through the Lockally API.</description>
     <scm>

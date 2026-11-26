@@ -24,6 +24,7 @@
 | MAILBOXES_WRITE | &quot;mailboxes:write&quot; |
 | DIRECTORY_SYNC | &quot;directory:sync&quot; |
 | INBOXES_READ | &quot;inboxes:read&quot; |
+| INBOXES_DRAFT | &quot;inboxes:draft&quot; |
 | INBOXES_WRITE | &quot;inboxes:write&quot; |
 | SEND_READ | &quot;send:read&quot; |
 | SEND_WRITE | &quot;send:write&quot; |

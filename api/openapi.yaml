@@ -226,6 +226,14 @@ paths:
         immediately. The cleartext secret is not recoverable from the
         argon2id hash kept server-side; rotate by creating a new key and
         revoking the old one.
+
+        **Optional `Idempotency-Key` header** (up to 255 characters). A repeat
+        of the same key within 24 hours creates nothing and returns `409` with
+        a problem document naming the key the first call created
+        (`api_key_id`, `created_at`). The secret is never stored, so it cannot
+        be replayed: revoke that key if its secret never reached you. A key
+        used on a different endpoint in the last 24 hours returns `422`.
+        Without the header, every call creates a key.
       operationId: createApiKey
       requestBody:
         content:
@@ -1962,6 +1970,14 @@ paths:
         [Signature verification](https://developers.lockally.com/webhooks/verification/).
 
         Event names: see the [event catalogue](https://developers.lockally.com/webhooks/events/).
+
+        **Optional `Idempotency-Key` header** (up to 255 characters). A repeat
+        of the same key within 24 hours creates nothing and returns `409` with
+        a problem document naming the webhook the first call created
+        (`webhook_id`, `created_at`). The signing secret is never stored, so it
+        cannot be replayed: delete that webhook if its secret never reached
+        you. A key used on a different endpoint in the last 24 hours returns
+        `422`. Without the header, every call creates a webhook.
       operationId: createWebhook
       requestBody:
         content:
@@ -2481,7 +2497,7 @@ paths:
       summary: Propose a new conversation as a draft
       tags:
       - drafts
-      x-required-scope: inboxes:write
+      x-required-scope: inboxes:draft
       x-accepts:
       - application/json
   /v1/threads/{threadID}:
@@ -2554,7 +2570,9 @@ paths:
       description: "The safe default over /reply: the deterministic policy engine\
         \ auto-sends clean in-thread replies and holds anything risky (PII, new recipients,\
         \ injection-flagged threads, always-approve mailboxes) for human approval.\
-        \ Fires draft.pending_approval when held. Idempotency-Key required."
+        \ A key with inboxes:draft but not inboxes:write may only propose: its clean\
+        \ drafts are held too, never auto-sent. Fires draft.pending_approval when\
+        \ held. Idempotency-Key required."
       operationId: createReplyDraft
       parameters:
       - explode: false
@@ -2583,7 +2601,7 @@ paths:
       summary: Propose a reply as a draft
       tags:
       - drafts
-      x-required-scope: inboxes:write
+      x-required-scope: inboxes:draft
       x-accepts:
       - application/json
   /v1/threads/{threadID}/classify:
@@ -3123,9 +3141,10 @@ paths:
       - application/json
   /v1/billing/ai-units/checkout:
     post:
-      description: "Body: {\"bundle\": \"100|500|2000\"}. One classification = one\
-        \ unit; bundles expire after 6 months. Admin session required. 503 until Paystack\
-        \ billing is configured."
+      description: "Body: {\"bundle\": \"300|1500|6000\"}. One classification = one\
+        \ unit; bundles expire after 3 months. Admin session required. 503 until Paystack\
+        \ billing is configured; 409 while prepaid AI units are not available on this\
+        \ server."
       operationId: createAiUnitsCheckout
       responses:
         "200":
@@ -8067,7 +8086,12 @@ components:
     SendMessage:
       properties:
         from:
-          format: email
+          description: "Sender address, alone or as `Acme Orders <orders@acme.com>`."
+          type: string
+        from_name:
+          description: Display name shown next to `from`. Must match a name given
+            in `from`. Cannot contain `@` or control characters.
+          maxLength: 200
           type: string
         to:
           items:
@@ -10580,6 +10604,7 @@ components:
             - mailboxes:write
             - directory:sync
             - inboxes:read
+            - inboxes:draft
             - inboxes:write
             - send:read
             - send:write
@@ -10987,7 +11012,16 @@ components:
     sendEmail_request:
       properties:
         from:
-          format: email
+          description: "Sender address, alone (`orders@acme.com`) or with a display\
+            \ name (`Acme Orders <orders@acme.com>`). Only the address is checked\
+            \ against your sender rules and used as the envelope sender."
+          type: string
+        from_name:
+          description: "Display name recipients see next to `from`, e.g. `Acme Orders`.\
+            \ The same as giving it in `from`; if you do both, the names must match\
+            \ (400 `Conflicting from name`). Cannot contain `@` or control characters.\
+            \ Encoded and quoted for you, so accents, commas and quotes are safe."
+          maxLength: 200
           type: string
         to:
           items:

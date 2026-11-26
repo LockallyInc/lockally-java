@@ -279,7 +279,7 @@ public class AiApi {
 
     /**
      * Buy prepaid AI units
-     * Body: {\&quot;bundle\&quot;: \&quot;100|500|2000\&quot;}. One classification &#x3D; one unit; bundles expire after 6 months. Admin session required. 503 until Paystack billing is configured.
+     * Body: {\&quot;bundle\&quot;: \&quot;300|1500|6000\&quot;}. One classification &#x3D; one unit; bundles expire after 3 months. Admin session required. 503 until Paystack billing is configured; 409 while prepaid AI units are not available on this server.
      * @return CreateAiUnitsCheckout200Response
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -296,7 +296,7 @@ public class AiApi {
 
     /**
      * Buy prepaid AI units
-     * Body: {\&quot;bundle\&quot;: \&quot;100|500|2000\&quot;}. One classification &#x3D; one unit; bundles expire after 6 months. Admin session required. 503 until Paystack billing is configured.
+     * Body: {\&quot;bundle\&quot;: \&quot;300|1500|6000\&quot;}. One classification &#x3D; one unit; bundles expire after 3 months. Admin session required. 503 until Paystack billing is configured; 409 while prepaid AI units are not available on this server.
      * @return ApiResponse&lt;CreateAiUnitsCheckout200Response&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -314,7 +314,7 @@ public class AiApi {
 
     /**
      * Buy prepaid AI units (asynchronously)
-     * Body: {\&quot;bundle\&quot;: \&quot;100|500|2000\&quot;}. One classification &#x3D; one unit; bundles expire after 6 months. Admin session required. 503 until Paystack billing is configured.
+     * Body: {\&quot;bundle\&quot;: \&quot;300|1500|6000\&quot;}. One classification &#x3D; one unit; bundles expire after 3 months. Admin session required. 503 until Paystack billing is configured; 409 while prepaid AI units are not available on this server.
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object

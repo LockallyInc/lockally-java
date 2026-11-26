@@ -154,7 +154,7 @@ public class ApiKeysApi {
 
     /**
      * Create an API key
-     * Provisions a fresh API key for the calling tenant.  **The full &#x60;secret&#x60; is included in this response ONLY**, store it immediately. The cleartext secret is not recoverable from the argon2id hash kept server-side; rotate by creating a new key and revoking the old one. 
+     * Provisions a fresh API key for the calling tenant.  **The full &#x60;secret&#x60; is included in this response ONLY**, store it immediately. The cleartext secret is not recoverable from the argon2id hash kept server-side; rotate by creating a new key and revoking the old one.  **Optional &#x60;Idempotency-Key&#x60; header** (up to 255 characters). A repeat of the same key within 24 hours creates nothing and returns &#x60;409&#x60; with a problem document naming the key the first call created (&#x60;api_key_id&#x60;, &#x60;created_at&#x60;). The secret is never stored, so it cannot be replayed: revoke that key if its secret never reached you. A key used on a different endpoint in the last 24 hours returns &#x60;422&#x60;. Without the header, every call creates a key. 
      * @param createApiKeyRequest  (required)
      * @return CreateApiKey201Response
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -175,7 +175,7 @@ public class ApiKeysApi {
 
     /**
      * Create an API key
-     * Provisions a fresh API key for the calling tenant.  **The full &#x60;secret&#x60; is included in this response ONLY**, store it immediately. The cleartext secret is not recoverable from the argon2id hash kept server-side; rotate by creating a new key and revoking the old one. 
+     * Provisions a fresh API key for the calling tenant.  **The full &#x60;secret&#x60; is included in this response ONLY**, store it immediately. The cleartext secret is not recoverable from the argon2id hash kept server-side; rotate by creating a new key and revoking the old one.  **Optional &#x60;Idempotency-Key&#x60; header** (up to 255 characters). A repeat of the same key within 24 hours creates nothing and returns &#x60;409&#x60; with a problem document naming the key the first call created (&#x60;api_key_id&#x60;, &#x60;created_at&#x60;). The secret is never stored, so it cannot be replayed: revoke that key if its secret never reached you. A key used on a different endpoint in the last 24 hours returns &#x60;422&#x60;. Without the header, every call creates a key. 
      * @param createApiKeyRequest  (required)
      * @return ApiResponse&lt;CreateApiKey201Response&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -197,7 +197,7 @@ public class ApiKeysApi {
 
     /**
      * Create an API key (asynchronously)
-     * Provisions a fresh API key for the calling tenant.  **The full &#x60;secret&#x60; is included in this response ONLY**, store it immediately. The cleartext secret is not recoverable from the argon2id hash kept server-side; rotate by creating a new key and revoking the old one. 
+     * Provisions a fresh API key for the calling tenant.  **The full &#x60;secret&#x60; is included in this response ONLY**, store it immediately. The cleartext secret is not recoverable from the argon2id hash kept server-side; rotate by creating a new key and revoking the old one.  **Optional &#x60;Idempotency-Key&#x60; header** (up to 255 characters). A repeat of the same key within 24 hours creates nothing and returns &#x60;409&#x60; with a problem document naming the key the first call created (&#x60;api_key_id&#x60;, &#x60;created_at&#x60;). The secret is never stored, so it cannot be replayed: revoke that key if its secret never reached you. A key used on a different endpoint in the last 24 hours returns &#x60;422&#x60;. Without the header, every call creates a key. 
      * @param createApiKeyRequest  (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call

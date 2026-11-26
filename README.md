@@ -13,7 +13,7 @@
 
 Lockally API
 - API version: 0.1.0
-  - Build date: 2026-11-14T11:05:04.910856+01:00[Africa/Lagos]
+  - Build date: 2026-11-26T06:32:03.383389+01:00[Africa/Lagos]
   - Generator version: 7.23.0
 
 Official Lockally SDK for Java: send email and manage mailboxes, domains and webhooks through the Lockally API.
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.lockally</groupId>
   <artifactId>lockally-sdk</artifactId>
-  <version>0.5.0</version>
+  <version>0.6.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -86,7 +86,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "com.lockally:lockally-sdk:0.5.0"
+     implementation "com.lockally:lockally-sdk:0.6.0"
   }
 ```
 
@@ -100,7 +100,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/lockally-sdk-0.5.0.jar`
+* `target/lockally-sdk-0.6.0.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
